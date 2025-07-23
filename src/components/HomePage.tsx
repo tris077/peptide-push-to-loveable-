@@ -1,11 +1,13 @@
 import { useState, useMemo, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { SearchBar } from "./SearchBar";
-import { FilterSidebar } from "./FilterSidebar";
-import { CompoundCard } from "./CompoundCard";
+import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
+import { InteractiveCard } from "./InteractiveCard";
 import { TrendingCarousel } from "./TrendingCarousel";
+import { HeroScene } from "./3D/HeroScene";
 import { peptidesData } from "@/data/peptides";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun } from "lucide-react";
+import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun, Sparkles } from "lucide-react";
 
 export const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -42,105 +44,218 @@ export const HomePage = () => {
     // Search is already reactive through useMemo
   };
 
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(185_100%_65%_/_0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_75%_/_0.2),transparent_50%)]" />
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent"
+          animate={{ x: [-100, window.innerWidth + 100] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
       {/* Dark mode toggle */}
-      <div className="fixed top-6 right-6 z-50">
+      <motion.div 
+        className="fixed top-6 right-6 z-50"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1 }}
+      >
         <Button
           variant="outline"
           size="icon"
           onClick={toggleDarkMode}
-          className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-border/20 shadow-premium hover:shadow-glow transition-all duration-300 hover:scale-110"
+          className="w-14 h-14 rounded-full bg-black/80 backdrop-blur-xl border border-white/20 shadow-2xl hover:shadow-glow transition-all duration-500 hover:scale-110 group"
         >
-          {isDarkMode ? (
-            <Sun className="h-6 w-6 text-accent" />
-          ) : (
-            <Moon className="h-6 w-6 text-primary" />
-          )}
+          <motion.div
+            animate={{ rotate: isDarkMode ? 180 : 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {isDarkMode ? (
+              <Sun className="h-6 w-6 text-yellow-400 group-hover:text-yellow-300" />
+            ) : (
+              <Moon className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
+            )}
+          </motion.div>
         </Button>
-      </div>
+      </motion.div>
 
       {/* Premium Hero Section */}
-      <div className="relative bg-gradient-primary text-white py-32 overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(191_95%_60%_/_0.3),transparent_50%)]" />
+      <motion.div 
+        className="relative min-h-screen flex items-center justify-center text-white overflow-hidden"
+        style={{ opacity: heroOpacity, scale: heroScale }}
+      >
+        {/* 3D Hero Scene */}
+        <div className="absolute inset-0 z-10">
+          <HeroScene />
+        </div>
         
-        <div className="container mx-auto px-8 relative z-10">
+        <div className="container mx-auto px-8 relative z-20">
           <div className="text-center max-w-6xl mx-auto">
-            <div className="animate-slide-up">
-              <div className="flex items-center justify-center gap-6 mb-8">
-                <div className="w-20 h-20 bg-gradient-accent rounded-3xl flex items-center justify-center animate-float shadow-glow">
-                  <span className="text-4xl">🧬</span>
-                </div>
-                <h1 className="text-8xl md:text-9xl font-bold bg-gradient-to-r from-white via-white to-accent bg-clip-text text-transparent">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div 
+                className="flex items-center justify-center gap-6 mb-8"
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                <motion.div 
+                  className="relative"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <div className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl">
+                    <Sparkles className="h-12 w-12 text-white" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl blur-xl opacity-50 animate-pulse" />
+                </motion.div>
+                
+                <motion.h1 
+                  className="text-8xl md:text-9xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent"
+                  animate={{ 
+                    textShadow: ["0 0 20px rgba(0,191,255,0.5)", "0 0 40px rgba(0,191,255,0.8)", "0 0 20px rgba(0,191,255,0.5)"]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
                   Peplike
-                </h1>
-              </div>
-              <p className="text-3xl md:text-4xl text-white/95 font-bold mb-6">
-                Premium Biotech Reference Hub
-              </p>
-              <p className="text-xl text-white/80 mb-20 max-w-5xl mx-auto leading-relaxed">
-                Explore nootropics, biohackers' favorites, and cutting-edge peptides with comprehensive data, 
-                molecular structures, and verified research sources.
-              </p>
-            </div>
+                </motion.h1>
+              </motion.div>
+              
+              <motion.p 
+                className="text-3xl md:text-4xl text-cyan-300 font-bold mb-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                Next-Gen Biotech Marketplace
+              </motion.p>
+              
+              <motion.p 
+                className="text-xl text-white/80 mb-20 max-w-5xl mx-auto leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                Explore premium peptides, cutting-edge nootropics, and research chemicals 
+                with immersive 3D previews, verified data, and biotech-grade insights.
+              </motion.p>
+            </motion.div>
             
-            <div className="mb-20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <motion.div 
+              className="mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
               <SearchBar
                 value={searchTerm}
                 onChange={setSearchTerm}
                 onSearch={handleSearch}
-                placeholder="Search nootropics, peptides, research chemicals..."
+                placeholder="Search premium compounds, nootropics, peptides..."
               />
-            </div>
+            </motion.div>
 
-            <div className="flex justify-center gap-8 flex-wrap animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow-mint transition-all duration-500 group">
-                <Shield className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-semibold">Research Only</span>
-              </div>
-              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow-lavender transition-all duration-500 group">
-                <Zap className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-semibold">Evidence-Based</span>
-              </div>
-              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow transition-all duration-500 group">
-                <Activity className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-semibold">Comprehensive Data</span>
-              </div>
-            </div>
+            <motion.div 
+              className="flex justify-center gap-8 flex-wrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+            >
+              {[
+                { icon: Shield, text: "Research Grade", color: "from-green-500 to-emerald-500" },
+                { icon: Zap, text: "Lab Verified", color: "from-yellow-500 to-orange-500" },
+                { icon: Activity, text: "Real-Time Data", color: "from-purple-500 to-pink-500" }
+              ].map((item, index) => (
+                <motion.div
+                  key={item.text}
+                  className={`flex items-center gap-4 text-base bg-black/20 backdrop-blur-xl px-8 py-4 rounded-full border border-white/10 hover:border-white/30 transition-all duration-500 group`}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 + index * 0.1 }}
+                >
+                  <motion.div
+                    className={`p-2 bg-gradient-to-r ${item.color} rounded-full`}
+                    whileHover={{ rotate: 15 }}
+                  >
+                    <item.icon className="h-5 w-5 text-white" />
+                  </motion.div>
+                  <span className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                    {item.text}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-8 py-20 relative z-10">
         {/* Trending Section */}
-        <div className="mb-20">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-gradient-accent rounded-2xl shadow-glow">
-                <TrendingUp className="h-6 w-6 text-white" />
-              </div>
+        <motion.div 
+          className="mb-24"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center justify-between mb-12">
+            <motion.div 
+              className="flex items-center gap-6"
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.div 
+                className="p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl shadow-2xl"
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <TrendingUp className="h-8 w-8 text-white" />
+              </motion.div>
               <div>
-                <h2 className="text-3xl font-bold text-primary">Trending Compounds</h2>
-                <p className="text-muted-foreground">Most viewed this week</p>
+                <h2 className="text-4xl font-black text-white mb-2">Trending Compounds</h2>
+                <p className="text-cyan-400 text-lg">Most explored this week</p>
               </div>
-            </div>
-            <Button variant="outline" className="flex items-center gap-2 hover:bg-accent hover:text-white transition-all duration-300">
-              View All
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button className="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-glow transition-all duration-500">
+                View All
+                <ArrowRight className="h-5 w-5" />
+              </Button>
+            </motion.div>
           </div>
           
           <TrendingCarousel peptides={trendingPeptides} />
-        </div>
+        </motion.div>
 
         {/* Browse Section */}
-        <div className="flex gap-12">
+        <motion.div 
+          className="flex gap-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           {/* Enhanced Sidebar */}
           <div className="hidden lg:block">
-            <FilterSidebar
+            <EnhancedFilterSidebar
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
             />
@@ -148,55 +263,75 @@ export const HomePage = () => {
 
           {/* Results Grid */}
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-8">
+            <motion.div 
+              className="flex items-center justify-between mb-12"
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <div>
-                <h2 className="text-3xl font-bold text-primary mb-2">
-                  Browse Library
+                <h2 className="text-4xl font-black text-white mb-3">
+                  Premium Library
                   {selectedCategory !== "All Categories" && (
-                    <span className="text-accent"> · {selectedCategory}</span>
+                    <span className="text-cyan-400"> · {selectedCategory}</span>
                   )}
                 </h2>
-                <p className="text-muted-foreground">
-                  {filteredPeptides.length} compounds available
-                </p>
+                <motion.p 
+                  className="text-cyan-300 text-lg"
+                  animate={{ opacity: [0.7, 1, 0.7] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {filteredPeptides.length} compounds available for research
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
 
             {filteredPeptides.length === 0 ? (
-              <div className="text-center py-20">
-                <div className="w-24 h-24 bg-gradient-accent/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🔬</span>
-                </div>
-                <h3 className="text-2xl font-bold text-primary mb-3">No compounds found</h3>
-                <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                  Try adjusting your search terms or filter criteria to discover more compounds
-                </p>
-                <Button 
-                  variant="accent" 
-                  className="bg-gradient-accent text-white border-0 shadow-premium hover:shadow-glow hover:scale-105 transition-all duration-300"
-                  onClick={() => {
-                    setSearchTerm("");
-                    setSelectedCategory("All Categories");
-                  }}
+              <motion.div 
+                className="text-center py-24"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.div 
+                  className="w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-xl border border-white/10"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
-                  Clear All Filters
-                </Button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                {filteredPeptides.map((peptide, index) => (
-                  <div 
-                    key={peptide.id} 
-                    className="animate-fade-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                  <span className="text-6xl">🔬</span>
+                </motion.div>
+                <h3 className="text-3xl font-bold text-white mb-4">No compounds found</h3>
+                <p className="text-white/60 mb-8 max-w-lg mx-auto text-lg">
+                  Try adjusting your search terms or filter criteria to discover more premium compounds
+                </p>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button 
+                    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-2xl hover:shadow-glow hover:scale-105 transition-all duration-500 px-8 py-4 rounded-full font-bold text-lg"
+                    onClick={() => {
+                      setSearchTerm("");
+                      setSelectedCategory("All Categories");
+                    }}
                   >
-                    <CompoundCard peptide={peptide} />
-                  </div>
+                    Clear All Filters
+                  </Button>
+                </motion.div>
+              </motion.div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+                {filteredPeptides.map((peptide, index) => (
+                  <InteractiveCard
+                    key={peptide.id}
+                    peptide={peptide}
+                    index={index}
+                  />
                 ))}
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
