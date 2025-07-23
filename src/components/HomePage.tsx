@@ -1,15 +1,27 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { SearchBar } from "./SearchBar";
 import { FilterSidebar } from "./FilterSidebar";
 import { CompoundCard } from "./CompoundCard";
 import { TrendingCarousel } from "./TrendingCarousel";
 import { peptidesData } from "@/data/peptides";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight } from "lucide-react";
+import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun } from "lucide-react";
 
 export const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    setIsDarkMode(isDark);
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    document.documentElement.classList.toggle('dark', newMode);
+  };
 
   const filteredPeptides = useMemo(() => {
     return peptidesData.filter(peptide => {
@@ -31,29 +43,50 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-background">
+      {/* Dark mode toggle */}
+      <div className="fixed top-6 right-6 z-50">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleDarkMode}
+          className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-border/20 shadow-premium hover:shadow-glow transition-all duration-300 hover:scale-110"
+        >
+          {isDarkMode ? (
+            <Sun className="h-6 w-6 text-accent" />
+          ) : (
+            <Moon className="h-6 w-6 text-primary" />
+          )}
+        </Button>
+      </div>
+
       {/* Premium Hero Section */}
-      <div className="relative bg-gradient-primary text-white py-24 overflow-hidden">
+      <div className="relative bg-gradient-primary text-white py-32 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(191_95%_60%_/_0.3),transparent_50%)]" />
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center max-w-5xl mx-auto">
+        <div className="container mx-auto px-8 relative z-10">
+          <div className="text-center max-w-6xl mx-auto">
             <div className="animate-slide-up">
-              <h1 className="text-6xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                PeptideBase
-              </h1>
-              <p className="text-xl md:text-2xl text-white/90 font-medium mb-2">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-gradient-accent rounded-2xl flex items-center justify-center animate-bounce-soft">
+                  <span className="text-3xl">🧬</span>
+                </div>
+                <h1 className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                  PeptideBase
+                </h1>
+              </div>
+              <p className="text-2xl md:text-3xl text-white/90 font-semibold mb-4">
                 Premium Reference Hub for Modern Biohackers
               </p>
-              <p className="text-lg text-white/70 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-white/70 mb-16 max-w-4xl mx-auto leading-relaxed">
                 Discover, research, and explore cutting-edge peptides and research chemicals 
                 with comprehensive data, expert insights, and verified sources.
               </p>
             </div>
             
-            <div className="mb-12 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="mb-16 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <SearchBar
                 value={searchTerm}
                 onChange={setSearchTerm}
