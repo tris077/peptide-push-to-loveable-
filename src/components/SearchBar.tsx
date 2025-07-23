@@ -100,7 +100,7 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyPress={handleKeyPress}
           onFocus={() => value.length > 0 && suggestions.length > 0 && setShowSuggestions(true)}
-          className="pl-20 pr-48 h-24 text-2xl bg-white/95 backdrop-blur-md border-2 border-white/40 shadow-biotech focus:shadow-glow focus:bg-white focus:border-accent/60 transition-all duration-500 rounded-full placeholder:text-muted-foreground/70 font-medium"
+          className="pl-20 pr-48 h-24 text-2xl text-foreground bg-white/95 backdrop-blur-md border-2 border-white/40 shadow-biotech focus:shadow-glow focus:bg-white focus:border-accent/60 transition-all duration-500 rounded-full placeholder:text-muted-foreground/70 font-medium"
         />
         <Search className="absolute left-8 h-8 w-8 text-accent group-focus-within:scale-125 group-focus-within:text-accent transition-all duration-500" />
         {value && (
