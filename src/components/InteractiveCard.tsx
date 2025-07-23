@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, TrendingUp, Atom, Dna } from "lucide-react";
 import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
+import { ProductViewer360 } from "./ProductViewer360";
 
 interface InteractiveCardProps {
   peptide: Peptide;
@@ -101,50 +102,20 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
         )}
 
         <CardHeader className="relative z-10 p-8">
-          {/* 3D Compound Preview */}
+          {/* 3D Product Viewer */}
           <motion.div 
             className="relative w-full h-56 mb-8 rounded-3xl overflow-hidden"
             style={{
               transform: "translateZ(20px)",
             }}
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColor(index)} opacity-20`} />
-            <div className="absolute inset-0 backdrop-blur-sm" />
-            
-            {/* Floating Molecule Icon */}
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center"
-              animate={isHovered ? { 
-                scale: [1, 1.1, 1],
-                rotate: [0, 180, 360] 
-              } : {}}
-              transition={{ duration: 2, repeat: isHovered ? Infinity : 0 }}
-            >
-              <div className="relative">
-                <div className={`w-32 h-32 bg-gradient-to-br ${getCategoryColor(index)} rounded-full flex items-center justify-center shadow-2xl`}>
-                  <span className="text-5xl font-bold text-white">
-                    {peptide.name.charAt(0)}
-                  </span>
-                </div>
-                {/* Orbital Rings */}
-                <motion.div
-                  className="absolute inset-0 border-2 border-white/30 rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                />
-                <motion.div
-                  className="absolute inset-2 border border-white/20 rounded-full"
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-            </motion.div>
-
-            {/* Corner Indicators */}
-            <div className="absolute top-4 left-4 w-3 h-3 bg-cyan-400 rounded-full animate-pulse-glow" />
-            <div className="absolute bottom-4 right-4 text-sm text-white/90 font-bold bg-black/20 backdrop-blur-sm px-3 py-1 rounded-full">
-              3D Preview
-            </div>
+            <ProductViewer360
+              productName={peptide.name}
+              images={peptide.name.toLowerCase() === 'semax' ? ['/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png'] : ['/placeholder-molecule.svg']}
+              size="large"
+              autoRotate={isHovered}
+              className="w-full h-full"
+            />
           </motion.div>
 
           {/* 2D Molecular Structure Slot */}

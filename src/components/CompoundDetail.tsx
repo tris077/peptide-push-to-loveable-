@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { ProductViewer360 } from "./ProductViewer360";
 import { 
   ArrowLeft, 
   ExternalLink, 
@@ -96,25 +97,23 @@ export const CompoundDetail = () => {
               </CardContent>
             </Card>
 
-            {/* 3D Model Placeholder */}
+            {/* 360° Product Viewer */}
             <Card className="shadow-elegant">
               <CardHeader>
                 <CardTitle className="text-primary flex items-center gap-2">
-                  <span className="text-2xl">🌐</span>
-                  3D Interactive Model
+                  <span className="text-2xl">📦</span>
+                  360° Product View
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="aspect-square bg-gradient-primary/10 rounded-lg flex items-center justify-center border-2 border-primary/20">
-                  <div className="text-center">
-                    <div className="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
-                      <span className="text-4xl font-bold text-primary">
-                        {peptide.name.charAt(0)}
-                      </span>
-                    </div>
-                    <p className="text-muted-foreground">Interactive 3D model</p>
-                    <p className="text-sm text-muted-foreground">Coming soon</p>
-                  </div>
+                <div className="aspect-square flex items-center justify-center">
+                  <ProductViewer360
+                    productName={peptide.name}
+                    images={peptide.name.toLowerCase() === 'semax' ? ['/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png'] : ['/placeholder-molecule.svg']}
+                    size="large"
+                    autoRotate={true}
+                    className="mx-auto"
+                  />
                 </div>
               </CardContent>
             </Card>
