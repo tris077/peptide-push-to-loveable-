@@ -4,10 +4,9 @@ import { SearchBar } from "./SearchBar";
 import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
 import { InteractiveCard } from "./InteractiveCard";
 import { TrendingCarousel } from "./TrendingCarousel";
-import { HeroScene } from "./3D/HeroScene";
 import { peptidesData } from "@/data/peptides";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun, Sparkles } from "lucide-react";
+import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun, Sparkles, Atom } from "lucide-react";
 
 export const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -92,9 +91,42 @@ export const HomePage = () => {
         className="relative min-h-screen flex items-center justify-center text-white overflow-hidden"
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
-        {/* 3D Hero Scene */}
-        <div className="absolute inset-0 z-10">
-          <HeroScene />
+        {/* Animated Hero Background */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <motion.div
+            className="relative w-96 h-96"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            {/* Central Atom */}
+            <div className="absolute inset-1/2 w-24 h-24 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full shadow-2xl flex items-center justify-center">
+              <Atom className="h-12 w-12 text-white" />
+            </div>
+            
+            {/* Orbital Rings */}
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className={`absolute inset-0 border-2 border-cyan-400/30 rounded-full`}
+                style={{ 
+                  width: `${(i + 1) * 120}px`, 
+                  height: `${(i + 1) * 120}px`,
+                  left: '50%',
+                  top: '50%',
+                  transform: 'translate(-50%, -50%)'
+                }}
+                animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+                transition={{ duration: (i + 1) * 8, repeat: Infinity, ease: "linear" }}
+              >
+                <div className={`absolute w-3 h-3 bg-gradient-to-r ${
+                  i === 0 ? 'from-cyan-400 to-blue-500' :
+                  i === 1 ? 'from-purple-400 to-pink-500' :
+                  'from-green-400 to-emerald-500'
+                } rounded-full`} 
+                style={{ top: '10px', left: '50%', transform: 'translateX(-50%)' }} />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
         
         <div className="container mx-auto px-8 relative z-20">
