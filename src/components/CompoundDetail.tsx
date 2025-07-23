@@ -77,14 +77,12 @@ export const CompoundDetail = () => {
               </CardHeader>
               <CardContent>
                 <div className="group relative">
-                  <div className="aspect-video bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center border border-accent/20 shadow-biotech overflow-hidden">
-                    <div className="text-center p-8">
-                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-accent/20 to-primary/20 rounded-lg flex items-center justify-center mb-4 border border-accent/30">
-                        <span className="text-2xl font-mono font-bold text-accent">{peptide.name}</span>
-                      </div>
-                      <p className="font-medium text-lg text-foreground">High-Resolution Structure</p>
-                      <p className="text-sm text-muted-foreground mt-1">Molecular diagram placeholder</p>
-                    </div>
+                  <div className="aspect-video bg-white/95 backdrop-blur-sm rounded-xl border border-accent/20 shadow-biotech overflow-hidden">
+                    <img 
+                      src="/placeholder-molecule.svg" 
+                      alt={`${peptide.name} molecular structure`}
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                    />
                     {/* Hover Zoom Effect */}
                     <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl" />
                   </div>
@@ -140,20 +138,92 @@ export const CompoundDetail = () => {
 
           {/* Right Side - Information Panel */}
           <div className="space-y-6">
-            {/* Description */}
+            {/* Short Description */}
             <Card className="shadow-elegant">
               <CardHeader>
-                <CardTitle className="text-primary">Description</CardTitle>
+                <CardTitle className="text-primary">Overview</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-foreground leading-relaxed">{peptide.description}</p>
+                <p className="text-foreground text-lg leading-relaxed font-medium">{peptide.shortDescription}</p>
+              </CardContent>
+            </Card>
+
+            {/* Full Description */}
+            <Card className="shadow-elegant">
+              <CardHeader>
+                <CardTitle className="text-primary">Detailed Description</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-foreground leading-relaxed">{peptide.fullDescription}</p>
+              </CardContent>
+            </Card>
+
+            {/* Molecular Information */}
+            <Card className="shadow-elegant">
+              <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                  🧪 Molecular Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {peptide.molecularFormula && (
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="font-medium">Molecular Formula:</span>
+                    <span className="font-mono text-accent font-bold">{peptide.molecularFormula}</span>
+                  </div>
+                )}
+                {peptide.molecularWeight && (
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="font-medium">Molecular Weight:</span>
+                    <span className="font-mono font-bold">{peptide.molecularWeight}</span>
+                  </div>
+                )}
+                {peptide.atomCount && (
+                  <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
+                    <span className="font-medium">Total Atoms:</span>
+                    <span className="font-bold">{peptide.atomCount}</span>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Use Cases & Benefits */}
+            <Card className="shadow-elegant">
+              <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                  🎯 Use Cases & Benefits
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Primary Use Cases:</h4>
+                  <div className="grid grid-cols-1 gap-2">
+                    {peptide.useCases.map((useCase, index) => (
+                      <div key={index} className="flex items-center gap-2 p-2 bg-accent/10 rounded-lg">
+                        <div className="w-2 h-2 bg-accent rounded-full" />
+                        <span className="text-sm">{useCase}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Key Benefits:</h4>
+                  <div className="grid grid-cols-1 gap-2">
+                    {peptide.benefits.map((benefit, index) => (
+                      <div key={index} className="flex items-center gap-2 p-2 bg-green-500/10 rounded-lg">
+                        <div className="w-2 h-2 bg-green-500 rounded-full" />
+                        <span className="text-sm">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             {/* Key Information */}
             <Card className="shadow-elegant">
               <CardHeader>
-                <CardTitle className="text-primary">Key Information</CardTitle>
+                <CardTitle className="text-primary">Administration & Dosage</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid gap-4">
@@ -174,14 +244,6 @@ export const CompoundDetail = () => {
                   </div>
                   
                   <div className="flex items-center gap-3">
-                    <Shield className="h-5 w-5 text-accent" />
-                    <div>
-                      <span className="font-medium">Legal Status:</span>
-                      <span className="ml-2 text-muted-foreground">{peptide.legalStatus}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
                     <Pill className="h-5 w-5 text-accent" />
                     <div>
                       <span className="font-medium">Dosage Range:</span>
@@ -194,6 +256,14 @@ export const CompoundDetail = () => {
                     <div>
                       <span className="font-medium">Year Discovered:</span>
                       <span className="ml-2 text-muted-foreground">{peptide.yearDiscovered}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <Shield className="h-5 w-5 text-accent" />
+                    <div>
+                      <span className="font-medium">Legal Status:</span>
+                      <span className="ml-2 text-muted-foreground">{peptide.legalStatus}</span>
                     </div>
                   </div>
                 </div>
@@ -213,6 +283,40 @@ export const CompoundDetail = () => {
               </CardContent>
             </Card>
 
+            {/* Warnings & Side Effects */}
+            <Card className="shadow-elegant border-orange-200">
+              <CardHeader>
+                <CardTitle className="text-orange-600 flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5" />
+                  Safety Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Warnings:</h4>
+                  <div className="space-y-2">
+                    {peptide.warnings.map((warning, index) => (
+                      <div key={index} className="flex items-start gap-2 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                        <AlertTriangle className="h-4 w-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-orange-800">{warning}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground mb-3">Potential Side Effects:</h4>
+                  <div className="space-y-2">
+                    {peptide.sideEffects.map((effect, index) => (
+                      <div key={index} className="flex items-center gap-2 p-2 bg-red-50 rounded-lg border border-red-200">
+                        <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                        <span className="text-sm text-red-800">{effect}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Purchase Links */}
             <Card className="shadow-elegant border-accent/20">
               <CardHeader>
@@ -226,13 +330,13 @@ export const CompoundDetail = () => {
                 </div>
               </CardHeader>
               <CardContent className="space-y-3">
-                {peptide.buyLinks.map((link, index) => (
+                {peptide.sources.map((link, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
                     <div>
                       <p className="font-medium">{link.name}</p>
                       <p className="text-xs text-muted-foreground">{link.disclaimer}</p>
                     </div>
-                    <Button variant="research" size="sm">
+                    <Button variant="outline" size="sm">
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Visit Site
                     </Button>

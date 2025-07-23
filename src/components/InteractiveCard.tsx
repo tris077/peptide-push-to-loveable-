@@ -198,7 +198,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
             className="text-base text-muted-foreground line-clamp-2 leading-relaxed"
             style={{ transform: "translateZ(5px)" }}
           >
-            {peptide.description}
+            {peptide.shortDescription}
           </motion.p>
 
           <motion.div 

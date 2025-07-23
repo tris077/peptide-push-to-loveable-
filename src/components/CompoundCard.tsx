@@ -74,7 +74,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
         </div>
         
         <p className="text-base text-muted-foreground line-clamp-2 leading-relaxed">
-          {peptide.description}
+          {peptide.shortDescription}
         </p>
         
         <div className="flex items-center justify-between pt-4 border-t border-border/30">

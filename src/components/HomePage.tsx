@@ -27,7 +27,8 @@ export const HomePage = () => {
   const filteredPeptides = useMemo(() => {
     return peptidesData.filter(peptide => {
       const matchesSearch = peptide.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          peptide.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          peptide.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          peptide.fullDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           peptide.category.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()));
       
       const matchesCategory = selectedCategory === "All Categories" || 

@@ -46,7 +46,7 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
       });
       
       // Add relevant description keywords
-      const words = peptide.description.toLowerCase().split(/\s+/);
+      const words = peptide.fullDescription.toLowerCase().split(/\s+/);
       words.forEach(word => {
         if (word.length > 3 && word.includes(searchLower)) {
           suggestions.add(word);
