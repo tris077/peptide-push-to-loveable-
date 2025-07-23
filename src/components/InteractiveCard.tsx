@@ -147,6 +147,19 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
             </div>
           </motion.div>
 
+          {/* 2D Molecular Structure Slot */}
+          <motion.div 
+            className="absolute top-4 right-4 w-20 h-20 bg-white/95 backdrop-blur-sm rounded-lg border border-white/40 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 z-20"
+            whileHover={{ y: -2 }}
+          >
+            <div className="text-center">
+              <div className="w-12 h-12 bg-gradient-to-br from-accent/30 to-primary/30 rounded-md flex items-center justify-center mb-1">
+                <span className="text-xs font-mono font-bold text-accent">2D</span>
+              </div>
+              <span className="text-xs font-medium text-muted-foreground">Struct</span>
+            </div>
+          </motion.div>
+
           <CardTitle 
             className="text-2xl font-bold text-primary group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-500 group-hover:to-blue-500 group-hover:bg-clip-text transition-all duration-500 leading-tight mb-4"
             style={{ transform: "translateZ(10px)" }}

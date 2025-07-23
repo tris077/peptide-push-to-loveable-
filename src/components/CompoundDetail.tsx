@@ -65,11 +65,46 @@ export const CompoundDetail = () => {
 
       <div className="container mx-auto px-6 py-12">
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left Side - 3D Model Placeholder */}
+          {/* Left Side - Visual Elements */}
           <div className="space-y-6">
+            {/* 2D Molecular Structure - Primary Display */}
+            <Card className="shadow-elegant hover:shadow-glow transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-primary flex items-center gap-2">
+                  <span className="text-2xl">🧬</span>
+                  2D Molecular Structure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="group relative">
+                  <div className="aspect-video bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center border border-accent/20 shadow-biotech overflow-hidden">
+                    <div className="text-center p-8">
+                      <div className="w-32 h-32 mx-auto bg-gradient-to-br from-accent/20 to-primary/20 rounded-lg flex items-center justify-center mb-4 border border-accent/30">
+                        <span className="text-2xl font-mono font-bold text-accent">{peptide.name}</span>
+                      </div>
+                      <p className="font-medium text-lg text-foreground">High-Resolution Structure</p>
+                      <p className="text-sm text-muted-foreground mt-1">Molecular diagram placeholder</p>
+                    </div>
+                    {/* Hover Zoom Effect */}
+                    <div className="absolute inset-0 bg-gradient-accent opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-xl" />
+                  </div>
+                  {/* Hover Expand Button */}
+                  <button className="absolute top-4 right-4 bg-accent/20 hover:bg-accent/30 text-accent p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                    </svg>
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* 3D Model Placeholder */}
             <Card className="shadow-elegant">
               <CardHeader>
-                <CardTitle className="text-primary">3D Molecular Model</CardTitle>
+                <CardTitle className="text-primary flex items-center gap-2">
+                  <span className="text-2xl">🌐</span>
+                  3D Interactive Model
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="aspect-square bg-gradient-primary/10 rounded-lg flex items-center justify-center border-2 border-primary/20">
