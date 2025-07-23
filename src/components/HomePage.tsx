@@ -69,44 +69,44 @@ export const HomePage = () => {
         <div className="container mx-auto px-8 relative z-10">
           <div className="text-center max-w-6xl mx-auto">
             <div className="animate-slide-up">
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-gradient-accent rounded-2xl flex items-center justify-center animate-bounce-soft">
-                  <span className="text-3xl">🧬</span>
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="w-20 h-20 bg-gradient-accent rounded-3xl flex items-center justify-center animate-float shadow-glow">
+                  <span className="text-4xl">🧬</span>
                 </div>
-                <h1 className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-                  PeptideBase
+                <h1 className="text-8xl md:text-9xl font-bold bg-gradient-to-r from-white via-white to-accent bg-clip-text text-transparent">
+                  Peplike
                 </h1>
               </div>
-              <p className="text-2xl md:text-3xl text-white/90 font-semibold mb-4">
-                Premium Reference Hub for Modern Biohackers
+              <p className="text-3xl md:text-4xl text-white/95 font-bold mb-6">
+                Premium Biotech Reference Hub
               </p>
-              <p className="text-xl text-white/70 mb-16 max-w-4xl mx-auto leading-relaxed">
-                Discover, research, and explore cutting-edge peptides and research chemicals 
-                with comprehensive data, expert insights, and verified sources.
+              <p className="text-xl text-white/80 mb-20 max-w-5xl mx-auto leading-relaxed">
+                Explore nootropics, biohackers' favorites, and cutting-edge peptides with comprehensive data, 
+                molecular structures, and verified research sources.
               </p>
             </div>
             
-            <div className="mb-16 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="mb-20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <SearchBar
                 value={searchTerm}
                 onChange={setSearchTerm}
                 onSearch={handleSearch}
-                placeholder="Search peptides, nootropics, research chemicals..."
+                placeholder="Search nootropics, peptides, research chemicals..."
               />
             </div>
 
-            <div className="flex justify-center gap-6 flex-wrap animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              <div className="flex items-center gap-3 text-sm bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <Shield className="h-5 w-5 text-accent" />
-                <span className="font-medium">Research Only</span>
+            <div className="flex justify-center gap-8 flex-wrap animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow-mint transition-all duration-500 group">
+                <Shield className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-semibold">Research Only</span>
               </div>
-              <div className="flex items-center gap-3 text-sm bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <Zap className="h-5 w-5 text-accent" />
-                <span className="font-medium">Evidence-Based</span>
+              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow-lavender transition-all duration-500 group">
+                <Zap className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-semibold">Evidence-Based</span>
               </div>
-              <div className="flex items-center gap-3 text-sm bg-white/15 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <Activity className="h-5 w-5 text-accent" />
-                <span className="font-medium">Comprehensive Data</span>
+              <div className="flex items-center gap-4 text-base bg-white/10 backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 hover:bg-white/15 hover:shadow-glow transition-all duration-500 group">
+                <Activity className="h-6 w-6 text-accent group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-semibold">Comprehensive Data</span>
               </div>
             </div>
           </div>

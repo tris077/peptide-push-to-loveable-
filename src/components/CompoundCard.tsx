@@ -27,17 +27,21 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
           </div>
         )}
         
-        {/* Enhanced 3D preview with better visual appeal */}
-        <div className="relative w-full h-48 bg-gradient-accent rounded-3xl flex items-center justify-center mb-8 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-premium">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/30 to-accent/70" />
-          <div className="relative w-28 h-28 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-elevated group-hover:rotate-12 transition-transform duration-500">
-            <span className="text-4xl font-bold text-primary">
+        {/* Enhanced 3D preview with biotech aesthetic */}
+        <div className="relative w-full h-52 bg-gradient-accent rounded-3xl flex items-center justify-center mb-8 overflow-hidden group-hover:scale-105 transition-all duration-700 shadow-biotech group-hover:shadow-glow">
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/60" />
+          <div className="absolute inset-0 animate-rotate-slow opacity-10">
+            <div className="w-full h-full border-2 border-white/20 rounded-full" />
+          </div>
+          <div className="relative w-32 h-32 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-elevated group-hover:rotate-12 group-hover:scale-110 transition-all duration-700 animate-float">
+            <span className="text-5xl font-bold text-primary">
               {peptide.name.charAt(0)}
             </span>
           </div>
-          <div className="absolute bottom-4 right-4 text-sm text-white/90 font-semibold">
+          <div className="absolute bottom-5 right-5 text-sm text-white/90 font-bold bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
             3D Model
           </div>
+          <div className="absolute top-5 left-5 w-3 h-3 bg-accent rounded-full animate-pulse-glow" />
         </div>
         
         <CardTitle className="text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 leading-tight mb-2">
@@ -46,21 +50,27 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
       </CardHeader>
       
       <CardContent className="relative z-10 space-y-6 p-8 pt-0">
-        {/* Enhanced category tags with better spacing */}
+        {/* Enhanced category tags with biotech styling */}
         <div className="flex flex-wrap gap-3">
-          {peptide.category.slice(0, 3).map((cat, index) => (
-            <Badge 
-              key={cat} 
-              variant="secondary" 
-              className={`text-sm font-semibold px-4 py-2 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 ${
-                index === 0 ? 'bg-accent/15 text-accent border-accent/30 hover:bg-accent/25' : 
-                index === 1 ? 'bg-primary/15 text-primary border-primary/30 hover:bg-primary/25' : 
-                'bg-muted/60 text-muted-foreground hover:bg-muted/80'
-              }`}
-            >
-              {cat}
-            </Badge>
-          ))}
+          {peptide.category.slice(0, 3).map((cat, index) => {
+            const gradients = [
+              'bg-gradient-accent text-white border-accent/30 shadow-glow',
+              'bg-gradient-mint text-primary border-accent/30 shadow-glow-mint',
+              'bg-gradient-lavender text-white border-accent/30 shadow-glow-lavender'
+            ];
+            return (
+              <Badge 
+                key={cat} 
+                variant="secondary" 
+                className={`text-sm font-bold px-5 py-2 rounded-full backdrop-blur-sm transition-all duration-500 hover:scale-110 animate-scale-in ${
+                  gradients[index] || 'bg-muted/70 text-muted-foreground hover:bg-muted/90'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {cat}
+              </Badge>
+            );
+          })}
         </div>
         
         <p className="text-base text-muted-foreground line-clamp-2 leading-relaxed">
@@ -76,10 +86,10 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
             variant="accent" 
             size="default"
             onClick={() => navigate(`/compound/${peptide.id}`)}
-            className="flex items-center gap-2 shadow-premium hover:shadow-glow transition-all duration-300 hover:scale-105 bg-gradient-accent text-white border-0 px-6 py-3 rounded-2xl font-semibold"
+            className="flex items-center gap-3 shadow-biotech hover:shadow-glow transition-all duration-500 hover:scale-110 bg-gradient-accent text-white border-0 px-8 py-3 rounded-full font-bold text-base group"
           >
-            View Details
-            <ExternalLink className="h-4 w-4" />
+            Explore Compound
+            <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
       </CardContent>
