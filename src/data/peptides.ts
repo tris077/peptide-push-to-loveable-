@@ -32,7 +32,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "bpc-157",
     name: "BPC-157",
-    category: ["Peptide", "Healing", "Recovery"],
+    category: ["Skin Regeneration & Anti-Aging", "Wound Healing & Recovery"],
     shortDescription: "A synthetic peptide derived from gastric juice with remarkable healing properties.",
     fullDescription: "BPC-157 is a pentadecapeptide derived from body protection compound found in gastric juice. It demonstrates exceptional healing capabilities, promoting angiogenesis, tissue repair, and recovery from various injuries. This research peptide has shown promise in accelerating the healing of tendons, ligaments, bones, and gastrointestinal tract damage in laboratory studies.",
     mechanismOfAction: "Promotes angiogenesis and modulates nitric oxide production to accelerate healing processes. Enhances collagen synthesis and stimulates growth factor expression.",
@@ -61,7 +61,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "semax",
     name: "Semax",
-    category: ["Nootropic", "Cognitive Enhancer", "Neuroprotective"],
+    category: ["Mood & Cognition Enhancement"],
     shortDescription: "A synthetic peptide derived from ACTH that enhances cognitive function and memory.",
     fullDescription: "Semax is a synthetic heptapeptide derived from adrenocorticotropic hormone (ACTH). Originally developed in Russia, it enhances cognitive function, memory consolidation, and provides neuroprotection against stress and hypoxia. Research indicates significant improvements in learning capacity, attention, and resistance to cognitive decline.",
     mechanismOfAction: "Modulates BDNF expression and enhances dopaminergic and noradrenergic neurotransmission. Increases neuroplasticity and promotes neurogenesis.",
@@ -90,7 +90,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "tb-500",
     name: "TB-500",
-    category: ["Peptide", "Recovery", "Anti-inflammatory"],
+    category: ["Wound Healing & Recovery", "Muscle Growth & Definition"],
     shortDescription: "A synthetic version of thymosin beta-4 that promotes healing and tissue repair.",
     fullDescription: "TB-500 is a synthetic version of thymosin beta-4, a naturally occurring peptide present in virtually all human and animal cells. It plays a crucial role in wound healing, tissue repair, and inflammation reduction. Research demonstrates its ability to promote cell migration, angiogenesis, and tissue regeneration throughout the body.",
     mechanismOfAction: "Regulates actin polymerization and promotes cell migration and angiogenesis. Modulates inflammatory responses and enhances tissue remodeling.",
@@ -118,7 +118,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "ghrp-6",
     name: "GHRP-6",
-    category: ["Growth Hormone", "Recovery", "Anti-aging"],
+    category: ["Muscle Growth & Definition", "Skin Regeneration & Anti-Aging"],
     shortDescription: "A growth hormone releasing peptide that stimulates natural GH production.",
     fullDescription: "GHRP-6 is a hexapeptide that stimulates the release of growth hormone from the pituitary gland by mimicking ghrelin, the hunger hormone. It enhances natural growth hormone production, improving recovery, body composition, and sleep quality. Research shows significant benefits for muscle development, fat metabolism, and overall recovery processes.",
     mechanismOfAction: "Binds to ghrelin receptors to stimulate growth hormone release from the pituitary gland. Increases IGF-1 levels and promotes protein synthesis.",
@@ -146,7 +146,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "melanotan-2",
     name: "Melanotan II",
-    category: ["Cosmetic", "Tanning", "Appetite Suppressant"],
+    category: ["Tanning / Skin Pigmentation", "Fat Loss & Recomposition"],
     shortDescription: "A synthetic analog of melanocyte-stimulating hormone that promotes tanning.",
     fullDescription: "Melanotan II is a synthetic analog of α-melanocyte-stimulating hormone (α-MSH) that stimulates melanogenesis, the process responsible for skin pigmentation. Research indicates it can promote tanning, reduce appetite, and may enhance libido through melanocortin receptor activation. It was originally developed as a potential treatment for skin cancers.",
     mechanismOfAction: "Activates melanocortin receptors to stimulate melanogenesis and affect appetite regulation. Modulates neural pathways involved in sexual arousal and feeding behavior.",
@@ -175,7 +175,7 @@ export const peptidesData: Peptide[] = [
   {
     id: "pt-141",
     name: "PT-141",
-    category: ["Libido", "Sexual Enhancement"],
+    category: ["Libido & Sexual Function"],
     shortDescription: "A melanocortin receptor agonist that enhances sexual desire and arousal.",
     fullDescription: "PT-141 (Bremelanotide) is a melanocortin receptor agonist that enhances sexual desire and arousal in both men and women through central nervous system mechanisms. Unlike PDE5 inhibitors, it works directly on the brain's sexual response pathways. Research demonstrates significant improvements in sexual function and desire.",
     mechanismOfAction: "Activates melanocortin-4 receptors in the brain to enhance sexual motivation and arousal. Modulates neural pathways involved in sexual response and desire.",
@@ -204,17 +204,14 @@ export const peptidesData: Peptide[] = [
 
 export const categories = [
   "All Categories",
-  "Peptide",
-  "Nootropic",
-  "Healing",
-  "Recovery",
-  "Cognitive Enhancer",
-  "Growth Hormone",
-  "Anti-aging",
-  "Cosmetic",
-  "Libido",
-  "Fat Loss",
-  "Muscle Growth",
-  "Hair Growth",
-  "Neuroprotective"
+  "Skin Regeneration & Anti-Aging",
+  "Hair Growth & Scalp Health", 
+  "Fat Loss & Recomposition",
+  "Muscle Growth & Definition",
+  "Tanning / Skin Pigmentation",
+  "Jawline, Bone & Facial Symmetry",
+  "Wound Healing & Recovery",
+  "Libido & Sexual Function",
+  "Mood & Cognition Enhancement",
+  "Eye & Under-Eye Aesthetics"
 ];

@@ -11,11 +11,16 @@ interface EnhancedFilterSidebarProps {
 
 export const EnhancedFilterSidebar = ({ selectedCategory, onCategoryChange }: EnhancedFilterSidebarProps) => {
   const getCategoryIcon = (category: string) => {
-    if (category.toLowerCase().includes('cognitive') || category.toLowerCase().includes('nootropic')) return Brain;
-    if (category.toLowerCase().includes('muscle') || category.toLowerCase().includes('growth')) return Dumbbell;
-    if (category.toLowerCase().includes('fat') || category.toLowerCase().includes('weight')) return Flame;
-    if (category.toLowerCase().includes('hair') || category.toLowerCase().includes('cosmetic')) return Sparkles;
-    if (category.toLowerCase().includes('recovery')) return RotateCcw;
+    if (category.toLowerCase().includes('skin') || category.toLowerCase().includes('anti-aging')) return Sparkles;
+    if (category.toLowerCase().includes('hair')) return Brain;
+    if (category.toLowerCase().includes('fat') || category.toLowerCase().includes('recomposition')) return Flame;
+    if (category.toLowerCase().includes('muscle') || category.toLowerCase().includes('definition')) return Dumbbell;
+    if (category.toLowerCase().includes('tanning') || category.toLowerCase().includes('pigmentation')) return Sparkles;
+    if (category.toLowerCase().includes('jawline') || category.toLowerCase().includes('facial')) return Shield;
+    if (category.toLowerCase().includes('wound') || category.toLowerCase().includes('recovery')) return RotateCcw;
+    if (category.toLowerCase().includes('libido') || category.toLowerCase().includes('sexual')) return Activity;
+    if (category.toLowerCase().includes('mood') || category.toLowerCase().includes('cognition')) return Brain;
+    if (category.toLowerCase().includes('eye')) return Zap;
     return Atom;
   };
 
