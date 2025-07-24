@@ -25,25 +25,27 @@ export const TrendingCarousel = ({ peptides }: TrendingCarouselProps) => {
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {peptides.map((peptide, index) => (
-            <CarouselItem key={peptide.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={peptide.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 min-w-0">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="relative"
+                className="relative h-full"
               >
-                <div className="absolute -top-3 -right-3 z-10">
+                <div className="absolute top-2 right-2 z-30">
                   <motion.div
-                    className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg border-2 border-white"
+                    className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow-lg border-2 border-white/90 backdrop-blur-sm"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    🔥 Trending
+                    🔥 <span className="hidden sm:inline">Trending</span>
                   </motion.div>
                 </div>
-                <CompoundCard peptide={peptide} />
+                <div className="h-full overflow-hidden">
+                  <CompoundCard peptide={peptide} />
+                </div>
               </motion.div>
             </CarouselItem>
           ))}
