@@ -126,13 +126,13 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
       {showSuggestions && (
         <div 
           ref={suggestionsRef}
-          className="absolute top-full left-0 right-0 mt-2 bg-background/95 backdrop-blur-md border border-border rounded-3xl shadow-glow max-h-60 overflow-y-auto z-50"
+          className="absolute top-full left-0 right-0 mt-2 bg-white/98 backdrop-blur-md border border-gray-200 rounded-3xl shadow-glow max-h-60 overflow-y-auto z-50"
         >
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="w-full px-8 py-4 text-left hover:bg-accent/10 first:rounded-t-3xl last:rounded-b-3xl transition-colors duration-200 text-lg font-medium capitalize"
+              className="w-full px-8 py-4 text-left hover:bg-gray-100 first:rounded-t-3xl last:rounded-b-3xl transition-colors duration-200 text-lg font-medium capitalize text-gray-900"
             >
               <Search className="inline h-4 w-4 mr-3 text-accent" />
               {suggestion}

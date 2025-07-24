@@ -33,11 +33,12 @@ export const TrendingCarousel = ({ peptides }: TrendingCarouselProps) => {
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="relative"
               >
-                <div className="absolute -top-2 -right-2 z-10">
+                <div className="absolute -top-3 -right-3 z-10">
                   <motion.div
-                    className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"
-                    animate={{ scale: [1, 1.1, 1] }}
+                    className="bg-gradient-to-r from-pink-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg border-2 border-white"
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     🔥 Trending
                   </motion.div>

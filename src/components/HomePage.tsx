@@ -6,23 +6,11 @@ import { InteractiveCard } from "./InteractiveCard";
 import { TrendingCarousel } from "./TrendingCarousel";
 import { peptidesData } from "@/data/peptides";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight, Moon, Sun, Sparkles, Atom } from "lucide-react";
+import { TrendingUp, Zap, Shield, Activity, ArrowRight, Sparkles, Atom } from "lucide-react";
 
 export const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const isDark = document.documentElement.classList.contains('dark');
-    setIsDarkMode(isDark);
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    document.documentElement.classList.toggle('dark', newMode);
-  };
 
   const filteredPeptides = useMemo(() => {
     return peptidesData.filter(peptide => {
@@ -61,31 +49,6 @@ export const HomePage = () => {
         />
       </div>
 
-      {/* Dark mode toggle */}
-      <motion.div 
-        className="fixed top-6 right-6 z-50"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={toggleDarkMode}
-          className="w-14 h-14 rounded-full bg-black/80 backdrop-blur-xl border border-white/20 shadow-2xl hover:shadow-glow transition-all duration-500 hover:scale-110 group"
-        >
-          <motion.div
-            animate={{ rotate: isDarkMode ? 180 : 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {isDarkMode ? (
-              <Sun className="h-6 w-6 text-yellow-400 group-hover:text-yellow-300" />
-            ) : (
-              <Moon className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-            )}
-          </motion.div>
-        </Button>
-      </motion.div>
 
       {/* Premium Hero Section */}
       <motion.div 
