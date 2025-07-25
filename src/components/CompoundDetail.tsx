@@ -264,6 +264,20 @@ export const CompoundDetail = () => {
                       </span>
                       <span className="font-bold text-sm">{peptide.administration[0]}</span>
                     </div>
+                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
+                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                        <Shield className="h-3 w-3" />
+                        Legal Status
+                      </span>
+                      <span className="font-bold text-sm">{peptide.legalStatus}</span>
+                    </div>
+                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
+                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        Year Discovered
+                      </span>
+                      <span className="font-bold text-sm">{peptide.yearDiscovered}</span>
+                    </div>
                   </div>
 
                   <Separator className="my-3" />
@@ -385,45 +399,105 @@ export const CompoundDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Research Sources */}
+          {/* Buy Links (External — Not Affiliated) */}
           <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
                 <ExternalLink className="h-4 w-4 text-accent" />
-                Research Sources
+                Buy Links (External — Not Affiliated)
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-0 space-y-3">
-              <div className="space-y-2">
-                {peptide.sources.map((source, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.2 + index * 0.1 }}
-                    className="group p-2 bg-accent/5 rounded-lg border border-accent/20 hover:bg-accent/10 transition-colors duration-200 cursor-pointer"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h5 className="font-medium text-foreground text-sm">{source.name}</h5>
-                        <p className="text-xs text-muted-foreground">{source.disclaimer}</p>
-                      </div>
-                      <ExternalLink className="h-3 w-3 text-accent group-hover:translate-x-1 transition-transform duration-200" />
+            <CardContent className="pt-0 space-y-4">
+              {/* Multi-Link Buy Panel */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {/* Swiss Chems */}
+                <motion.a
+                  href="https://swisschems.is"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 }}
+                  className="group flex items-center justify-between p-3 bg-accent/5 rounded-xl border border-accent/20 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-blue-500/10 hover:border-cyan-300/30 transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <h5 className="font-semibold text-foreground text-sm">Swiss Chems</h5>
+                      <span className="text-xs font-medium text-muted-foreground/80 uppercase tracking-wider">Trusted ✅</span>
                     </div>
-                  </motion.div>
-                ))}
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-accent group-hover:text-cyan-500 group-hover:translate-x-1 transition-all duration-200" />
+                </motion.a>
+
+                {/* Straight Labs */}
+                <motion.a
+                  href="https://straightlabs.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.25 }}
+                  className="group flex items-center justify-between p-3 bg-accent/5 rounded-xl border border-accent/20 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-blue-500/10 hover:border-cyan-300/30 transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <h5 className="font-semibold text-foreground text-sm">Straight Labs</h5>
+                      <span className="text-xs font-medium text-muted-foreground/80 uppercase tracking-wider">Trusted ✅</span>
+                    </div>
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-accent group-hover:text-cyan-500 group-hover:translate-x-1 transition-all duration-200" />
+                </motion.a>
+
+                {/* Chemyo */}
+                <motion.a
+                  href="https://chemyo.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.3 }}
+                  className="group flex items-center justify-between p-3 bg-accent/5 rounded-xl border border-accent/20 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-blue-500/10 hover:border-cyan-300/30 transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <h5 className="font-semibold text-foreground text-sm">Chemyo</h5>
+                      <span className="text-xs font-medium text-muted-foreground/80 uppercase tracking-wider">Best Price 💰</span>
+                    </div>
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-accent group-hover:text-cyan-500 group-hover:translate-x-1 transition-all duration-200" />
+                </motion.a>
+
+                {/* Peptide Sciences */}
+                <motion.a
+                  href="https://peptidesciences.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.35 }}
+                  className="group flex items-center justify-between p-3 bg-accent/5 rounded-xl border border-accent/20 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-blue-500/10 hover:border-cyan-300/30 transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <h5 className="font-semibold text-foreground text-sm">Peptide Sciences</h5>
+                      <span className="text-xs font-medium text-muted-foreground/80 uppercase tracking-wider">Trusted ✅</span>
+                    </div>
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-accent group-hover:text-cyan-500 group-hover:translate-x-1 transition-all duration-200" />
+                </motion.a>
               </div>
               
-              <Separator className="my-3" />
-              
-              <div className="text-center p-3 bg-muted/30 rounded-lg">
-                <p className="text-xs text-muted-foreground">
-                  <strong>Legal Status:</strong> {peptide.legalStatus}
+              {/* Legal Footnote */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4 }}
+                className="pt-2"
+              >
+                <p className="text-xs text-muted-foreground/70 text-center leading-relaxed">
+                  External sources. For research purposes only. Always verify legality in your region.
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  <strong>Year Discovered:</strong> {peptide.yearDiscovered}
-                </p>
-              </div>
+              </motion.div>
             </CardContent>
           </Card>
         </motion.div>
