@@ -13,7 +13,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="group relative overflow-hidden bg-white border border-border/20 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] cursor-pointer animate-fade-in min-h-[340px] flex flex-col">
+    <Card className="group relative overflow-hidden bg-white border border-border/20 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 cursor-pointer animate-fade-in min-h-[340px] flex flex-col animate-card-hover">
       {/* Enhanced glassmorphism overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/60 to-white/30 pointer-events-none rounded-lg" />
       

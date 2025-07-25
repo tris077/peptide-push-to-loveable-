@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { SearchBar } from "./SearchBar";
 import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
 import { InteractiveCard } from "./InteractiveCard";
@@ -316,15 +316,30 @@ export const HomePage = () => {
                 </motion.div>
               </motion.div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-                {filteredPeptides.map((peptide, index) => (
-                  <InteractiveCard
-                    key={peptide.id}
-                    peptide={peptide}
-                    index={index}
-                  />
-                ))}
-              </div>
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, staggerChildren: 0.1 }}
+              >
+                <AnimatePresence mode="wait">
+                  {filteredPeptides.map((peptide, index) => (
+                    <motion.div
+                      key={`${peptide.id}-${selectedCategory}`}
+                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      layout
+                    >
+                      <InteractiveCard
+                        peptide={peptide}
+                        index={index}
+                      />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
             )}
           </div>
         </motion.div>

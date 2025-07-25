@@ -49,7 +49,7 @@ export const FilterSidebar = ({ selectedCategory, onCategoryChange }: FilterSide
               <span className="text-xl">{getCategoryIcon(category)}</span>
             </div>
             <span className={`font-semibold text-lg transition-colors ${
-              selectedCategory === category ? 'text-white' : 'text-primary group-hover:text-accent'
+              selectedCategory === category ? 'text-white' : 'text-foreground group-hover:text-accent'
             }`}>
               {category}
             </span>

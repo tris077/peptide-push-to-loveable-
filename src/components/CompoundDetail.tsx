@@ -154,10 +154,10 @@ export const CompoundDetail = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="grid xl:grid-cols-12 gap-8">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid xl:grid-cols-12 gap-6">
           {/* Left Side - Visual Content (8 columns) */}
-          <div className="xl:col-span-8 space-y-6">
+          <div className="xl:col-span-8 space-y-4">
             {/* Product Preview */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -170,8 +170,8 @@ export const CompoundDetail = () => {
                     Product Preview
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <div className="aspect-square bg-gradient-to-br from-background to-muted rounded-xl p-8 border border-border/10 shadow-inner flex items-center justify-center">
+                <CardContent className="p-4">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-background to-muted rounded-xl p-4 border border-border/10 shadow-inner flex items-center justify-center">
                     <motion.img 
                       src={peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : '/placeholder-molecule.svg'}
                       alt={`${peptide.name} product`}
@@ -196,16 +196,15 @@ export const CompoundDetail = () => {
                     2D Molecular Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
-                  <div className="aspect-video bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
-                    <motion.div
-                      className="flex items-center gap-3 text-muted-foreground"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                      <span className="text-sm font-medium">Loading molecular structure...</span>
-                    </motion.div>
+                <CardContent className="p-4">
+                  <div className="aspect-[4/3] bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
+                    <motion.img 
+                      src={peptide.structure2D || '/placeholder-molecule.svg'}
+                      alt={`${peptide.name} molecular structure`}
+                      className="max-w-full max-h-full object-contain"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    />
                   </div>
                 </CardContent>
               </Card>
@@ -213,7 +212,7 @@ export const CompoundDetail = () => {
           </div>
 
           {/* Right Sidebar - Key Information (4 columns) */}
-          <div className="xl:col-span-4 space-y-6">
+          <div className="xl:col-span-4 space-y-4">
             {/* Quick Specs Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -271,12 +270,12 @@ export const CompoundDetail = () => {
         </div>
 
         {/* Detailed Information Sections */}
-        <div className="mt-12 space-y-6">
+        <div className="mt-8 space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="grid md:grid-cols-2 gap-6"
+            className="grid md:grid-cols-2 gap-4"
           >
             {/* Overview */}
             <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">

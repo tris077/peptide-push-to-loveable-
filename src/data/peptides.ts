@@ -199,6 +199,147 @@ export const peptidesData: Peptide[] = [
     yearDiscovered: "1998",
     legalStatus: "Prescription (US - Vyleesi), Research Only (EU)",
     structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "cjc-1295",
+    name: "CJC-1295",
+    category: ["Muscle Growth & Definition", "Skin Regeneration & Anti-Aging"],
+    shortDescription: "A growth hormone releasing hormone analog with extended half-life.",
+    fullDescription: "CJC-1295 with DAC (Drug Affinity Complex) is a synthetic growth hormone releasing hormone (GHRH) analog that stimulates growth hormone release from the pituitary gland. The DAC component extends its half-life significantly, allowing for less frequent dosing while maintaining sustained GH elevation. Research shows improvements in muscle growth, fat loss, sleep quality, and recovery.",
+    mechanismOfAction: "Binds to GHRH receptors to stimulate growth hormone release. The DAC component prevents enzymatic degradation, extending biological activity.",
+    useCases: ["Growth Hormone Enhancement", "Muscle Building", "Fat Loss", "Recovery Improvement", "Sleep Quality"],
+    benefits: ["Sustained GH elevation", "Enhanced muscle growth", "Improved fat metabolism", "Better sleep quality", "Accelerated recovery"],
+    dosageRange: "1-2 mg twice weekly",
+    administration: ["Subcutaneous"],
+    halfLife: "6-8 days",
+    sources: [
+      {
+        name: "Growth Hormone Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor blood glucose levels", "Not for daily use"],
+    sideEffects: ["Water retention", "Joint stiffness", "Increased hunger", "Possible injection site reactions"],
+    molecularFormula: "C152H252N44O42",
+    molecularWeight: "3367.97 g/mol",
+    atomCount: 490,
+    yearDiscovered: "2005",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "ipamorelin", 
+    name: "Ipamorelin",
+    category: ["Muscle Growth & Definition", "Skin Regeneration & Anti-Aging"],
+    shortDescription: "A selective growth hormone secretagogue with minimal side effects.",
+    fullDescription: "Ipamorelin is a selective growth hormone secretagogue receptor (GHSR) agonist that stimulates growth hormone release without significantly affecting cortisol, prolactin, or aldosterone levels. It is considered one of the most selective and gentle GH releasing peptides, making it ideal for sustained use with minimal side effects. Research demonstrates significant benefits for body composition, recovery, and overall well-being.",
+    mechanismOfAction: "Selectively binds to ghrelin receptors (GHSR) to stimulate pulsatile growth hormone release while avoiding stimulation of other hormone pathways.",
+    useCases: ["Clean GH Enhancement", "Body Recomposition", "Recovery Optimization", "Sleep Improvement", "Anti-Aging Research"],
+    benefits: ["Selective GH stimulation", "Minimal side effects", "Improved recovery", "Enhanced sleep", "Better body composition"],
+    dosageRange: "200-300 mcg 2-3x daily",
+    administration: ["Subcutaneous"],
+    halfLife: "2 hours",
+    sources: [
+      {
+        name: "Selective Peptides",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Take on empty stomach for best results"],
+    sideEffects: ["Mild water retention", "Slight increase in hunger", "Possible fatigue (rare)"],
+    molecularFormula: "C38H49N9O5",
+    molecularWeight: "711.85 g/mol",
+    atomCount: 101,
+    yearDiscovered: "1998",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "semaglutide",
+    name: "Semaglutide",
+    category: ["Fat Loss & Recomposition"],
+    shortDescription: "A GLP-1 receptor agonist for weight management and glucose control.",
+    fullDescription: "Semaglutide is a glucagon-like peptide-1 (GLP-1) receptor agonist originally developed for diabetes management but showing remarkable efficacy for weight loss. It works by slowing gastric emptying, reducing appetite, and improving insulin sensitivity. Clinical studies demonstrate significant weight loss and improved metabolic parameters in both diabetic and non-diabetic individuals.",
+    mechanismOfAction: "Activates GLP-1 receptors to slow gastric emptying, reduce glucagon secretion, stimulate insulin release, and promote satiety through central nervous system pathways.",
+    useCases: ["Weight Management", "Appetite Suppression", "Glucose Control", "Metabolic Health", "Type 2 Diabetes Research"],
+    benefits: ["Significant weight loss", "Reduced appetite", "Improved glucose control", "Better insulin sensitivity", "Cardiovascular benefits"],
+    dosageRange: "0.25-2.4 mg weekly",
+    administration: ["Subcutaneous"],
+    halfLife: "~7 days",
+    sources: [
+      {
+        name: "Diabetes Research Institute",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for pancreatitis", "Not suitable for Type 1 diabetes"],
+    sideEffects: ["Nausea", "Vomiting", "Diarrhea", "Constipation", "Abdominal pain", "Possible gallbladder issues"],
+    molecularFormula: "C187H291N45O59",
+    molecularWeight: "4113.58 g/mol",
+    atomCount: 582,
+    yearDiscovered: "2012",
+    legalStatus: "Prescription (US/EU)",
+    trending: true,
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "ghk-cu",
+    name: "GHK-Cu",
+    category: ["Skin Regeneration & Anti-Aging", "Wound Healing & Recovery"],
+    shortDescription: "A copper peptide complex with powerful regenerative and anti-aging properties.",
+    fullDescription: "GHK-Cu is a naturally occurring copper peptide complex that plays a crucial role in wound healing, tissue remodeling, and anti-aging processes. It stimulates collagen and elastin production, promotes angiogenesis, and exhibits antioxidant properties. Research demonstrates significant improvements in skin texture, wound healing, hair growth, and overall tissue regeneration.",
+    mechanismOfAction: "Binds to copper ions to facilitate collagen synthesis, stimulate antioxidant enzymes, promote angiogenesis, and modulate inflammatory responses. Enhances cellular repair and regeneration processes.",
+    useCases: ["Skin Rejuvenation", "Wound Healing", "Hair Growth", "Scar Reduction", "Anti-Aging", "Tissue Repair"],
+    benefits: ["Enhanced collagen production", "Improved skin elasticity", "Faster wound healing", "Hair growth stimulation", "Antioxidant protection", "Reduced inflammation"],
+    dosageRange: "1-3 mg daily",
+    administration: ["Topical", "Subcutaneous", "Intradermal"],
+    halfLife: "24 hours",
+    sources: [
+      {
+        name: "Cosmetic Peptide Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Patch test before topical use", "Avoid contact with eyes"],
+    sideEffects: ["Mild skin irritation (topical)", "Blue discoloration at injection site (rare)", "Metallic taste (rare)"],
+    molecularFormula: "C14H24CuN6O4",
+    molecularWeight: "403.93 g/mol",
+    atomCount: 49,
+    yearDiscovered: "1973",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "mod-grf-129",
+    name: "MOD-GRF (1-29)",
+    category: ["Muscle Growth & Definition", "Skin Regeneration & Anti-Aging"],
+    shortDescription: "A modified growth hormone releasing factor for enhanced GH stimulation.",
+    fullDescription: "MOD-GRF (1-29), also known as CJC-1295 without DAC, is a modified version of growth hormone releasing factor designed to resist enzymatic degradation while maintaining a shorter half-life than its DAC counterpart. This allows for more precise timing and pulsatile GH release that mimics natural patterns. Research shows significant benefits for muscle growth, fat loss, and recovery when used appropriately.",
+    mechanismOfAction: "Binds to GHRH receptors to stimulate growth hormone release from the pituitary gland. Modified amino acid sequence provides resistance to enzymatic cleavage while maintaining shorter duration of action.",
+    useCases: ["Pulsatile GH Enhancement", "Muscle Building", "Fat Loss", "Recovery Optimization", "Sleep Quality Improvement"],
+    benefits: ["Natural GH pulsing", "Enhanced muscle growth", "Improved fat metabolism", "Better recovery", "Quality sleep"],
+    dosageRange: "100-200 mcg 2-3x daily",
+    administration: ["Subcutaneous"],
+    halfLife: "30 minutes",
+    sources: [
+      {
+        name: "Hormone Research Lab",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Use with GHRP for synergistic effects", "Take on empty stomach"],
+    sideEffects: ["Mild water retention", "Increased hunger", "Possible flushing", "Joint stiffness (rare)"],
+    molecularFormula: "C152H252N44O42",
+    molecularWeight: "3367.97 g/mol",
+    atomCount: 490,
+    yearDiscovered: "2005",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
   }
 ];
 
