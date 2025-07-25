@@ -58,7 +58,7 @@ export const CompoundDetail = () => {
       {/* Hero Header with Molecular Background */}
       <motion.div 
         style={{ opacity }}
-        className="relative overflow-hidden bg-gradient-primary text-primary-foreground"
+        className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-accent/80 to-primary/70 text-primary-foreground"
       >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -212,12 +212,7 @@ export const CompoundDetail = () => {
                 transition={{ delay: 0.8 }}
               >
                 <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-base font-semibold text-primary text-center">
-                      Molecular Structure
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-2">
+                  <CardContent className="p-4">
                     <div className="aspect-square bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
                       <motion.img 
                         src={peptide.structure2D || '/placeholder-molecule.svg'}
