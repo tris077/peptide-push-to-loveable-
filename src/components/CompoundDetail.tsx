@@ -74,12 +74,12 @@ export const CompoundDetail = () => {
           />
         </div>
 
-        <div className="relative container mx-auto px-6 py-16">
+        <div className="relative container mx-auto px-6 py-8">
           {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between mb-8"
+            className="flex items-center justify-between mb-6"
           >
             <Button 
               variant="ghost" 
@@ -114,7 +114,7 @@ export const CompoundDetail = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap gap-3 mb-6"
+            className="flex flex-wrap gap-3 mb-4"
           >
             {peptide.category.map((cat, index) => (
               <motion.div
@@ -141,12 +141,12 @@ export const CompoundDetail = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-8"
+            className="mb-6"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary-foreground to-accent bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary-foreground to-accent bg-clip-text text-transparent">
               {peptide.name}
             </h1>
-            <p className="text-xl text-primary-foreground/80 max-w-2xl leading-relaxed">
+            <p className="text-base md:text-lg text-primary-foreground/80 max-w-2xl leading-relaxed">
               {peptide.shortDescription}
             </p>
           </motion.div>

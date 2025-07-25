@@ -13,9 +13,9 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="group relative overflow-hidden bg-white border border-border/20 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 cursor-pointer animate-fade-in h-[320px] flex flex-col animate-card-hover">
+    <Card className="group relative overflow-hidden bg-white border border-border/10 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 cursor-pointer animate-fade-in h-[320px] flex flex-col animate-card-hover rounded-3xl">
       {/* Enhanced glassmorphism overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/60 to-white/30 pointer-events-none rounded-lg" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/70 to-white/40 pointer-events-none rounded-3xl" />
       
       <CardHeader className="relative z-10 p-3 flex flex-col items-center text-center flex-shrink-0">
         {/* Fixed Trending Badge */}
@@ -29,7 +29,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
         )}
         
         {/* Compact 3D preview */}
-        <div className="relative w-full h-24 bg-gradient-accent rounded-xl flex items-center justify-center mb-3 overflow-hidden group-hover:scale-105 transition-all duration-700 shadow-biotech group-hover:shadow-glow">
+        <div className="relative w-full h-24 bg-gradient-accent rounded-2xl flex items-center justify-center mb-3 overflow-hidden group-hover:scale-105 transition-all duration-700 shadow-biotech group-hover:shadow-glow">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/60" />
           <div className="absolute inset-0 animate-rotate-slow opacity-10">
             <div className="w-full h-full border-2 border-white/20 rounded-full" />
@@ -88,7 +88,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
             variant="accent" 
             size="sm"
             onClick={() => navigate(`/compound/${peptide.id}`)}
-            className="flex items-center justify-center gap-1.5 shadow-biotech hover:shadow-glow transition-all duration-500 hover:scale-105 bg-gradient-accent text-white border-0 px-3 py-2 rounded-full font-bold text-xs group w-full max-w-[140px]"
+            className="flex items-center justify-center gap-1.5 shadow-biotech hover:shadow-glow transition-all duration-500 hover:scale-105 bg-gradient-accent text-white border-0 px-3 py-2 rounded-2xl font-bold text-xs group w-full max-w-[140px]"
           >
             <span className="truncate">Explore</span>
             <ExternalLink className="h-3 w-3 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
