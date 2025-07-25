@@ -89,14 +89,14 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
         {/* Trending Badge */}
         {peptide.trending && (
           <motion.div 
-            className="absolute -top-4 -right-4 z-20"
+            className="absolute top-4 right-4 z-20"
             initial={{ scale: 0, rotate: -180 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <Badge className="flex items-center gap-2 px-4 py-2 text-sm font-bold bg-gradient-to-r from-orange-500 to-red-500 text-white border-0 shadow-glow animate-pulse-glow">
-              <TrendingUp className="h-4 w-4" />
-              Trending
+            <Badge className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-lg rounded-full border-0 animate-pulse">
+              🔥
+              <span className="text-xs font-semibold">Trending</span>
             </Badge>
           </motion.div>
         )}
@@ -173,14 +173,9 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
           </motion.p>
 
           <motion.div 
-            className="flex items-center justify-between pt-6 border-t border-border/30"
+            className="flex justify-center pt-6 border-t border-border/30"
             style={{ transform: "translateZ(10px)" }}
           >
-            <div className="text-sm text-muted-foreground">
-              <span className="font-bold text-primary">Half-life:</span>
-              <span className="ml-2 font-semibold">{peptide.halfLife}</span>
-            </div>
-            
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
