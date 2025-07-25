@@ -18,12 +18,12 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
       <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/70 to-white/40 pointer-events-none rounded-2xl" />
       
       <CardHeader className="relative z-10 p-3 flex flex-col items-center text-center flex-shrink-0">
-        {/* Fixed Trending Badge */}
+        {/* Premium Trending Badge */}
         {peptide.trending && (
-          <div className="absolute top-2 right-2 z-20">
-            <Badge className="flex items-center gap-1 px-2 py-1 text-xs font-bold bg-gradient-accent text-white shadow-glow animate-pulse-glow rounded-full border-0">
-              🔥
-              <span className="text-xs">Trending</span>
+          <div className="absolute top-3 right-3 z-20">
+            <Badge className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-pink-500 to-red-500 text-white shadow-lg rounded-full border-0 animate-pulse">
+              ⭐
+              <span className="text-xs font-semibold">Trending</span>
             </Badge>
           </div>
         )}
@@ -88,10 +88,10 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
             variant="accent" 
             size="sm"
             onClick={() => navigate(`/compound/${peptide.id}`)}
-            className="flex items-center justify-center gap-1.5 shadow-biotech hover:shadow-glow transition-all duration-500 hover:scale-105 bg-gradient-accent text-white border-0 px-3 py-2 rounded-xl font-bold text-xs group w-full max-w-[140px]"
+            className="flex items-center justify-center gap-2 shadow-biotech hover:shadow-glow transition-all duration-500 hover:scale-105 bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 px-4 py-2.5 rounded-xl font-bold text-xs group w-full max-w-[180px]"
           >
-            <span className="truncate">Explore</span>
-            <ExternalLink className="h-3 w-3 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
+            <span>Explore Compound</span>
+            <ExternalLink className="h-4 w-4 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
       </CardContent>
