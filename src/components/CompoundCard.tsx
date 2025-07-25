@@ -13,13 +13,13 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="group relative overflow-hidden bg-white border border-border/20 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] cursor-pointer animate-fade-in min-h-[420px] flex flex-col">
+    <Card className="group relative overflow-hidden bg-white border border-border/20 shadow-premium hover:shadow-elevated hover:border-accent/30 transition-all duration-500 hover:scale-[1.02] cursor-pointer animate-fade-in min-h-[340px] flex flex-col">
       {/* Enhanced glassmorphism overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/60 to-white/30 pointer-events-none rounded-lg" />
       
       <CardHeader className="relative z-10 p-3 sm:p-4 flex flex-col items-center text-center flex-shrink-0">
         {peptide.trending && (
-          <div className="absolute top-2 right-2 z-20">
+          <div className="absolute top-1 right-1 z-20">
             <Badge variant="accent" className="flex items-center gap-1 px-2 py-1 text-xs font-bold shadow-glow animate-pulse-glow rounded-full">
               🔥
               <span className="hidden sm:inline text-xs">Trending</span>
@@ -77,11 +77,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
           {peptide.shortDescription}
         </p>
         
-        <div className="flex flex-col items-center gap-2 pt-2 mt-auto">
-          <div className="text-xs text-muted-foreground">
-            <span className="font-bold text-primary">Half-life:</span>
-            <span className="ml-1 font-semibold">{peptide.halfLife}</span>
-          </div>
+        <div className="flex flex-col items-center pt-3 mt-auto">
           <Button 
             variant="accent" 
             size="sm"
