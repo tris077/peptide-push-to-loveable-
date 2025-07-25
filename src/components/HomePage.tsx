@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { SearchBar } from "./SearchBar";
 import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
 import { InteractiveCard } from "./InteractiveCard";
@@ -11,6 +12,7 @@ import { TrendingUp, Zap, Shield, Activity, ArrowRight, Sparkles, Atom } from "l
 export const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const navigate = useNavigate();
 
   const filteredPeptides = useMemo(() => {
     return peptidesData.filter(peptide => {
@@ -29,7 +31,15 @@ export const HomePage = () => {
   const trendingPeptides = peptidesData.filter(p => p.trending);
 
   const handleSearch = () => {
-    // Search is already reactive through useMemo
+    if (searchTerm.trim() && filteredPeptides.length > 0) {
+      // Find the best match - prioritize exact name matches first
+      const exactNameMatch = filteredPeptides.find(peptide => 
+        peptide.name.toLowerCase() === searchTerm.toLowerCase()
+      );
+      
+      const bestMatch = exactNameMatch || filteredPeptides[0];
+      navigate(`/compound/${bestMatch.id}`);
+    }
   };
 
   const { scrollYProgress } = useScroll();
