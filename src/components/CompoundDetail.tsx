@@ -154,85 +154,87 @@ export const CompoundDetail = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-8">
-        {/* Overview Section - Moved to top */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mb-8"
-        >
-          <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2 justify-center">
-                <Brain className="h-5 w-5 text-accent" />
-                Overview
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0 text-center">
-              <p className="text-foreground leading-relaxed text-base max-w-4xl mx-auto">{peptide.fullDescription}</p>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <div className="grid xl:grid-cols-12 gap-6">
-          {/* Left Side - Visual Content (7 columns) */}
-          <div className="xl:col-span-7 space-y-4">
-            {/* Product Preview */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-semibold text-primary text-center">
-                    Product Preview
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-3">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
-                    <motion.img 
-                      src={peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : '/placeholder-molecule.svg'}
-                      alt={`${peptide.name} product`}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* 2D Molecular Structure */}
+      <div className="container mx-auto px-6 py-6">
+        <div className="grid lg:grid-cols-12 gap-6">
+          {/* Left Column - Overview & Images (8 columns) */}
+          <div className="lg:col-span-8 space-y-4">
+            {/* Overview Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.6 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-semibold text-primary text-center">
-                    2D Molecular Structure
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2">
+                    <Brain className="h-5 w-5 text-accent" />
+                    Overview
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-3">
-                  <div className="aspect-[4/3] bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
-                    <motion.img 
-                      src={peptide.structure2D || '/placeholder-molecule.svg'}
-                      alt={`${peptide.name} molecular structure`}
-                      className="w-full h-full object-contain"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </div>
+                <CardContent className="pt-0">
+                  <p className="text-foreground leading-relaxed text-base">{peptide.fullDescription}</p>
                 </CardContent>
               </Card>
             </motion.div>
+
+            {/* Images Row */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Product Preview */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 }}
+              >
+                <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base font-semibold text-primary text-center">
+                      Product Preview
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-2">
+                    <div className="aspect-square bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                      <motion.img 
+                        src={peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : '/placeholder-molecule.svg'}
+                        alt={`${peptide.name} product`}
+                        className="w-4/5 h-4/5 object-contain"
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Molecular Structure */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base font-semibold text-primary text-center">
+                      Molecular Structure
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-2">
+                    <div className="aspect-square bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
+                      <motion.img 
+                        src={peptide.structure2D || '/placeholder-molecule.svg'}
+                        alt={`${peptide.name} molecular structure`}
+                        className="w-4/5 h-4/5 object-contain"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
           </div>
 
-          {/* Right Sidebar - Key Information (5 columns) */}
-          <div className="xl:col-span-5 space-y-4">
+          {/* Right Column - Information Cards (4 columns) */}
+          <div className="lg:col-span-4 space-y-4">
             {/* Quick Specs Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -262,13 +264,6 @@ export const CompoundDetail = () => {
                     )}
                     <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
                       <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        Half-life
-                      </span>
-                      <span className="font-bold text-sm">{peptide.halfLife}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
                         <Syringe className="h-3 w-3" />
                         Route
                       </span>
@@ -278,7 +273,6 @@ export const CompoundDetail = () => {
 
                   <Separator className="my-3" />
 
-                  {/* CTA Button */}
                   <Button className="w-full bg-gradient-accent text-white hover:shadow-glow transition-all duration-300 font-semibold">
                     Add to Research Stack
                     <ChevronRight className="h-4 w-4 ml-1" />
@@ -287,11 +281,57 @@ export const CompoundDetail = () => {
               </Card>
             </motion.div>
 
-            {/* Mechanism of Action */}
+            {/* Benefits & Applications */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8 }}
+            >
+              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
+                    <Heart className="h-4 w-4 text-accent" />
+                    Benefits & Applications
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 space-y-3">
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
+                      Primary Use Cases
+                    </h4>
+                    <div className="space-y-1">
+                      {peptide.useCases.slice(0, 3).map((useCase, index) => (
+                        <div key={index} className="flex items-center gap-2 p-1.5 bg-accent/5 rounded-md">
+                          <div className="w-1 h-1 bg-accent rounded-full" />
+                          <span className="text-xs text-foreground">{useCase}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
+                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                      Key Benefits
+                    </h4>
+                    <div className="space-y-1">
+                      {peptide.benefits.slice(0, 3).map((benefit, index) => (
+                        <div key={index} className="flex items-center gap-2 p-1.5 bg-green-500/5 rounded-md">
+                          <div className="w-1 h-1 bg-green-500 rounded-full" />
+                          <span className="text-xs text-foreground">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Mechanism of Action */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
                 <CardHeader className="pb-3">
@@ -308,74 +348,14 @@ export const CompoundDetail = () => {
           </div>
         </div>
 
-        {/* Use Cases & Benefits */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="mt-6"
-        >
-          <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
-                <Heart className="h-4 w-4 text-accent" />
-                Benefits & Applications
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
-                    <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                    Primary Use Cases
-                  </h4>
-                  <div className="space-y-1">
-                    {peptide.useCases.map((useCase, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.0 + index * 0.05 }}
-                        className="flex items-center gap-2 p-1.5 bg-accent/5 rounded-md hover:bg-accent/10 transition-colors duration-200"
-                      >
-                        <div className="w-1 h-1 bg-accent rounded-full" />
-                        <span className="text-xs text-foreground">{useCase}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Key Benefits
-                  </h4>
-                  <div className="space-y-1">
-                    {peptide.benefits.map((benefit, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.1 + index * 0.05 }}
-                        className="flex items-center gap-2 p-1.5 bg-green-500/5 rounded-md hover:bg-green-500/10 transition-colors duration-200"
-                      >
-                        <div className="w-1 h-1 bg-green-500 rounded-full" />
-                        <span className="text-xs text-foreground">{benefit}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+          {/* Safety & Research Section */}
 
-        {/* Safety & Research Sources */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0 }}
-          className="grid lg:grid-cols-2 gap-4 mt-6"
-        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0 }}
+            className="grid lg:grid-cols-2 gap-4 mt-4"
+          >
           {/* Safety Information */}
           <Card className="bg-gradient-card backdrop-blur-lg border-orange-200/50 shadow-sm hover:shadow-md transition-all duration-300">
             <CardHeader className="pb-3">
