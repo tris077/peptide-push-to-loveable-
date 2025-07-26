@@ -192,15 +192,21 @@ export const CompoundDetail = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-2">
-                    <div className="aspect-square bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
-                      <motion.img 
-                        src={peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : '/placeholder-molecule.svg'}
-                        alt={`${peptide.name} product`}
-                        className="w-4/5 h-4/5 object-contain"
-                        whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.2 }}
-                      />
-                    </div>
+                     <div className="aspect-square bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                       <motion.img 
+                         src={
+                           peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
+                           peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : 
+                           '/placeholder-molecule.svg'
+                         }
+                         alt={`${peptide.name} product`}
+                         className={`object-contain drop-shadow-lg ${
+                           peptide.id === 'semaglutide' ? 'max-h-[220px] md:max-h-[220px] sm:max-h-[160px]' : 'w-4/5 h-4/5'
+                         }`}
+                         whileHover={{ scale: 1.02 }}
+                         transition={{ duration: 0.2 }}
+                       />
+                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
