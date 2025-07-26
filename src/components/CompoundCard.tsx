@@ -5,6 +5,7 @@ import { ExternalLink } from "lucide-react";
 import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
 import semaglutideBottle from "@/assets/semaglutide-bottle.png";
+import semaxBottle from "@/assets/semax-bottle.png";
 
 interface CompoundCardProps {
   peptide: Peptide;
@@ -37,6 +38,12 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
           {peptide.id === 'semaglutide' ? (
             <img 
               src={semaglutideBottle} 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
+          ) : peptide.name.toLowerCase() === 'semax' ? (
+            <img 
+              src={semaxBottle} 
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
