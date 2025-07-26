@@ -8,7 +8,7 @@ import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
 import { ProductViewer360 } from "./ProductViewer360";
 import semaglutideBottle from "@/assets/semaglutide-bottle.png";
-import bpc157Bottle from "@/assets/bpc157-bottle.png";
+import bpc157BottleTransparent from "@/assets/bpc157-bottle-transparent.png";
 
 interface InteractiveCardProps {
   peptide: Peptide;
@@ -116,7 +116,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
               images={
                 peptide.id === 'semaglutide' ? [semaglutideBottle] :
                 peptide.name.toLowerCase() === 'semax' ? ['/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png'] : 
-                peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? [bpc157Bottle] :
+                peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? [bpc157BottleTransparent] :
                 ['/placeholder-molecule.svg']
               }
               size="large"
