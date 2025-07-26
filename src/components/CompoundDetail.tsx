@@ -233,16 +233,17 @@ export const CompoundDetail = () => {
                 </CardHeader>
                 <CardContent className="px-0 pb-4">
                   <motion.img 
-                    src={(() => {
-                      const name = peptide.name;
-                      if (name === 'PT-141') return '/lovable-uploads/5106d93b-4c6b-40d7-8cc9-26800d356828.png';
-                      if (name === 'BPC-157') return '/lovable-uploads/b396ffed-0b60-4a5f-b3b4-072b05b10296.png';
-                      if (name === 'GHK-Cu') return '/lovable-uploads/beb4b855-5ce0-4fcd-afa5-57807145def4.png';
-                      if (name === 'TB-500') return '/lovable-uploads/a159e5d0-f3ea-43fa-8614-40fcba7438c1.png';
-                      if (name === 'CJC-1295') return '/lovable-uploads/3c6b6e15-7b63-44a1-aa71-2e503b66f33a.png';
-                      if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
-                      return peptide.structure2D || '/placeholder-molecule.svg';
-                    })()}
+                     src={(() => {
+                       const name = peptide.name;
+                       if (name === 'PT-141') return '/lovable-uploads/5106d93b-4c6b-40d7-8cc9-26800d356828.png';
+                       if (name === 'BPC-157') return '/lovable-uploads/b396ffed-0b60-4a5f-b3b4-072b05b10296.png';
+                       if (name === 'GHK-Cu') return '/lovable-uploads/beb4b855-5ce0-4fcd-afa5-57807145def4.png';
+                       if (name === 'TB-500') return '/lovable-uploads/a159e5d0-f3ea-43fa-8614-40fcba7438c1.png';
+                       if (name === 'CJC-1295') return '/lovable-uploads/3c6b6e15-7b63-44a1-aa71-2e503b66f33a.png';
+                       if (name === 'Semax') return '/lovable-uploads/f86407d6-977c-4cb6-aa31-56e144554b4c.png';
+                       if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
+                       return peptide.structure2D || '/placeholder-molecule.svg';
+                     })()}
                     alt={`${peptide.name} molecular structure`}
                     className="w-full h-auto object-contain transform-gpu"
                     style={{ maxHeight: '300px', minHeight: '200px' }}
