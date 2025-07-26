@@ -155,8 +155,7 @@ export const HomePage = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                Explore premium peptides, cutting-edge nootropics, and research chemicals 
-                with immersive 3D previews, verified data, and biotech-grade insights.
+                Explore premium peptides, smart nootropics, and research compounds — powered by verified data and biotech-grade insight.
               </motion.p>
             </motion.div>
             
