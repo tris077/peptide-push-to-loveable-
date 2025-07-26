@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Navigation } from "./Navigation";
 import { SearchBar } from "./SearchBar";
 import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
 import { InteractiveCard } from "./InteractiveCard";
@@ -48,6 +49,7 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden">
+      <Navigation />
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(185_100%_65%_/_0.3),transparent_50%)]" />
