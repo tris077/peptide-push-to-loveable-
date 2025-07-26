@@ -45,7 +45,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
             />
           ) : peptide.name.toLowerCase() === 'semax' ? (
             <img 
-              src={semaxBottle} 
+              src="/lovable-uploads/3307778d-234d-4681-9a59-8f907f4fd062.png" 
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
