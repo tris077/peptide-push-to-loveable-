@@ -154,45 +154,46 @@ export const CompoundDetail = () => {
       </motion.div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-2">
         {/* Overview Section - Full Width */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mb-4"
+          className="mb-2"
         >
           <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-            <CardHeader className="px-4 pb-3">
-              <CardTitle className="text-xl font-semibold text-primary flex items-center gap-2">
+            <CardHeader className="px-4 pb-2">
+              <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
                 <Brain className="h-5 w-5 text-accent" />
                 Overview
               </CardTitle>
             </CardHeader>
-            <CardContent className="px-4 pt-0">
-              <p className="text-foreground leading-relaxed text-base">{peptide.fullDescription}</p>
+            <CardContent className="px-4 pt-0 pb-3">
+              <p className="text-foreground leading-relaxed text-sm">{peptide.fullDescription}</p>
             </CardContent>
           </Card>
         </motion.div>
 
-        {/* Two-Column Grid Layout */}
-        <div className="grid lg:grid-cols-2 gap-4">
-          {/* Left Column - Product Visuals */}
-          <div className="space-y-4">
+        {/* Responsive 2-Column Grid Layout */}
+        <div className="grid lg:grid-cols-2 gap-2 grid-auto-flow: dense">
+          {/* Left Column - Product Visuals Stack */}
+          <div className="flex flex-col gap-2">
             {/* Product Preview */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.7 }}
+              className="flex-1"
             >
-              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-                <CardHeader className="px-4 pb-2">
-                  <CardTitle className="text-lg font-semibold text-primary text-center">
+              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
+                <CardHeader className="px-4 pb-1">
+                  <CardTitle className="text-base font-semibold text-primary text-center">
                     Product Preview
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-4">
-                  <div className="h-44 bg-gradient-to-br from-background to-muted rounded-xl border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                <CardContent className="px-4 pb-3">
+                  <div className="h-32 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
                     <motion.img 
                       src={
                         peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
@@ -209,20 +210,21 @@ export const CompoundDetail = () => {
               </Card>
             </motion.div>
 
-            {/* Molecular Structure */}
+            {/* 2D Structure */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
+              className="flex-1"
             >
-              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-                <CardHeader className="px-4 pb-2">
-                  <CardTitle className="text-lg font-semibold text-primary text-center">
+              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
+                <CardHeader className="px-4 pb-1">
+                  <CardTitle className="text-base font-semibold text-primary text-center">
                     2D Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-4">
-                  <div className="h-44 bg-background rounded-xl border border-border/20 overflow-hidden flex items-center justify-center">
+                <CardContent className="px-4 pb-3">
+                  <div className="h-32 bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
                     <motion.img 
                       src={peptide.structure2D || '/placeholder-molecule.svg'}
                       alt={`${peptide.name} molecular structure`}
@@ -236,8 +238,8 @@ export const CompoundDetail = () => {
             </motion.div>
           </div>
 
-          {/* Right Column - Information Cards */}
-          <div className="space-y-4">
+          {/* Right Column - Information Stack */}
+          <div className="flex flex-col gap-2">
             {/* Quick Specs Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -245,54 +247,54 @@ export const CompoundDetail = () => {
               transition={{ delay: 0.7 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-accent/20 shadow-elevated rounded-xl">
-                <CardHeader className="px-4 pb-3">
-                  <CardTitle className="text-lg font-bold text-primary flex items-center gap-2">
-                    <Target className="h-5 w-5 text-accent" />
+                <CardHeader className="px-4 pb-2">
+                  <CardTitle className="text-base font-bold text-primary flex items-center gap-2">
+                    <Target className="h-4 w-4 text-accent" />
                     Quick Specs
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 space-y-3">
-                  <div className="grid gap-2">
+                <CardContent className="px-4 space-y-2">
+                  <div className="grid gap-1.5">
                     {peptide.molecularFormula && (
-                      <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                        <span className="text-sm font-medium text-muted-foreground">Formula</span>
-                        <span className="font-mono text-accent font-bold text-sm">{peptide.molecularFormula}</span>
+                      <div className="flex justify-between items-center p-1.5 bg-accent/10 rounded-md border border-accent/20">
+                        <span className="text-xs font-medium text-muted-foreground">Formula</span>
+                        <span className="font-mono text-accent font-bold text-xs">{peptide.molecularFormula}</span>
                       </div>
                     )}
                     {peptide.molecularWeight && (
-                      <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                        <span className="text-sm font-medium text-muted-foreground">MW</span>
-                        <span className="font-mono font-bold text-sm">{peptide.molecularWeight}</span>
+                      <div className="flex justify-between items-center p-1.5 bg-accent/10 rounded-md border border-accent/20">
+                        <span className="text-xs font-medium text-muted-foreground">MW</span>
+                        <span className="font-mono font-bold text-xs">{peptide.molecularWeight}</span>
                       </div>
                     )}
-                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="flex justify-between items-center p-1.5 bg-accent/10 rounded-md border border-accent/20">
+                      <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
                         <Syringe className="h-3 w-3" />
                         Route
                       </span>
-                      <span className="font-bold text-sm">{peptide.administration[0]}</span>
+                      <span className="font-bold text-xs">{peptide.administration[0]}</span>
                     </div>
-                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="flex justify-between items-center p-1.5 bg-accent/10 rounded-md border border-accent/20">
+                      <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
                         <Shield className="h-3 w-3" />
                         Legal Status
                       </span>
-                      <span className="font-bold text-sm">{peptide.legalStatus}</span>
+                      <span className="font-bold text-xs">{peptide.legalStatus}</span>
                     </div>
-                    <div className="flex justify-between items-center p-2 bg-accent/10 rounded-lg border border-accent/20">
-                      <span className="text-sm font-medium text-muted-foreground flex items-center gap-1">
+                    <div className="flex justify-between items-center p-1.5 bg-accent/10 rounded-md border border-accent/20">
+                      <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         Year Discovered
                       </span>
-                      <span className="font-bold text-sm">{peptide.yearDiscovered}</span>
+                      <span className="font-bold text-xs">{peptide.yearDiscovered}</span>
                     </div>
                   </div>
 
-                  <Separator className="my-3" />
+                  <Separator className="my-2" />
 
-                  <Button className="w-full bg-gradient-accent text-white hover:shadow-glow transition-all duration-300 font-semibold">
+                  <Button className="w-full bg-gradient-accent text-white hover:shadow-glow transition-all duration-300 font-semibold text-sm py-2">
                     Add to Research Stack
-                    <ChevronRight className="h-4 w-4 ml-1" />
+                    <ChevronRight className="h-3 w-3 ml-1" />
                   </Button>
                 </CardContent>
               </Card>
@@ -305,31 +307,31 @@ export const CompoundDetail = () => {
               transition={{ delay: 0.8 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-orange-200/50 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-                <CardHeader className="px-4 pb-2">
-                  <CardTitle className="text-lg font-semibold text-orange-600 flex items-center gap-2">
+                <CardHeader className="px-4 pb-1">
+                  <CardTitle className="text-base font-semibold text-orange-600 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4" />
                     Safety Info
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pt-0 space-y-3">
+                <CardContent className="px-4 pt-0 space-y-2 pb-3">
                   <div>
-                    <h4 className="font-medium text-foreground mb-2 text-sm">Warnings</h4>
+                    <h4 className="font-medium text-foreground mb-1 text-xs">Warnings</h4>
                     <div className="space-y-1">
                       {peptide.warnings.slice(0, 2).map((warning, index) => (
-                        <div key={index} className="flex items-start gap-2 p-2 bg-orange-50/50 rounded-lg border border-orange-200/50">
+                        <div key={index} className="flex items-start gap-1.5 p-1.5 bg-orange-50/50 rounded-md border border-orange-200/50">
                           <AlertTriangle className="h-3 w-3 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-orange-800 leading-tight">{warning}</span>
+                          <span className="text-xs text-orange-800 leading-tight">{warning}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-medium text-foreground mb-2 text-sm">Side Effects</h4>
+                    <h4 className="font-medium text-foreground mb-1 text-xs">Side Effects</h4>
                     <div className="space-y-1">
                       {peptide.sideEffects.slice(0, 2).map((effect, index) => (
-                        <div key={index} className="flex items-start gap-2 p-2 bg-red-50/50 rounded-lg border border-red-200/50">
+                        <div key={index} className="flex items-start gap-1.5 p-1.5 bg-red-50/50 rounded-md border border-red-200/50">
                           <AlertTriangle className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-red-800 leading-tight">{effect}</span>
+                          <span className="text-xs text-red-800 leading-tight">{effect}</span>
                         </div>
                       ))}
                     </div>
@@ -345,21 +347,21 @@ export const CompoundDetail = () => {
               transition={{ delay: 0.9 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-                <CardHeader className="px-4 pb-3">
-                  <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
+                <CardHeader className="px-4 pb-2">
+                  <CardTitle className="text-base font-semibold text-primary flex items-center gap-2">
                     <Heart className="h-4 w-4 text-accent" />
                     Benefits & Applications
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pt-0 space-y-3">
+                <CardContent className="px-4 pt-0 space-y-2 pb-3">
                   <div>
-                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
+                    <h4 className="font-medium text-foreground mb-1 flex items-center gap-2 text-xs">
                       <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
                       Primary Use Cases
                     </h4>
                     <div className="space-y-1">
                       {peptide.useCases.slice(0, 3).map((useCase, index) => (
-                        <div key={index} className="flex items-center gap-2 p-1.5 bg-accent/5 rounded-md">
+                        <div key={index} className="flex items-center gap-1.5 p-1 bg-accent/5 rounded-sm">
                           <div className="w-1 h-1 bg-accent rounded-full" />
                           <span className="text-xs text-foreground">{useCase}</span>
                         </div>
@@ -367,13 +369,13 @@ export const CompoundDetail = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-medium text-foreground mb-2 flex items-center gap-2 text-sm">
+                    <h4 className="font-medium text-foreground mb-1 flex items-center gap-2 text-xs">
                       <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
                       Key Benefits
                     </h4>
                     <div className="space-y-1">
                       {peptide.benefits.slice(0, 3).map((benefit, index) => (
-                        <div key={index} className="flex items-center gap-2 p-1.5 bg-green-500/5 rounded-md">
+                        <div key={index} className="flex items-center gap-1.5 p-1 bg-green-500/5 rounded-sm">
                           <div className="w-1 h-1 bg-green-500 rounded-full" />
                           <span className="text-xs text-foreground">{benefit}</span>
                         </div>
