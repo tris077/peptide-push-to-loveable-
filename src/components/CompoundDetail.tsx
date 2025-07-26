@@ -186,27 +186,25 @@ export const CompoundDetail = () => {
               transition={{ delay: 0.7 }}
               className="flex-1"
             >
-              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
-                <CardHeader className="px-4 pb-2">
+              <Card className="bg-transparent border-none shadow-none rounded-xl h-full">
+                <CardHeader className="px-0 pb-2">
                   <CardTitle className="text-lg font-semibold text-primary text-center">
                     Product Preview
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-4">
-                  <div className="min-h-[180px] bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner overflow-hidden flex items-center justify-center p-4">
-                    <motion.img 
-                      src={
-                        peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
-                        peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : 
-                        '/placeholder-molecule.svg'
-                      }
-                      alt={`${peptide.name} product`}
-                      className="w-[85%] h-auto object-contain drop-shadow-xl transform-gpu"
-                      style={{ maxHeight: '160px' }}
-                      whileHover={{ scale: 1.03 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
+                <CardContent className="px-0 pb-4">
+                  <motion.img 
+                    src={
+                      peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
+                      peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : 
+                      '/placeholder-molecule.svg'
+                    }
+                    alt={`${peptide.name} product`}
+                    className="w-full h-auto object-contain drop-shadow-xl transform-gpu"
+                    style={{ maxHeight: '200px' }}
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </CardContent>
               </Card>
             </motion.div>
@@ -218,23 +216,21 @@ export const CompoundDetail = () => {
               transition={{ delay: 0.8 }}
               className="flex-1"
             >
-              <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
-                <CardHeader className="px-4 pb-2">
+              <Card className="bg-transparent border-none shadow-none rounded-xl h-full">
+                <CardHeader className="px-0 pb-2">
                   <CardTitle className="text-lg font-semibold text-primary text-center">
                     2D Molecular Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-4">
-                  <div className="min-h-[180px] bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center p-4">
-                    <motion.img 
-                      src={peptide.structure2D || '/placeholder-molecule.svg'}
-                      alt={`${peptide.name} molecular structure`}
-                      className="w-[85%] h-auto object-contain transform-gpu"
-                      style={{ maxHeight: '160px' }}
-                      whileHover={{ scale: 1.08 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
+                <CardContent className="px-0 pb-4">
+                  <motion.img 
+                    src={peptide.structure2D || '/placeholder-molecule.svg'}
+                    alt={`${peptide.name} molecular structure`}
+                    className="w-full h-auto object-contain transform-gpu"
+                    style={{ maxHeight: '200px' }}
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.3 }}
+                  />
                 </CardContent>
               </Card>
             </motion.div>
