@@ -193,7 +193,7 @@ export const CompoundDetail = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
-                  <div className="h-56 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner overflow-hidden flex items-center justify-center p-2">
+                  <div className="min-h-[180px] bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner overflow-hidden flex items-center justify-center p-4">
                     <motion.img 
                       src={
                         peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
@@ -201,7 +201,8 @@ export const CompoundDetail = () => {
                         '/placeholder-molecule.svg'
                       }
                       alt={`${peptide.name} product`}
-                      className="max-w-full max-h-full object-contain drop-shadow-xl transform-gpu"
+                      className="w-[85%] h-auto object-contain drop-shadow-xl transform-gpu"
+                      style={{ maxHeight: '160px' }}
                       whileHover={{ scale: 1.03 }}
                       transition={{ duration: 0.3 }}
                     />
@@ -224,11 +225,12 @@ export const CompoundDetail = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
-                  <div className="h-56 bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center p-2">
+                  <div className="min-h-[180px] bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center p-4">
                     <motion.img 
                       src={peptide.structure2D || '/placeholder-molecule.svg'}
                       alt={`${peptide.name} molecular structure`}
-                      className="max-w-full max-h-full object-contain transform-gpu"
+                      className="w-[85%] h-auto object-contain transform-gpu"
+                      style={{ maxHeight: '160px' }}
                       whileHover={{ scale: 1.08 }}
                       transition={{ duration: 0.3 }}
                     />
