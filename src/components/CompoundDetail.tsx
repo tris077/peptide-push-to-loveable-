@@ -201,7 +201,7 @@ export const CompoundDetail = () => {
                          }
                          alt={`${peptide.name} product`}
                          className={`object-contain drop-shadow-lg ${
-                           peptide.id === 'semaglutide' ? 'max-h-[220px] md:max-h-[220px] sm:max-h-[160px]' : 'w-4/5 h-4/5'
+                           peptide.id === 'semaglutide' ? 'w-full h-full scale-90' : 'w-4/5 h-4/5'
                          }`}
                          whileHover={{ scale: 1.02 }}
                          transition={{ duration: 0.2 }}
