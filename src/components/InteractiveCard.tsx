@@ -139,24 +139,24 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
             whileHover={{ y: -2 }}
           >
             {(() => {
-              const name = peptide.name.toLowerCase();
-              if (name.includes('melanotan')) return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
-              if (name === 'pt-141') return '/lovable-uploads/54a83b31-103c-46a2-8452-a9d563ca6f25.png';
-              if (name === 'bpc-157') return '/lovable-uploads/799dad08-7f19-4c74-8697-b4101c682ec0.png';
-              if (name === 'ghk-cu') return '/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png';
-              if (name === 'tb-500') return '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png';
-              if (name === 'cjc-1295') return '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png';
+              const name = peptide.name;
+              if (name === 'PT-141') return '/lovable-uploads/5106d93b-4c6b-40d7-8cc9-26800d356828.png';
+              if (name === 'BPC-157') return '/lovable-uploads/b396ffed-0b60-4a5f-b3b4-072b05b10296.png';
+              if (name === 'GHK-Cu') return '/lovable-uploads/beb4b855-5ce0-4fcd-afa5-57807145def4.png';
+              if (name === 'TB-500') return '/lovable-uploads/a159e5d0-f3ea-43fa-8614-40fcba7438c1.png';
+              if (name === 'CJC-1295') return '/lovable-uploads/3c6b6e15-7b63-44a1-aa71-2e503b66f33a.png';
+              if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
               return null;
             })() ? (
               <img 
                 src={(() => {
                   const name = peptide.name;
+                  if (name === 'PT-141') return '/lovable-uploads/5106d93b-4c6b-40d7-8cc9-26800d356828.png';
+                  if (name === 'BPC-157') return '/lovable-uploads/b396ffed-0b60-4a5f-b3b4-072b05b10296.png';
+                  if (name === 'GHK-Cu') return '/lovable-uploads/beb4b855-5ce0-4fcd-afa5-57807145def4.png';
+                  if (name === 'TB-500') return '/lovable-uploads/a159e5d0-f3ea-43fa-8614-40fcba7438c1.png';
+                  if (name === 'CJC-1295') return '/lovable-uploads/3c6b6e15-7b63-44a1-aa71-2e503b66f33a.png';
                   if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
-                  if (name === 'PT-141') return '/lovable-uploads/54a83b31-103c-46a2-8452-a9d563ca6f25.png';
-                  if (name === 'BPC-157') return '/lovable-uploads/799dad08-7f19-4c74-8697-b4101c682ec0.png';
-                  if (name === 'GHK-Cu') return '/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png';
-                  if (name === 'TB-500') return '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png';
-                  if (name === 'CJC-1295') return '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png';
                 })()}
                 alt={`${peptide.name} molecular structure`}
                 className="w-full h-full object-contain p-1"
