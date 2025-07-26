@@ -201,7 +201,7 @@ export const CompoundDetail = () => {
                     }
                     alt={`${peptide.name} product`}
                     className="w-full h-auto object-contain drop-shadow-xl transform-gpu"
-                    style={{ maxHeight: '200px' }}
+                    style={{ maxHeight: '300px', minHeight: '200px' }}
                     whileHover={{ scale: 1.03 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -227,7 +227,7 @@ export const CompoundDetail = () => {
                     src={peptide.structure2D || '/placeholder-molecule.svg'}
                     alt={`${peptide.name} molecular structure`}
                     className="w-full h-auto object-contain transform-gpu"
-                    style={{ maxHeight: '200px' }}
+                    style={{ maxHeight: '300px', minHeight: '200px' }}
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.3 }}
                   />
