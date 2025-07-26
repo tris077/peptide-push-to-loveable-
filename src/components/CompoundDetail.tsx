@@ -196,7 +196,9 @@ export const CompoundDetail = () => {
                   <motion.img 
                     src={
                       peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
-                      peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png' : 
+                      peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/3307778d-234d-4681-9a59-8f907f4fd062.png' : 
+                      peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png' :
+                      peptide.name.toLowerCase().includes('melanotan') ? '/lovable-uploads/552767df-922a-49f5-939d-74fbb95daf5f.png' :
                       '/placeholder-molecule.svg'
                     }
                     alt={`${peptide.name} product`}
