@@ -148,6 +148,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
               if (name === 'Semax') return '/lovable-uploads/f86407d6-977c-4cb6-aa31-56e144554b4c.png';
               if (name === 'GHRP-6') return '/lovable-uploads/1ec2d93b-a3e2-4e0c-9611-3fc7dc45f860.png';
               if (name === 'Ipamorelin') return '/lovable-uploads/4f8a1e98-5f84-4b4c-bf9b-da3b7b12b873.png';
+              if (name === 'Semaglutide') return '/lovable-uploads/a7b57a95-b3ce-4e1d-afee-8e731808b8d3.png';
               if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
               return null;
             })() ? (
@@ -162,6 +163,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
                   if (name === 'Semax') return '/lovable-uploads/f86407d6-977c-4cb6-aa31-56e144554b4c.png';
                   if (name === 'GHRP-6') return '/lovable-uploads/1ec2d93b-a3e2-4e0c-9611-3fc7dc45f860.png';
                   if (name === 'Ipamorelin') return '/lovable-uploads/4f8a1e98-5f84-4b4c-bf9b-da3b7b12b873.png';
+                  if (name === 'Semaglutide') return '/lovable-uploads/a7b57a95-b3ce-4e1d-afee-8e731808b8d3.png';
                   if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
                 })()}
                 alt={`${peptide.name} molecular structure`}
