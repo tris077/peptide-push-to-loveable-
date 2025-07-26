@@ -242,6 +242,7 @@ export const CompoundDetail = () => {
                        if (name === 'CJC-1295') return '/lovable-uploads/3c6b6e15-7b63-44a1-aa71-2e503b66f33a.png';
                        if (name === 'Semax') return '/lovable-uploads/f86407d6-977c-4cb6-aa31-56e144554b4c.png';
                        if (name === 'GHRP-6') return '/lovable-uploads/1ec2d93b-a3e2-4e0c-9611-3fc7dc45f860.png';
+                       if (name === 'Ipamorelin') return '/lovable-uploads/4f8a1e98-5f84-4b4c-bf9b-da3b7b12b873.png';
                        if (name === 'Melanotan II') return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
                        return peptide.structure2D || '/placeholder-molecule.svg';
                      })()}
