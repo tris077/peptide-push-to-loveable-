@@ -192,7 +192,7 @@ export const CompoundDetail = () => {
                     </CardTitle>
                   </CardHeader>
                    <CardContent className="p-2">
-                     <div className="aspect-[4/5] bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                     <div className="h-64 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
                        <motion.img 
                          src={
                            peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
