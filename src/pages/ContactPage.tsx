@@ -151,21 +151,20 @@ export default function ContactPage() {
             </div>
           </motion.div>
 
-          {/* Contact Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            {/* Contact Form */}
+          {/* Centered Contact Form */}
+          <div className="max-w-2xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-xl">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-primary flex items-center gap-3">
+                  <CardTitle className="text-2xl font-bold text-primary flex items-center gap-3 justify-center">
                     <MessageSquare className="h-6 w-6 text-cyan-400" />
                     Send us a Message
                   </CardTitle>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-center">
                     Fill out the form below and we'll get back to you as soon as possible.
                   </p>
                 </CardHeader>
@@ -265,98 +264,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              className="space-y-6"
-            >
-              {/* Contact Info Cards */}
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    whileHover={{ y: -2 }}
-                  >
-                    <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <motion.div 
-                            className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center flex-shrink-0`}
-                            whileHover={{ rotate: 15 }}
-                          >
-                            <info.icon className="h-6 w-6 text-white" />
-                          </motion.div>
-                          <div className="flex-1">
-                            <h3 className="text-lg font-bold text-primary mb-1">{info.title}</h3>
-                            <p className="text-foreground font-semibold mb-1">{info.content}</p>
-                            <p className="text-sm text-muted-foreground">{info.description}</p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Inquiry Types */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 }}
-              >
-                <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-xl">
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold text-primary">How Can We Help?</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    {inquiryTypes.map((type) => (
-                      <div key={type.title} className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                        <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <type.icon className="h-4 w-4 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-foreground">{type.title}</h4>
-                          <p className="text-sm text-muted-foreground">{type.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
           </div>
-
-          {/* Response Time Promise */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="text-center"
-          >
-            <Card className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-lg border-green-500/20 shadow-xl">
-              <CardContent className="py-8">
-                <motion.div 
-                  className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <CheckCircle2 className="h-8 w-8 text-white" />
-                </motion.div>
-                <h2 className="text-2xl font-bold text-white mb-2">Quick Response Guarantee</h2>
-                <p className="text-emerald-400 text-lg mb-4">
-                  We respond to all inquiries within 24 hours during business days.
-                </p>
-                <p className="text-white/80">
-                  For urgent technical issues, please include "URGENT" in your subject line.
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
       </div>
     </div>
