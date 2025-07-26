@@ -233,7 +233,10 @@ export const CompoundDetail = () => {
                 </CardHeader>
                 <CardContent className="px-0 pb-4">
                   <motion.img 
-                    src={peptide.structure2D || '/placeholder-molecule.svg'}
+                    src={
+                      peptide.name.toLowerCase().includes('melanotan') ? '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png' :
+                      peptide.structure2D || '/placeholder-molecule.svg'
+                    }
                     alt={`${peptide.name} molecular structure`}
                     className="w-full h-auto object-contain transform-gpu"
                     style={{ maxHeight: '300px', minHeight: '200px' }}

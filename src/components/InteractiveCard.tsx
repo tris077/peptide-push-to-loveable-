@@ -135,15 +135,23 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
 
           {/* 2D Molecular Structure Slot */}
           <motion.div 
-            className="absolute top-4 right-4 w-20 h-20 bg-white/95 backdrop-blur-sm rounded-lg border border-white/40 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 z-20"
+            className="absolute top-4 right-4 w-20 h-20 bg-white/95 backdrop-blur-sm rounded-lg border border-white/40 shadow-sm flex items-center justify-center group-hover:scale-110 transition-all duration-300 z-20 overflow-hidden"
             whileHover={{ y: -2 }}
           >
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-accent/30 to-primary/30 rounded-md flex items-center justify-center mb-1">
-                <span className="text-xs font-mono font-bold text-accent">2D</span>
+            {peptide.name.toLowerCase().includes('melanotan') ? (
+              <img 
+                src="/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png" 
+                alt={`${peptide.name} molecular structure`}
+                className="w-full h-full object-contain p-1"
+              />
+            ) : (
+              <div className="text-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent/30 to-primary/30 rounded-md flex items-center justify-center mb-1">
+                  <span className="text-xs font-mono font-bold text-accent">2D</span>
+                </div>
+                <span className="text-xs font-medium text-muted-foreground">Struct</span>
               </div>
-              <span className="text-xs font-medium text-muted-foreground">Struct</span>
-            </div>
+            )}
           </motion.div>
 
           <CardTitle 
