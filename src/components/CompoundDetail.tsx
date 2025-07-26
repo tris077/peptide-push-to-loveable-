@@ -178,7 +178,7 @@ export const CompoundDetail = () => {
         {/* Responsive 2-Column Grid Layout */}
         <div className="grid lg:grid-cols-2 gap-2 grid-auto-flow: dense">
           {/* Left Column - Product Visuals Stack */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             {/* Product Preview */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -187,13 +187,13 @@ export const CompoundDetail = () => {
               className="flex-1"
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
-                <CardHeader className="px-4 pb-1">
-                  <CardTitle className="text-base font-semibold text-primary text-center">
+                <CardHeader className="px-4 pb-2">
+                  <CardTitle className="text-lg font-semibold text-primary text-center">
                     Product Preview
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-3">
-                  <div className="h-32 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                <CardContent className="px-4 pb-4">
+                  <div className="h-56 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
                     <motion.img 
                       src={
                         peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
@@ -201,9 +201,9 @@ export const CompoundDetail = () => {
                         '/placeholder-molecule.svg'
                       }
                       alt={`${peptide.name} product`}
-                      className="max-h-full object-contain drop-shadow-lg"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.2 }}
+                      className="max-h-full max-w-full object-contain drop-shadow-xl transform-gpu"
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.3 }}
                     />
                   </div>
                 </CardContent>
@@ -218,19 +218,19 @@ export const CompoundDetail = () => {
               className="flex-1"
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl h-full">
-                <CardHeader className="px-4 pb-1">
-                  <CardTitle className="text-base font-semibold text-primary text-center">
-                    2D Structure
+                <CardHeader className="px-4 pb-2">
+                  <CardTitle className="text-lg font-semibold text-primary text-center">
+                    2D Molecular Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pb-3">
-                  <div className="h-32 bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center">
+                <CardContent className="px-4 pb-4">
+                  <div className="h-56 bg-background rounded-lg border border-border/20 overflow-hidden flex items-center justify-center p-2">
                     <motion.img 
                       src={peptide.structure2D || '/placeholder-molecule.svg'}
                       alt={`${peptide.name} molecular structure`}
-                      className="max-h-full object-contain"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.2 }}
+                      className="max-h-full max-w-full object-contain transform-gpu"
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.3 }}
                     />
                   </div>
                 </CardContent>
