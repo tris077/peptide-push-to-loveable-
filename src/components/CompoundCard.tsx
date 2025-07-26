@@ -6,7 +6,7 @@ import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
 import semaglutideBottle from "@/assets/semaglutide-bottle.png";
 import semaxBottle from "@/assets/semax-bottle.png";
-import bpc157BottleTransparent from "@/assets/bpc157-bottle-transparent.png";
+import bpc157BottleReal from "@/assets/bpc157-bottle-real.png";
 import bpc157Bottle from "@/assets/bpc157-bottle.png";
 
 interface CompoundCardProps {
@@ -51,7 +51,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
             />
           ) : peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? (
             <img 
-              src={bpc157BottleTransparent} 
+              src="/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png" 
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
