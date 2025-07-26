@@ -55,6 +55,12 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
+          ) : peptide.name.toLowerCase().includes('melanotan') ? (
+            <img 
+              src="/lovable-uploads/552767df-922a-49f5-939d-74fbb95daf5f.png" 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
           ) : (
             <>
               <div className="absolute inset-0 animate-rotate-slow opacity-10">
