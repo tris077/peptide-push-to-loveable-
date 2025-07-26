@@ -6,6 +6,7 @@ import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
 import semaglutideBottle from "@/assets/semaglutide-bottle.png";
 import semaxBottle from "@/assets/semax-bottle.png";
+import bpc157Bottle from "@/assets/bpc157-bottle.png";
 
 interface CompoundCardProps {
   peptide: Peptide;
@@ -44,6 +45,12 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
           ) : peptide.name.toLowerCase() === 'semax' ? (
             <img 
               src={semaxBottle} 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
+          ) : peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? (
+            <img 
+              src={bpc157Bottle} 
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
