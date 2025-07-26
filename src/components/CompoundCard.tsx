@@ -91,6 +91,18 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
+          ) : peptide.name.toLowerCase().includes('ghk-cu') || peptide.name.toLowerCase().includes('ghkcu') ? (
+            <img 
+              src="/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png" 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
+          ) : peptide.name.toLowerCase().includes('mod-grf') || peptide.name.toLowerCase().includes('modgrf') ? (
+            <img 
+              src="/lovable-uploads/4edd5a43-ed07-40cc-9023-884aa26ae44a.png" 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
           ) : (
             <>
               <div className="absolute inset-0 animate-rotate-slow opacity-10">

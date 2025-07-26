@@ -204,6 +204,8 @@ export const CompoundDetail = () => {
                       peptide.name.toLowerCase().includes('pt-141') || peptide.name.toLowerCase().includes('pt141') ? '/lovable-uploads/5077b3ea-d5b2-4bd8-b326-76e5962b0944.png' :
                       peptide.name.toLowerCase().includes('cjc-1295') || peptide.name.toLowerCase().includes('cjc1295') ? '/lovable-uploads/799dad08-7f19-4c74-8697-b4101c682ec0.png' :
                       peptide.name.toLowerCase().includes('ipamorelin') ? '/lovable-uploads/3942de24-8fff-4107-983c-f61c4b0a3aa7.png' :
+                      peptide.name.toLowerCase().includes('ghk-cu') || peptide.name.toLowerCase().includes('ghkcu') ? '/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png' :
+                      peptide.name.toLowerCase().includes('mod-grf') || peptide.name.toLowerCase().includes('modgrf') ? '/lovable-uploads/4edd5a43-ed07-40cc-9023-884aa26ae44a.png' :
                       '/placeholder-molecule.svg'
                     }
                     alt={`${peptide.name} product`}
