@@ -61,6 +61,12 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
+          ) : peptide.name.toLowerCase().includes('tb-500') || peptide.name.toLowerCase().includes('tb500') ? (
+            <img 
+              src="/lovable-uploads/cdbd26cd-11de-4e75-87fa-e0a7d41fea3d.png" 
+              alt={`${peptide.name} bottle`}
+              className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
+            />
           ) : (
             <>
               <div className="absolute inset-0 animate-rotate-slow opacity-10">

@@ -199,6 +199,7 @@ export const CompoundDetail = () => {
                       peptide.name.toLowerCase() === 'semax' ? '/lovable-uploads/3307778d-234d-4681-9a59-8f907f4fd062.png' : 
                       peptide.name.toLowerCase().includes('bpc-157') || peptide.name.toLowerCase().includes('bpc 157') ? '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png' :
                       peptide.name.toLowerCase().includes('melanotan') ? '/lovable-uploads/552767df-922a-49f5-939d-74fbb95daf5f.png' :
+                      peptide.name.toLowerCase().includes('tb-500') || peptide.name.toLowerCase().includes('tb500') ? '/lovable-uploads/cdbd26cd-11de-4e75-87fa-e0a7d41fea3d.png' :
                       '/placeholder-molecule.svg'
                     }
                     alt={`${peptide.name} product`}
