@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
+import semaglutideBottle from "@/assets/semaglutide-bottle.png";
 
 interface CompoundCardProps {
   peptide: Peptide;
@@ -35,7 +36,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
           {/* Product bottle image or fallback */}
           {peptide.id === 'semaglutide' ? (
             <img 
-              src="/src/assets/semaglutide-bottle.png" 
+              src={semaglutideBottle} 
               alt={`${peptide.name} bottle`}
               className="relative w-16 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-all duration-700"
             />
