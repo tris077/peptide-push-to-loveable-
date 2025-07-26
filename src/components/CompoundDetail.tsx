@@ -236,11 +236,11 @@ export const CompoundDetail = () => {
                     src={(() => {
                       const name = peptide.name.toLowerCase();
                       if (name.includes('melanotan')) return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
-                      if (name.includes('pt-141') || name.includes('pt141')) return '/lovable-uploads/54a83b31-103c-46a2-8452-a9d563ca6f25.png';
-                      if (name.includes('bpc-157') || name.includes('bpc157')) return '/lovable-uploads/799dad08-7f19-4c74-8697-b4101c682ec0.png';
-                      if (name.includes('ghk-cu') || name.includes('ghkcu')) return '/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png';
-                      if (name.includes('tb-500') || name.includes('tb500')) return '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png';
-                      if (name.includes('cjc-1295') || name.includes('cjc1295')) return '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png';
+                      if (name === 'pt-141') return '/lovable-uploads/54a83b31-103c-46a2-8452-a9d563ca6f25.png';
+                      if (name === 'bpc-157') return '/lovable-uploads/799dad08-7f19-4c74-8697-b4101c682ec0.png';
+                      if (name === 'ghk-cu') return '/lovable-uploads/8b994fa1-23b7-4de9-83e7-1c82dde51936.png';
+                      if (name === 'tb-500') return '/lovable-uploads/ad6335ee-1c5a-480f-acd3-7d5bf90f3cb0.png';
+                      if (name === 'cjc-1295') return '/lovable-uploads/fb6b73f7-aa3e-4943-91d4-50ad0e32186b.png';
                       return peptide.structure2D || '/placeholder-molecule.svg';
                     })()}
                     alt={`${peptide.name} molecular structure`}
