@@ -192,7 +192,7 @@ export const CompoundDetail = () => {
                     </CardTitle>
                   </CardHeader>
                    <CardContent className="p-2">
-                     <div className="h-64 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                     <div className="h-48 bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
                        <motion.img 
                          src={
                            peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
@@ -201,7 +201,7 @@ export const CompoundDetail = () => {
                          }
                          alt={`${peptide.name} product`}
                          className={`object-contain drop-shadow-lg ${
-                           peptide.id === 'semaglutide' ? 'w-full h-full scale-95' : 'w-4/5 h-4/5'
+                           peptide.id === 'semaglutide' ? 'w-full h-full scale-95' : 'w-full h-full scale-90'
                          }`}
                          whileHover={{ scale: 1.02 }}
                          transition={{ duration: 0.2 }}
