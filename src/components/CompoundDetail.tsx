@@ -233,10 +233,16 @@ export const CompoundDetail = () => {
                 </CardHeader>
                 <CardContent className="px-0 pb-4">
                   <motion.img 
-                    src={
-                      peptide.name.toLowerCase().includes('melanotan') ? '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png' :
-                      peptide.structure2D || '/placeholder-molecule.svg'
-                    }
+                    src={(() => {
+                      const name = peptide.name.toLowerCase();
+                      if (name.includes('melanotan')) return '/lovable-uploads/69c3b21b-0266-4657-a701-650c198dc13b.png';
+                      if (name.includes('pt-141') || name.includes('pt141')) return '/lovable-uploads/3307778d-234d-4681-9a59-8f907f4fd062.png';
+                      if (name.includes('bpc-157') || name.includes('bpc157')) return '/lovable-uploads/3942de24-8fff-4107-983c-f61c4b0a3aa7.png';
+                      if (name.includes('ghk-cu') || name.includes('ghkcu')) return '/lovable-uploads/4edd5a43-ed07-40cc-9023-884aa26ae44a.png';
+                      if (name.includes('tb-500') || name.includes('tb500')) return '/lovable-uploads/5077b3ea-d5b2-4bd8-b326-76e5962b0944.png';
+                      if (name.includes('cjc-1295') || name.includes('cjc1295')) return '/lovable-uploads/552767df-922a-49f5-939d-74fbb95daf5f.png';
+                      return peptide.structure2D || '/placeholder-molecule.svg';
+                    })()}
                     alt={`${peptide.name} molecular structure`}
                     className="w-full h-auto object-contain transform-gpu"
                     style={{ maxHeight: '300px', minHeight: '200px' }}
