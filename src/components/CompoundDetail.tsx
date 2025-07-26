@@ -191,8 +191,8 @@ export const CompoundDetail = () => {
                       Product Preview
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-2">
-                     <div className="aspect-square bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
+                   <CardContent className="p-2">
+                     <div className="aspect-[4/5] bg-gradient-to-br from-background to-muted rounded-lg border border-border/10 shadow-inner flex items-center justify-center overflow-hidden">
                        <motion.img 
                          src={
                            peptide.id === 'semaglutide' ? '/src/assets/semaglutide-bottle.png' :
@@ -201,13 +201,13 @@ export const CompoundDetail = () => {
                          }
                          alt={`${peptide.name} product`}
                          className={`object-contain drop-shadow-lg ${
-                           peptide.id === 'semaglutide' ? 'w-full h-full scale-90' : 'w-4/5 h-4/5'
+                           peptide.id === 'semaglutide' ? 'w-full h-full scale-95' : 'w-4/5 h-4/5'
                          }`}
                          whileHover={{ scale: 1.02 }}
                          transition={{ duration: 0.2 }}
                        />
                      </div>
-                  </CardContent>
+                   </CardContent>
                 </Card>
               </motion.div>
 
