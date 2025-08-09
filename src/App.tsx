@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import CompoundPage from "./pages/CompoundPage";
 import PrerequisitesPage from "./pages/PrerequisitesPage";
+import FundamentalsPage from "./pages/FundamentalsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
@@ -22,8 +23,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/compound/:id" element={<CompoundPage />} />
-          <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />
           <Route path="/prerequisites" element={<PrerequisitesPage />} />
+          <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />
+          <Route path="/fundamentals" element={<FundamentalsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -78,6 +78,25 @@ export const Navigation = () => {
                 </div>
               </div>
             </DropdownMenuItem>
+
+            <DropdownMenuItem 
+              onClick={() => navigate("/fundamentals")}
+              className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
+            >
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">Fundamentals</span>
+                  </div>
+                  <p className="text-xs text-gray-400">
+                    Technical reference for research
+                  </p>
+                </div>
+              </div>
+            </DropdownMenuItem>
             
             <DropdownMenuSeparator className="bg-white/10" />
             
