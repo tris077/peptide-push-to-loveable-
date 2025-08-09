@@ -332,10 +332,6 @@ export const CompoundDetail = () => {
 
                   <Separator className="my-2" />
 
-                  <Button className="w-full bg-gradient-accent text-white hover:shadow-glow transition-all duration-300 font-semibold text-sm py-2">
-                    Add to Research Stack
-                    <ChevronRight className="h-3 w-3 ml-1" />
-                  </Button>
                 </CardContent>
               </Card>
             </motion.div>

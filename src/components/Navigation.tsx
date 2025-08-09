@@ -13,17 +13,15 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Menu, 
   User, 
-  FlaskConical, 
+  BookOpen, 
   Info, 
   Mail, 
   Plus,
   Sparkles
 } from "lucide-react";
-import { useStack } from "@/hooks/useStack";
 
 export const Navigation = () => {
   const navigate = useNavigate();
-  const { stackItems } = useStack();
   
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
@@ -55,13 +53,6 @@ export const Navigation = () => {
               className="relative text-white hover:bg-white/10 rounded-full p-3"
             >
               <Menu className="h-5 w-5" />
-              {stackItems.length > 0 && (
-                <Badge 
-                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-xs"
-                >
-                  {stackItems.length}
-                </Badge>
-              )}
             </Button>
           </DropdownMenuTrigger>
           
@@ -70,27 +61,19 @@ export const Navigation = () => {
             className="w-64 bg-black/95 backdrop-blur-xl border border-white/20 text-white"
           >
             <DropdownMenuItem 
-              onClick={() => navigate("/stack")}
+              onClick={() => navigate("/prerequisites")}
               className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
             >
               <div className="flex items-center gap-3 w-full">
                 <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <FlaskConical className="h-5 w-5 text-white" />
+                  <BookOpen className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold">My Stack</span>
-                    {stackItems.length > 0 && (
-                      <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
-                        {stackItems.length}
-                      </Badge>
-                    )}
+                    <span className="font-semibold">Prerequisites</span>
                   </div>
                   <p className="text-xs text-gray-400">
-                    {stackItems.length === 0 
-                      ? "Build your custom peptide stack" 
-                      : `${stackItems.length} peptide${stackItems.length === 1 ? '' : 's'} added`
-                    }
+                    Foundational steps for optimization
                   </p>
                 </div>
               </div>
