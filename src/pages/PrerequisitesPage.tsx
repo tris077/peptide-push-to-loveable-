@@ -33,55 +33,96 @@ export default function PrerequisitesPage() {
     <div className="min-h-screen bg-gradient-subtle">
       <Navigation />
       
-      {/* Hero Header */}
+      {/* Enhanced Hero Header */}
       <motion.div 
-        className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-accent/80 to-primary/70 text-primary-foreground"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900/80 to-purple-900/70 text-white"
         {...fadeInVariants}
       >
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        {/* Enhanced Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(240_100%_70%_/_0.3),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(280_60%_65%_/_0.2),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(200_100%_70%_/_0.1),transparent_70%)]" />
+          
+          {/* Floating geometric shapes */}
           <motion.div
-            animate={{ rotate: 360 }}
+            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-10 right-10 w-32 h-32 border-2 border-current rounded-full"
+            className="absolute top-20 right-20 w-24 h-24 border-2 border-white/20 rounded-full"
           />
           <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-10 left-10 w-24 h-24 border border-current rounded-full"
+            animate={{ rotate: -360, y: [0, -20, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-20 left-20 w-16 h-16 border border-cyan-300/30 rounded-lg transform rotate-45"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/3 w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm"
           />
         </div>
 
-        <div className="relative container mx-auto px-4 py-12">
+        <div className="relative container mx-auto px-4 py-16">
           {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between mb-8"
+            className="flex items-center justify-between mb-12"
           >
             <Button 
               variant="ghost" 
               onClick={() => navigate("/")}
-              className="text-primary-foreground hover:bg-primary-foreground/20 transition-all duration-300"
+              className="text-white hover:bg-white/20 transition-all duration-300 rounded-full px-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Directory
             </Button>
           </motion.div>
 
-          {/* Hero Title */}
+          {/* Hero Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-8 text-center"
+            className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-foreground to-accent bg-clip-text text-transparent">
+            {/* Icon */}
+            <motion.div 
+              className="relative w-24 h-24 mx-auto mb-8"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+            >
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/25"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Target className="h-12 w-12 text-white" />
+              </motion.div>
+              <motion.div
+                className="absolute -inset-3 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-xl"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
+            
+            <motion.h1 
+              className="text-5xl md:text-6xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
               Prerequisites
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-3xl mx-auto leading-relaxed">
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-slate-200 max-w-4xl mx-auto leading-relaxed font-medium"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
               Foundational steps to maximize peptide research outcomes — not medical advice.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>

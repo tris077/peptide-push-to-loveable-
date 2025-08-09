@@ -55,36 +55,51 @@ export const CompoundDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      {/* Hero Header with Molecular Background */}
+      {/* Enhanced Hero Header with Molecular Background */}
       <motion.div 
         style={{ opacity }}
-        className="relative overflow-hidden bg-gradient-to-br from-primary/90 via-accent/80 to-primary/70 text-primary-foreground"
+        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900/80 to-purple-900/70 text-white"
       >
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        {/* Enhanced Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(240_100%_70%_/_0.3),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(280_60%_65%_/_0.2),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(200_100%_70%_/_0.1),transparent_70%)]" />
+          
+          {/* Animated molecular elements */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-10 right-10 w-32 h-32 border-2 border-current rounded-full"
+            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute top-20 right-20 w-28 h-28 border-2 border-white/20 rounded-full"
           />
           <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-10 left-10 w-24 h-24 border border-current rounded-full"
+            animate={{ rotate: -360, y: [0, -30, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-20 left-20 w-20 h-20 border border-cyan-300/30 rounded-lg transform rotate-45"
+          />
+          <motion.div
+            animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 right-1/4 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-sm"
+          />
+          <motion.div
+            animate={{ x: [0, 50, 0], y: [0, -25, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-1/3 left-1/3 w-6 h-6 bg-purple-400/30 rounded-full"
           />
         </div>
 
-        <div className="relative container mx-auto px-4 py-12">
+        <div className="relative container mx-auto px-4 py-16">
           {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between mb-7"
+            className="flex items-center justify-between mb-10"
           >
             <Button 
               variant="ghost" 
               onClick={() => navigate("/")}
-              className="text-primary-foreground hover:bg-primary-foreground/20 transition-all duration-300"
+              className="text-white hover:bg-white/20 transition-all duration-300 rounded-full px-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Directory
@@ -95,14 +110,14 @@ export const CompoundDetail = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsBookmarked(!isBookmarked)}
-                className="text-primary-foreground hover:bg-primary-foreground/20"
+                className="text-white hover:bg-white/20 rounded-full"
               >
                 <Bookmark className={`h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
               </Button>
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-primary-foreground hover:bg-primary-foreground/20"
+                className="text-white hover:bg-white/20 rounded-full"
               >
                 <Share2 className="h-4 w-4" />
               </Button>
@@ -114,7 +129,7 @@ export const CompoundDetail = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap gap-3 mb-5"
+            className="flex flex-wrap gap-3 mb-8 justify-center"
           >
             {peptide.category.map((cat, index) => {
               // Define category colors
@@ -131,7 +146,7 @@ export const CompoundDetail = () => {
                 if (category.toLowerCase().includes('recovery') || category.toLowerCase().includes('healing')) {
                   return "bg-purple-500 text-white border-purple-400/30";
                 }
-                return "bg-gradient-accent text-white border-white/20";
+                return "bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-white/20";
               };
 
               return (
@@ -140,10 +155,11 @@ export const CompoundDetail = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
                 >
                   <Badge 
                     variant="secondary" 
-                    className={`${getCategoryColor(cat)} shadow-glow animate-pulse-glow px-4 py-2 text-sm font-bold`}
+                    className={`${getCategoryColor(cat)} shadow-lg px-4 py-2 text-sm font-bold transition-all duration-300`}
                   >
                     {cat === "Nootropic" && <Brain className="h-3 w-3 mr-1" />}
                     {cat === "Neuroprotective" && <Shield className="h-3 w-3 mr-1" />}
@@ -155,19 +171,29 @@ export const CompoundDetail = () => {
             })}
           </motion.div>
 
-          {/* Hero Title */}
+          {/* Enhanced Hero Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-7"
+            className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-foreground to-accent bg-clip-text text-transparent">
+            <motion.h1 
+              className="text-5xl md:text-6xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
               {peptide.name}
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl leading-relaxed">
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-slate-200 max-w-4xl mx-auto leading-relaxed font-medium"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
               {peptide.shortDescription}
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </motion.div>

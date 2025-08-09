@@ -112,15 +112,22 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900">
       <Navigation />
       
-      {/* Background */}
+      {/* Enhanced Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(185_100%_65%_/_0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_75%_/_0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(185_100%_65%_/_0.4),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_75%_/_0.3),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(220_100%_70%_/_0.1),transparent_70%)]" />
+        
+        {/* Floating particles */}
+        <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-60" />
+        <div className="absolute top-40 right-32 w-1 h-1 bg-blue-400 rounded-full animate-pulse opacity-40" />
+        <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse opacity-50" />
+        <div className="absolute bottom-20 right-20 w-1 h-1 bg-cyan-300 rounded-full animate-pulse opacity-60" />
       </div>
 
       <div className="relative z-10 pt-24 pb-16">
         <div className="container mx-auto px-4">
-          {/* Header */}
+          {/* Enhanced Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -129,25 +136,50 @@ export default function ContactPage() {
             <Button
               variant="ghost"
               onClick={() => navigate("/")}
-              className="text-white hover:bg-white/10 mb-6"
+              className="text-white hover:bg-white/10 mb-8 rounded-full px-6"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Directory
             </Button>
 
             <div className="text-center">
+              {/* Enhanced Icon */}
               <motion.div 
-                className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="relative w-24 h-24 mx-auto mb-8"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               >
-                <Mail className="h-10 w-10 text-white" />
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-cyan-500/25"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <Mail className="h-12 w-12 text-white" />
+                </motion.div>
+                <motion.div
+                  className="absolute -inset-3 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-3xl blur-xl"
+                  animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
               </motion.div>
               
-              <h1 className="text-5xl font-black text-white mb-4">Contact Us</h1>
-              <p className="text-xl text-cyan-400 max-w-3xl mx-auto leading-relaxed">
+              <motion.h1 
+                className="text-5xl md:text-6xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-200 bg-clip-text text-transparent mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Contact Us
+              </motion.h1>
+              <motion.p 
+                className="text-xl md:text-2xl text-slate-200 max-w-4xl mx-auto leading-relaxed font-medium"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
                 Have questions about our platform? Need technical support? We're here to help.
-              </p>
+              </motion.p>
             </div>
           </motion.div>
 
