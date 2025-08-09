@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,23 +27,28 @@ export const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <motion.div 
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => navigate("/")}
-          whileHover={{ scale: 1.05 }}
-        >
+        {/* Sidebar Trigger */}
+        <div className="flex items-center gap-4">
+          <SidebarTrigger className="text-white hover:bg-white/10 p-2 rounded-lg transition-colors" />
+          
+          {/* Logo */}
           <motion.div 
-            className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="flex items-center gap-3 cursor-pointer"
+            onClick={() => navigate("/")}
+            whileHover={{ scale: 1.05 }}
           >
-            <Sparkles className="h-5 w-5 text-white" />
+            <motion.div 
+              className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <Sparkles className="h-5 w-5 text-white" />
+            </motion.div>
+            <span className="text-2xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent">
+              Peplike
+            </span>
           </motion.div>
-          <span className="text-2xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent">
-            Peplike
-          </span>
-        </motion.div>
+        </div>
 
         {/* Right Menu */}
         <DropdownMenu>
