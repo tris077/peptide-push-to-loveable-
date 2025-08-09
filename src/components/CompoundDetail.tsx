@@ -116,24 +116,43 @@ export const CompoundDetail = () => {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap gap-3 mb-5"
           >
-            {peptide.category.map((cat, index) => (
-              <motion.div
-                key={cat}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-              >
-                <Badge 
-                  variant="secondary" 
-                  className="bg-gradient-accent text-white border-white/20 shadow-glow animate-pulse-glow px-4 py-2 text-sm font-medium"
+            {peptide.category.map((cat, index) => {
+              // Define category colors
+              const getCategoryColor = (category: string) => {
+                if (category.toLowerCase().includes('tanning') || category.toLowerCase().includes('melanotan')) {
+                  return "bg-orange-500 text-white border-orange-400/30";
+                }
+                if (category.toLowerCase().includes('fat loss') || category.toLowerCase().includes('weight') || category.toLowerCase().includes('metabolic')) {
+                  return "bg-green-500 text-white border-green-400/30";
+                }
+                if (category.toLowerCase().includes('cognitive') || category.toLowerCase().includes('nootropic') || category.toLowerCase().includes('brain')) {
+                  return "bg-blue-500 text-white border-blue-400/30";
+                }
+                if (category.toLowerCase().includes('recovery') || category.toLowerCase().includes('healing')) {
+                  return "bg-purple-500 text-white border-purple-400/30";
+                }
+                return "bg-gradient-accent text-white border-white/20";
+              };
+
+              return (
+                <motion.div
+                  key={cat}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
                 >
-                  {cat === "Nootropic" && <Brain className="h-3 w-3 mr-1" />}
-                  {cat === "Neuroprotective" && <Shield className="h-3 w-3 mr-1" />}
-                  {cat === "Cognitive Enhancement" && <Zap className="h-3 w-3 mr-1" />}
-                  {cat}
-                </Badge>
-              </motion.div>
-            ))}
+                  <Badge 
+                    variant="secondary" 
+                    className={`${getCategoryColor(cat)} shadow-glow animate-pulse-glow px-4 py-2 text-sm font-bold`}
+                  >
+                    {cat === "Nootropic" && <Brain className="h-3 w-3 mr-1" />}
+                    {cat === "Neuroprotective" && <Shield className="h-3 w-3 mr-1" />}
+                    {cat === "Cognitive Enhancement" && <Zap className="h-3 w-3 mr-1" />}
+                    {cat}
+                  </Badge>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* Hero Title */}
@@ -321,41 +340,27 @@ export const CompoundDetail = () => {
               </Card>
             </motion.div>
 
-            {/* Safety Information */}
+            {/* Side Effects Only */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
             >
-              <Card className="bg-gradient-card backdrop-blur-lg border-orange-200/50 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
+              <Card className="bg-gradient-card backdrop-blur-lg border-red-200/50 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
                 <CardHeader className="px-4 pb-1">
-                  <CardTitle className="text-base font-semibold text-orange-600 flex items-center gap-2">
+                  <CardTitle className="text-base font-semibold text-red-600 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4" />
-                    Safety Info
+                    Side Effects
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pt-0 space-y-2 pb-3">
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1 text-xs">Warnings</h4>
-                    <div className="space-y-1">
-                      {peptide.warnings.slice(0, 2).map((warning, index) => (
-                        <div key={index} className="flex items-start gap-1.5 p-1.5 bg-orange-50/50 rounded-md border border-orange-200/50">
-                          <AlertTriangle className="h-3 w-3 text-orange-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs text-orange-800 leading-tight">{warning}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-foreground mb-1 text-xs">Side Effects</h4>
-                    <div className="space-y-1">
-                      {peptide.sideEffects.slice(0, 2).map((effect, index) => (
-                        <div key={index} className="flex items-start gap-1.5 p-1.5 bg-red-50/50 rounded-md border border-red-200/50">
-                          <AlertTriangle className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs text-red-800 leading-tight">{effect}</span>
-                        </div>
-                      ))}
-                    </div>
+                <CardContent className="px-4 pt-0 space-y-1 pb-3">
+                  <div className="space-y-1">
+                    {peptide.sideEffects.slice(0, 3).map((effect, index) => (
+                      <div key={index} className="flex items-start gap-1.5 p-1.5 bg-red-50/50 rounded-md border border-red-200/50">
+                        <AlertTriangle className="h-3 w-3 text-red-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-xs text-red-800 leading-tight">{effect}</span>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -407,21 +412,39 @@ export const CompoundDetail = () => {
               </Card>
             </motion.div>
 
-            {/* Mechanism of Action */}
+            {/* How to Use (Research Context) */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.0 }}
             >
               <Card className="bg-gradient-card backdrop-blur-lg border-border/20 shadow-sm hover:shadow-md transition-all duration-300 rounded-xl">
-                <CardHeader className="px-4 pb-3">
-                  <CardTitle className="text-lg font-semibold text-primary flex items-center gap-2">
-                    <Target className="h-4 w-4 text-accent" />
-                    Mechanism of Action
+                <CardHeader className="px-4 pb-2">
+                  <CardTitle className="text-base font-semibold text-primary flex items-center gap-2">
+                    <Pill className="h-4 w-4 text-accent" />
+                    How to Use (Research Context)
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="px-4 pt-0">
-                  <p className="text-foreground leading-relaxed text-sm">{peptide.mechanismOfAction}</p>
+                <CardContent className="px-4 pt-0 space-y-2 pb-3">
+                  <div className="space-y-2">
+                    <div className="p-2 bg-blue-50/50 rounded-md border border-blue-200/50">
+                      <h4 className="font-medium text-blue-700 mb-1 text-xs">Typical Research Dosage</h4>
+                      <p className="text-xs text-blue-800 leading-tight">{peptide.dosageRange}</p>
+                    </div>
+                    <div className="p-2 bg-green-50/50 rounded-md border border-green-200/50">
+                      <h4 className="font-medium text-green-700 mb-1 text-xs">Administration Method</h4>
+                      <p className="text-xs text-green-800 leading-tight">
+                        {peptide.administration.join(", ")} • Half-life: {peptide.halfLife}
+                      </p>
+                    </div>
+                    <div className="p-2 bg-yellow-50/50 rounded-md border border-yellow-200/50">
+                      <h4 className="font-medium text-yellow-700 mb-1 text-xs">Research Guidelines</h4>
+                      <p className="text-xs text-yellow-800 leading-tight">
+                        For research purposes only. Proper sterile technique and laboratory conditions required. 
+                        Always follow institutional guidelines and regulatory requirements.
+                      </p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
