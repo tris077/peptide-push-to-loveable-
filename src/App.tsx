@@ -15,30 +15,37 @@ import NotFound from "./pages/NotFound";
 import StackCreatorPage from "./pages/StackCreatorPage";
 import { HomePage } from "@/components/HomePage";
 
-const queryClient = new QueryClient();
+const App: React.FC = () => {
+  const [queryClient] = React.useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+        retry: 1,
+      },
+    },
+  }));
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    {/* TooltipProvider removed */}
-    <Toaster />
-    <Sonner />
-    <BrowserRouter>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/stack-creator" element={<StackCreatorPage />} />
-        <Route path="/directory" element={<HomePage />} />
-        <Route path="/compound/:id" element={<CompoundPage />} />
-        <Route path="/prerequisites" element={<PrerequisitesPage />} />
-        <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />
-        <Route path="/fundamentals" element={<FundamentalsPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/stack-creator" element={<StackCreatorPage />} />
+          <Route path="/directory" element={<HomePage />} />
+          <Route path="/compound/:id" element={<CompoundPage />} />
+          <Route path="/prerequisites" element={<PrerequisitesPage />} />
+          <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />
+          <Route path="/fundamentals" element={<FundamentalsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
