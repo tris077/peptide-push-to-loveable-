@@ -15,15 +15,16 @@ import NotFound from "./pages/NotFound";
 import StackCreatorPage from "./pages/StackCreatorPage";
 import { HomePage } from "@/components/HomePage";
 
-const App: React.FC = () => {
-  const [queryClient] = React.useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 1000 * 60 * 5, // 5 minutes
-        retry: 1,
-      },
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
     },
-  }));
+  },
+});
+
+const App: React.FC = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
