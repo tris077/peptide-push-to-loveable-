@@ -79,7 +79,7 @@ export default function AboutPage() {
                 About Peplike
               </motion.h1>
               <motion.p 
-                className="text-xl text-cyan-400 max-w-3xl mx-auto leading-relaxed font-medium"
+                className="text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed font-medium"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -128,13 +128,13 @@ export default function AboutPage() {
                 </div>
                 
                 <motion.p 
-                  className="text-xl text-slate-200 leading-relaxed max-w-4xl mx-auto text-center font-medium"
+                  className="text-xl text-white leading-relaxed max-w-4xl mx-auto text-center font-medium"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 }}
                 >
                   Peplike democratizes access to high-quality biotech compound information. Our comprehensive directory provides 
-                  researchers with <span className="text-cyan-400 font-semibold">verified data</span> on peptides, nootropics, and research chemicals, 
+                  researchers with <span className="text-cyan-300 font-semibold">verified data</span> on peptides, nootropics, and research chemicals, 
                   bridging the gap between cutting-edge science and practical applications.
                 </motion.p>
                 
@@ -146,16 +146,16 @@ export default function AboutPage() {
                   transition={{ delay: 1.4 }}
                 >
                   <div className="text-center">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">500+</div>
-                    <div className="text-slate-400 text-sm font-medium">Compounds</div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">500+</div>
+                    <div className="text-slate-300 text-sm font-medium">Compounds</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">99.9%</div>
-                    <div className="text-slate-400 text-sm font-medium">Accuracy</div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">99.9%</div>
+                    <div className="text-slate-300 text-sm font-medium">Accuracy</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">24/7</div>
-                    <div className="text-slate-400 text-sm font-medium">Updates</div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">24/7</div>
+                    <div className="text-slate-300 text-sm font-medium">Updates</div>
                   </div>
                 </motion.div>
               </CardContent>
@@ -192,7 +192,7 @@ export default function AboutPage() {
                   Join the Research Revolution
                 </motion.h2>
                 <motion.p 
-                  className="text-xl text-cyan-300 mb-10 max-w-2xl mx-auto font-medium"
+                  className="text-xl text-white mb-10 max-w-2xl mx-auto font-medium"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 2.2 }}
