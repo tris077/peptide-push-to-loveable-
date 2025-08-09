@@ -1,9 +1,9 @@
 
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
-// Removed TooltipProvider to fix React dispatcher error
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import Index from "./pages/Index";
 import CompoundPage from "./pages/CompoundPage";
@@ -12,7 +12,6 @@ import FundamentalsPage from "./pages/FundamentalsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import { Navigate } from "react-router-dom";
 import StackCreatorPage from "./pages/StackCreatorPage";
 import { HomePage } from "@/components/HomePage";
 
