@@ -44,7 +44,25 @@ export const Navigation = () => {
           </span>
         </motion.div>
 
-        {/* Right Menu */}
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
+          <Button 
+            variant="ghost" 
+            className="text-white/80 hover:text-white hover:bg-white/10 font-medium"
+            onClick={() => navigate("/directory")}
+          >
+            Library
+          </Button>
+          <Button 
+            variant="ghost" 
+            className="text-white/80 hover:text-white hover:bg-white/10 font-medium"
+            onClick={() => navigate("/stack-creator")}
+          >
+            Stack Creator
+          </Button>
+        </div>
+
+        {/* Mobile Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
@@ -61,11 +79,51 @@ export const Navigation = () => {
             className="w-64 bg-black/95 backdrop-blur-xl border border-white/20 text-white"
           >
             <DropdownMenuItem 
-              onClick={() => navigate("/prerequisites")}
+              onClick={() => navigate("/directory")}
               className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
             >
               <div className="flex items-center gap-3 w-full">
                 <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+                  <BookOpen className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">Research Library</span>
+                  </div>
+                  <p className="text-xs text-gray-400">
+                    Browse all compounds and peptides
+                  </p>
+                </div>
+              </div>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem 
+              onClick={() => navigate("/stack-creator")}
+              className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
+            >
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <Plus className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">Stack Creator</span>
+                  </div>
+                  <p className="text-xs text-gray-400">
+                    AI-powered research assistance
+                  </p>
+                </div>
+              </div>
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator className="bg-white/10" />
+
+            <DropdownMenuItem 
+              onClick={() => navigate("/prerequisites")}
+              className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
+            >
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
                   <BookOpen className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex-1">
@@ -105,7 +163,7 @@ export const Navigation = () => {
               className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
                   <Info className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -120,7 +178,7 @@ export const Navigation = () => {
               className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
                   <Mail className="h-5 w-5 text-white" />
                 </div>
                 <div>

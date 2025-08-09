@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { SearchBar } from "./SearchBar";
 import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
@@ -8,12 +8,21 @@ import { InteractiveCard } from "./InteractiveCard";
 import { TrendingCarousel } from "./TrendingCarousel";
 import { peptidesData } from "@/data/peptides";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight, Sparkles, Atom } from "lucide-react";
+import { TrendingUp, Zap, Shield, Activity, ArrowRight, Sparkles, Atom, Library } from "lucide-react";
 
 export const HomePage = () => {
+  const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const navigate = useNavigate();
+
+  // Handle search parameter from URL
+  useEffect(() => {
+    const urlSearch = searchParams.get('search');
+    if (urlSearch) {
+      setSearchTerm(urlSearch);
+    }
+  }, [searchParams]);
 
   const filteredPeptides = useMemo(() => {
     return peptidesData.filter(peptide => {
@@ -62,151 +71,65 @@ export const HomePage = () => {
       </div>
 
 
-      {/* Premium Hero Section */}
+      {/* Library Header Section */}
       <motion.div 
-        className="relative min-h-screen flex items-center justify-center text-white overflow-hidden"
-        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="relative py-20 text-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        {/* Animated Hero Background */}
-        <div className="absolute inset-0 z-10 flex items-center justify-center">
-          <motion.div
-            className="relative w-96 h-96"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          >
-            {/* Central Atom */}
-            <div className="absolute inset-1/2 w-24 h-24 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full shadow-2xl flex items-center justify-center">
-              <Atom className="h-12 w-12 text-white" />
-            </div>
-            
-            {/* Orbital Rings */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className={`absolute inset-0 border-2 border-cyan-400/30 rounded-full`}
-                style={{ 
-                  width: `${(i + 1) * 120}px`, 
-                  height: `${(i + 1) * 120}px`,
-                  left: '50%',
-                  top: '50%',
-                  transform: 'translate(-50%, -50%)'
-                }}
-                animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                transition={{ duration: (i + 1) * 8, repeat: Infinity, ease: "linear" }}
-              >
-                <div className={`absolute w-3 h-3 bg-gradient-to-r ${
-                  i === 0 ? 'from-cyan-400 to-blue-500' :
-                  i === 1 ? 'from-purple-400 to-pink-500' :
-                  'from-green-400 to-emerald-500'
-                } rounded-full`} 
-                style={{ top: '10px', left: '50%', transform: 'translateX(-50%)' }} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-        
         <div className="container mx-auto px-8 relative z-20">
-          <div className="text-center max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.div 
+              className="flex items-center justify-center gap-6 mb-8"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut" }}
             >
               <motion.div 
-                className="flex items-center justify-center gap-6 mb-8"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
+                className="relative"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <motion.div 
-                  className="relative"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                >
-                  <div className="w-24 h-24 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl">
-                    <Sparkles className="h-12 w-12 text-white" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-3xl blur-xl opacity-50 animate-pulse" />
-                </motion.div>
-                
-                <motion.h1 
-                  className="text-8xl md:text-9xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent"
-                  animate={{ 
-                    textShadow: ["0 0 20px rgba(0,191,255,0.5)", "0 0 40px rgba(0,191,255,0.8)", "0 0 20px rgba(0,191,255,0.5)"]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  Peplike
-                </motion.h1>
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                  <Library className="h-8 w-8 text-white" />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl blur-xl opacity-50 animate-pulse" />
               </motion.div>
+            
+            <motion.h1 
+              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent mb-4"
+            >
+              Research Library
+            </motion.h1>
               
               <motion.p 
-                className="text-3xl md:text-4xl text-cyan-300 font-bold mb-6"
+                className="text-xl text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
-                Next-Gen Biotech Marketplace
-              </motion.p>
-              
-              <motion.p 
-                className="text-xl text-white/80 mb-20 max-w-5xl mx-auto leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              >
-                Explore premium peptides, smart nootropics, and research compounds — powered by verified data and biotech-grade insight.
+                Comprehensive database of research compounds, peptides, and nootropics with detailed molecular data and verified sources.
               </motion.p>
             </motion.div>
             
             <motion.div 
-              className="mb-20"
+              className="mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
               <SearchBar
                 value={searchTerm}
                 onChange={setSearchTerm}
                 onSearch={handleSearch}
-                placeholder="Search premium compounds, nootropics, peptides..."
+                placeholder="Search compounds, peptides, nootropics..."
               />
-            </motion.div>
-
-            <motion.div 
-              className="flex justify-center gap-8 flex-wrap"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-            >
-              {[
-                { icon: Shield, text: "Research Grade", color: "from-green-500 to-emerald-500" },
-                { icon: Zap, text: "Lab Verified", color: "from-yellow-500 to-orange-500" },
-                { icon: Activity, text: "Real-Time Data", color: "from-purple-500 to-pink-500" }
-              ].map((item, index) => (
-                <motion.div
-                  key={item.text}
-                  className={`flex items-center gap-4 text-base bg-black/20 backdrop-blur-xl px-8 py-4 rounded-full border border-white/10 hover:border-white/30 transition-all duration-500 group`}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 + index * 0.1 }}
-                >
-                  <motion.div
-                    className={`p-2 bg-gradient-to-r ${item.color} rounded-full`}
-                    whileHover={{ rotate: 15 }}
-                  >
-                    <item.icon className="h-5 w-5 text-white" />
-                  </motion.div>
-                  <span className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
-                    {item.text}
-                  </span>
-                </motion.div>
-              ))}
             </motion.div>
           </div>
         </div>
       </motion.div>
+
 
       {/* Main Content */}
       <div className="container mx-auto px-8 py-20 relative z-10">
