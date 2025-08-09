@@ -12,6 +12,8 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
 import { Navigate } from "react-router-dom";
+import StackCreatorPage from "./pages/StackCreatorPage";
+import { HomePage } from "@/components/HomePage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,8 @@ const App = () => (
         <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/stack-creator" element={<StackCreatorPage />} />
+          <Route path="/directory" element={<HomePage />} />
           <Route path="/compound/:id" element={<CompoundPage />} />
           <Route path="/prerequisites" element={<PrerequisitesPage />} />
           <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />

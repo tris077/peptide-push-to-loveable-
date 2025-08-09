@@ -1,7 +1,7 @@
-import { HomePage } from "@/components/HomePage";
+import { Navigate } from "react-router-dom";
 
 const Index = () => {
-  return <HomePage />;
+  return <Navigate to="/stack-creator" replace />;
 };
 
 export default Index;
