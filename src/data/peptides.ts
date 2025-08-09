@@ -340,6 +340,426 @@ export const peptidesData: Peptide[] = [
     yearDiscovered: "2005",
     legalStatus: "Research Only (US/EU)",
     structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "aod-9604",
+    name: "AOD-9604",
+    category: ["Fat Loss & Recomposition"],
+    shortDescription: "A modified fragment of growth hormone with selective fat-burning properties.",
+    fullDescription: "AOD-9604 is a modified fragment of the C-terminus of growth hormone (hGH 176-191) with an additional tyrosine amino acid. This modification enhances its fat-burning properties while eliminating the growth-promoting effects of full-length growth hormone. Research demonstrates selective lipolysis and improved fat metabolism without affecting glucose levels or promoting muscle growth.",
+    mechanismOfAction: "Stimulates lipolysis and inhibits lipogenesis by mimicking the fat-burning effects of growth hormone without binding to GH receptors that promote growth.",
+    useCases: ["Fat Loss", "Body Recomposition", "Metabolic Enhancement", "Weight Management"],
+    benefits: ["Selective fat burning", "No growth effects", "Improved metabolism", "Body recomposition"],
+    dosageRange: "300-600 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "30-60 minutes",
+    sources: [
+      {
+        name: "Metabolic Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for injection site reactions"],
+    sideEffects: ["Injection site reactions", "Mild fatigue", "Possible headache"],
+    molecularFormula: "C78H123N23O23S2",
+    molecularWeight: "1815.12 g/mol",
+    atomCount: 249,
+    yearDiscovered: "1993",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "tesamorelin",
+    name: "Tesamorelin",
+    category: ["Muscle Growth & Definition", "Fat Loss & Recomposition"],
+    shortDescription: "A synthetic GHRH analog for reducing visceral fat and enhancing growth hormone.",
+    fullDescription: "Tesamorelin is a synthetic analog of growth hormone releasing hormone (GHRH) that stimulates the production and release of growth hormone. Originally developed for HIV-associated lipodystrophy, research shows significant reductions in visceral fat while maintaining or increasing lean muscle mass. It provides sustained GH elevation with fewer side effects than direct GH administration.",
+    mechanismOfAction: "Binds to GHRH receptors in the pituitary gland to stimulate natural growth hormone production and release, leading to improved lipolysis and muscle preservation.",
+    useCases: ["Visceral Fat Reduction", "Growth Hormone Enhancement", "Body Recomposition", "Lean Mass Preservation"],
+    benefits: ["Reduces visceral fat", "Maintains lean mass", "Natural GH stimulation", "Improved body composition"],
+    dosageRange: "2 mg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "26-38 minutes",
+    sources: [
+      {
+        name: "GHRH Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for injection site reactions", "FDA approved for specific conditions"],
+    sideEffects: ["Injection site reactions", "Joint pain", "Muscle aches", "Possible glucose elevation"],
+    molecularFormula: "C211H366N72O67S1",
+    molecularWeight: "5135.77 g/mol",
+    atomCount: 717,
+    yearDiscovered: "2010",
+    legalStatus: "Prescription (US - Egrifta), Research Only (EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "igf-1-lr3",
+    name: "IGF-1 LR3",
+    category: ["Muscle Growth & Definition", "Fat Loss & Recomposition"],
+    shortDescription: "A long-acting insulin-like growth factor with enhanced anabolic properties.",
+    fullDescription: "IGF-1 LR3 is a modified version of insulin-like growth factor-1 with extended half-life and reduced binding to IGF binding proteins. This modification allows for sustained anabolic activity and enhanced muscle growth potential. Research demonstrates significant improvements in protein synthesis, muscle hypertrophy, and recovery when compared to native IGF-1.",
+    mechanismOfAction: "Binds to IGF-1 receptors to stimulate protein synthesis, cell proliferation, and muscle hypertrophy. The Long R3 modification extends its half-life and bioavailability.",
+    useCases: ["Muscle Growth", "Protein Synthesis", "Recovery Enhancement", "Body Recomposition"],
+    benefits: ["Enhanced muscle growth", "Improved protein synthesis", "Extended half-life", "Better recovery"],
+    dosageRange: "20-100 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "20-30 hours",
+    sources: [
+      {
+        name: "Growth Factor Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor blood glucose", "Potential for organ growth"],
+    sideEffects: ["Hypoglycemia", "Joint pain", "Muscle cramps", "Possible organ enlargement"],
+    molecularFormula: "C400H625N111O115S9",
+    molecularWeight: "9117.50 g/mol",
+    atomCount: 1260,
+    yearDiscovered: "1996",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "peg-mgf",
+    name: "PEG-MGF",
+    category: ["Muscle Growth & Definition", "Wound Healing & Recovery"],
+    shortDescription: "A pegylated form of mechano growth factor for enhanced muscle repair and growth.",
+    fullDescription: "PEG-MGF is a pegylated form of mechano growth factor, a splice variant of IGF-1 that is released in response to muscle damage or stress. The PEG modification extends its half-life significantly, allowing for sustained muscle repair and growth signaling. Research shows enhanced muscle recovery, satellite cell activation, and improved adaptation to training stress.",
+    mechanismOfAction: "Activates satellite cells and promotes muscle repair through IGF-1 receptor pathways. PEGylation extends circulation time and tissue exposure.",
+    useCases: ["Muscle Repair", "Recovery Enhancement", "Satellite Cell Activation", "Training Adaptation"],
+    benefits: ["Enhanced muscle repair", "Improved recovery", "Extended half-life", "Better adaptation"],
+    dosageRange: "200-400 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "Several days",
+    sources: [
+      {
+        name: "Recovery Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for injection site reactions"],
+    sideEffects: ["Injection site reactions", "Mild fatigue", "Possible joint discomfort"],
+    molecularFormula: "C121H200N42O39",
+    molecularWeight: "2867.20 g/mol",
+    atomCount: 402,
+    yearDiscovered: "2003",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "mgf-igf-1-ec",
+    name: "MGF (IGF-1 Ec)",
+    category: ["Muscle Growth & Definition", "Wound Healing & Recovery"],
+    shortDescription: "Mechano growth factor for muscle repair and satellite cell activation.",
+    fullDescription: "MGF (Mechano Growth Factor) is a splice variant of IGF-1 that is expressed in response to mechanical stress or muscle damage. It plays a crucial role in muscle repair by activating satellite cells and promoting muscle fiber regeneration. Research demonstrates significant improvements in muscle recovery, adaptation to training, and overall muscle growth potential.",
+    mechanismOfAction: "Activates satellite cells and promotes muscle repair through localized IGF-1 receptor signaling. Enhances muscle fiber regeneration and adaptation responses.",
+    useCases: ["Muscle Repair", "Satellite Cell Activation", "Training Recovery", "Muscle Adaptation"],
+    benefits: ["Enhanced muscle repair", "Satellite cell activation", "Improved recovery", "Better training adaptation"],
+    dosageRange: "200-400 mcg daily",
+    administration: ["Intramuscular"],
+    halfLife: "Several minutes",
+    sources: [
+      {
+        name: "Muscle Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Localized injection recommended"],
+    sideEffects: ["Injection site discomfort", "Mild inflammation", "Possible muscle soreness"],
+    molecularFormula: "C121H200N42O39",
+    molecularWeight: "2867.20 g/mol",
+    atomCount: 402,
+    yearDiscovered: "1996",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "follistatin-344",
+    name: "Follistatin 344",
+    category: ["Muscle Growth & Definition"],
+    shortDescription: "A myostatin inhibitor for enhanced muscle growth and strength.",
+    fullDescription: "Follistatin 344 is a naturally occurring protein that binds to and neutralizes myostatin, a protein that limits muscle growth. By inhibiting myostatin, follistatin allows for enhanced muscle growth, increased strength, and improved muscle fiber size. Research demonstrates significant increases in lean muscle mass and strength gains when myostatin activity is reduced.",
+    mechanismOfAction: "Binds to and neutralizes myostatin, removing the natural brake on muscle growth. Also affects other TGF-beta family proteins involved in muscle regulation.",
+    useCases: ["Muscle Growth", "Strength Enhancement", "Myostatin Inhibition", "Lean Mass Development"],
+    benefits: ["Enhanced muscle growth", "Increased strength", "Improved muscle quality", "Faster gains"],
+    dosageRange: "100-300 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "2-3 days",
+    sources: [
+      {
+        name: "Myostatin Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for excessive muscle growth"],
+    sideEffects: ["Injection site reactions", "Rapid muscle growth", "Possible joint stress"],
+    molecularFormula: "C1420H2240N372O418S10",
+    molecularWeight: "31943.50 g/mol",
+    atomCount: 4460,
+    yearDiscovered: "1987",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "thymosin-alpha-1",
+    name: "Thymosin Alpha-1",
+    category: ["Wound Healing & Recovery", "Skin Regeneration & Anti-Aging"],
+    shortDescription: "An immune-modulating peptide with anti-aging and skin health benefits.",
+    fullDescription: "Thymosin Alpha-1 is a naturally occurring peptide that plays a crucial role in immune system regulation and T-cell development. Research demonstrates significant immune-enhancing properties, anti-aging benefits, and improvements in skin health and wound healing. It helps optimize immune function while promoting tissue repair and regeneration.",
+    mechanismOfAction: "Modulates immune system function by enhancing T-cell development and activity. Promotes tissue repair and has anti-inflammatory properties.",
+    useCases: ["Immune Enhancement", "Anti-Aging", "Skin Health", "Wound Healing", "Recovery Support"],
+    benefits: ["Enhanced immune function", "Improved skin health", "Anti-aging effects", "Better recovery"],
+    dosageRange: "1.6-6.4 mg weekly",
+    administration: ["Subcutaneous"],
+    halfLife: "2-4 hours",
+    sources: [
+      {
+        name: "Immune Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor immune response"],
+    sideEffects: ["Injection site reactions", "Mild flu-like symptoms", "Temporary fatigue"],
+    molecularFormula: "C129H215N33O55",
+    molecularWeight: "3108.31 g/mol",
+    atomCount: 432,
+    yearDiscovered: "1972",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "thymosin-beta-4",
+    name: "Thymosin Beta-4",
+    category: ["Wound Healing & Recovery"],
+    shortDescription: "A naturally occurring peptide that promotes healing and tissue repair.",
+    fullDescription: "Thymosin Beta-4 is a naturally occurring peptide found in virtually all cells that plays a fundamental role in wound healing, tissue repair, and cell migration. It promotes angiogenesis, reduces inflammation, and enhances tissue remodeling. Research demonstrates significant benefits for injury recovery, wound healing, and overall tissue regeneration.",
+    mechanismOfAction: "Regulates actin polymerization to promote cell migration and tissue repair. Enhances angiogenesis and modulates inflammatory responses.",
+    useCases: ["Wound Healing", "Tissue Repair", "Injury Recovery", "Inflammation Reduction"],
+    benefits: ["Accelerated healing", "Reduced inflammation", "Enhanced tissue repair", "Improved recovery"],
+    dosageRange: "2-5 mg weekly",
+    administration: ["Subcutaneous"],
+    halfLife: "2-3 days",
+    sources: [
+      {
+        name: "Tissue Repair Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor for injection site reactions"],
+    sideEffects: ["Injection site reactions", "Mild fatigue", "Possible headache"],
+    molecularFormula: "C212H350N56O78S",
+    molecularWeight: "4963.44 g/mol",
+    atomCount: 696,
+    yearDiscovered: "1965",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "hexarelin",
+    name: "Hexarelin",
+    category: ["Muscle Growth & Definition"],
+    shortDescription: "A potent growth hormone secretagogue with strong GH releasing properties.",
+    fullDescription: "Hexarelin is a synthetic hexapeptide and one of the most potent growth hormone releasing peptides (GHRPs) available. It stimulates growth hormone release through ghrelin receptor activation and also has direct effects on heart muscle. Research demonstrates significant increases in growth hormone levels, muscle growth, and cardiovascular benefits.",
+    mechanismOfAction: "Strongly activates ghrelin receptors to stimulate growth hormone release. Also has direct cardioprotective effects through specific cardiac receptors.",
+    useCases: ["Growth Hormone Enhancement", "Muscle Growth", "Cardiovascular Health", "Recovery Enhancement"],
+    benefits: ["Potent GH stimulation", "Muscle growth", "Cardiovascular benefits", "Enhanced recovery"],
+    dosageRange: "100-300 mcg 2-3x daily",
+    administration: ["Subcutaneous"],
+    halfLife: "70 minutes",
+    sources: [
+      {
+        name: "GHRP Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor cortisol and prolactin levels"],
+    sideEffects: ["Increased appetite", "Water retention", "Possible cortisol elevation", "Tiredness"],
+    molecularFormula: "C47H58N14O6",
+    molecularWeight: "887.04 g/mol",
+    atomCount: 125,
+    yearDiscovered: "1992",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "ghrp-2",
+    name: "GHRP-2",
+    category: ["Muscle Growth & Definition"],
+    shortDescription: "A growth hormone releasing peptide for enhanced GH production and muscle growth.",
+    fullDescription: "GHRP-2 is a synthetic hexapeptide that stimulates growth hormone release from the pituitary gland by activating ghrelin receptors. It provides more potent GH stimulation than GHRP-6 with less appetite stimulation. Research demonstrates significant improvements in growth hormone levels, muscle growth, fat loss, and recovery.",
+    mechanismOfAction: "Binds to ghrelin receptors to stimulate growth hormone release from the pituitary gland. Increases IGF-1 levels and promotes anabolic processes.",
+    useCases: ["Growth Hormone Enhancement", "Muscle Growth", "Fat Loss", "Recovery Improvement"],
+    benefits: ["Strong GH stimulation", "Enhanced muscle growth", "Improved recovery", "Less appetite stimulation than GHRP-6"],
+    dosageRange: "100-300 mcg 2-3x daily",
+    administration: ["Subcutaneous"],
+    halfLife: "15-60 minutes",
+    sources: [
+      {
+        name: "Growth Hormone Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor blood glucose levels"],
+    sideEffects: ["Mild appetite increase", "Water retention", "Possible numbness", "Joint stiffness"],
+    molecularFormula: "C45H55N9O6",
+    molecularWeight: "817.97 g/mol",
+    atomCount: 115,
+    yearDiscovered: "1993",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "sermorelin",
+    name: "Sermorelin",
+    category: ["Muscle Growth & Definition", "Wound Healing & Recovery"],
+    shortDescription: "A GHRH analog for natural growth hormone enhancement and recovery.",
+    fullDescription: "Sermorelin is a synthetic analog of growth hormone releasing hormone (GHRH) consisting of the first 29 amino acids of native GHRH. It stimulates the natural production and release of growth hormone from the pituitary gland. Research demonstrates improvements in muscle growth, fat loss, sleep quality, and recovery with a natural pulsatile GH release pattern.",
+    mechanismOfAction: "Binds to GHRH receptors in the pituitary gland to stimulate natural growth hormone production and release in a physiological manner.",
+    useCases: ["Natural GH Enhancement", "Recovery Improvement", "Sleep Quality", "Anti-Aging", "Body Composition"],
+    benefits: ["Natural GH stimulation", "Improved sleep", "Enhanced recovery", "Better body composition"],
+    dosageRange: "200-500 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "11-12 minutes",
+    sources: [
+      {
+        name: "GHRH Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Take on empty stomach"],
+    sideEffects: ["Injection site reactions", "Mild headache", "Flushing", "Dizziness"],
+    molecularFormula: "C149H246N44O42S",
+    molecularWeight: "3357.96 g/mol",
+    atomCount: 481,
+    yearDiscovered: "1982",
+    legalStatus: "Prescription (US), Research Only (EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "kisspeptin-10",
+    name: "Kisspeptin-10",
+    category: ["Libido & Sexual Function"],
+    shortDescription: "A neuropeptide that regulates reproductive hormones and sexual function.",
+    fullDescription: "Kisspeptin-10 is a truncated form of kisspeptin that plays a crucial role in regulating the hypothalamic-pituitary-gonadal axis. It stimulates the release of gonadotropin-releasing hormone (GnRH), which subsequently increases luteinizing hormone (LH) and follicle-stimulating hormone (FSH). Research demonstrates significant effects on reproductive hormone levels and sexual function.",
+    mechanismOfAction: "Binds to GPR54 receptors to stimulate GnRH release, which activates the reproductive hormone cascade and enhances sexual function.",
+    useCases: ["Hormone Regulation", "Sexual Function", "Libido Enhancement", "Reproductive Health"],
+    benefits: ["Enhanced hormone production", "Improved sexual function", "Increased libido", "Better reproductive health"],
+    dosageRange: "1-10 mcg daily",
+    administration: ["Subcutaneous"],
+    halfLife: "27-46 minutes",
+    sources: [
+      {
+        name: "Reproductive Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor hormone levels"],
+    sideEffects: ["Injection site reactions", "Nausea", "Headache", "Hot flashes"],
+    molecularFormula: "C63H83N17O14",
+    molecularWeight: "1302.47 g/mol",
+    atomCount: 177,
+    yearDiscovered: "2001",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "epitalon",
+    name: "Epitalon",
+    category: ["Skin Regeneration & Anti-Aging"],
+    shortDescription: "A synthetic tetrapeptide with anti-aging and longevity-promoting properties.",
+    fullDescription: "Epitalon is a synthetic tetrapeptide derived from epithalamin, a hormone produced by the pineal gland. It has been extensively studied for its anti-aging properties, including telomerase activation, circadian rhythm regulation, and cellular regeneration. Research demonstrates improvements in sleep quality, skin health, and various markers of aging.",
+    mechanismOfAction: "Activates telomerase enzyme to extend telomeres, regulates circadian rhythms through pineal gland function, and promotes cellular regeneration.",
+    useCases: ["Anti-Aging", "Sleep Improvement", "Cellular Regeneration", "Longevity", "Circadian Regulation"],
+    benefits: ["Telomerase activation", "Improved sleep quality", "Anti-aging effects", "Better skin health"],
+    dosageRange: "5-10 mg daily (cycles)",
+    administration: ["Subcutaneous"],
+    halfLife: "Several hours",
+    sources: [
+      {
+        name: "Longevity Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Use in cycles"],
+    sideEffects: ["Injection site reactions", "Drowsiness", "Possible vivid dreams"],
+    molecularFormula: "C14H22N4O9",
+    molecularWeight: "390.35 g/mol",
+    atomCount: 49,
+    yearDiscovered: "1982",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "dsip",
+    name: "DSIP",
+    category: ["Wound Healing & Recovery"],
+    shortDescription: "Delta sleep-inducing peptide for improved sleep quality and recovery.",
+    fullDescription: "DSIP (Delta Sleep-Inducing Peptide) is a naturally occurring neuropeptide that regulates sleep cycles and promotes deep, restorative sleep. It influences various neurotransmitter systems and hormonal pathways involved in sleep regulation. Research demonstrates significant improvements in sleep quality, recovery, and stress resistance.",
+    mechanismOfAction: "Modulates sleep-wake cycles through interaction with multiple neurotransmitter systems including GABA, serotonin, and dopamine pathways.",
+    useCases: ["Sleep Enhancement", "Recovery Improvement", "Stress Reduction", "Circadian Regulation"],
+    benefits: ["Improved sleep quality", "Enhanced recovery", "Stress reduction", "Better circadian rhythm"],
+    dosageRange: "25-100 mcg daily",
+    administration: ["Subcutaneous", "Intranasal"],
+    halfLife: "15-30 minutes",
+    sources: [
+      {
+        name: "Sleep Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Take before bedtime"],
+    sideEffects: ["Drowsiness", "Vivid dreams", "Possible morning grogginess"],
+    molecularFormula: "C35H48N10O15",
+    molecularWeight: "848.81 g/mol",
+    atomCount: 108,
+    yearDiscovered: "1977",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
+  },
+  {
+    id: "mots-c",
+    name: "MOTS-c",
+    category: ["Fat Loss & Recomposition", "Skin Regeneration & Anti-Aging"],
+    shortDescription: "A mitochondrial-derived peptide for enhanced metabolism and longevity.",
+    fullDescription: "MOTS-c is a mitochondrial-derived peptide that regulates metabolic homeostasis and cellular energy production. It enhances glucose uptake, promotes fat oxidation, and improves mitochondrial function. Research demonstrates significant improvements in metabolic health, exercise capacity, and various markers of aging and longevity.",
+    mechanismOfAction: "Enhances glucose uptake in skeletal muscle, promotes fatty acid oxidation, and improves mitochondrial biogenesis and function.",
+    useCases: ["Metabolic Enhancement", "Fat Loss", "Mitochondrial Health", "Longevity", "Exercise Performance"],
+    benefits: ["Enhanced metabolism", "Improved fat oxidation", "Better mitochondrial function", "Increased exercise capacity"],
+    dosageRange: "5-15 mg weekly",
+    administration: ["Subcutaneous"],
+    halfLife: "Several hours",
+    sources: [
+      {
+        name: "Mitochondrial Research",
+        url: "#",
+        disclaimer: "External Site - Not Affiliated"
+      }
+    ],
+    warnings: ["Research purposes only", "Monitor glucose levels"],
+    sideEffects: ["Injection site reactions", "Mild fatigue", "Possible hypoglycemia"],
+    molecularFormula: "C101H152N28O22S2",
+    molecularWeight: "2174.53 g/mol",
+    atomCount: 305,
+    yearDiscovered: "2015",
+    legalStatus: "Research Only (US/EU)",
+    structure2D: "/placeholder-molecule.svg"
   }
 ];
 
