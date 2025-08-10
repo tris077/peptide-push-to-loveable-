@@ -79,7 +79,32 @@ export const HomePage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-8 relative z-20">
-          <div className="text-center max-w-4xl mx-auto">            
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Animated Peplike Logo */}
+            <motion.div 
+              className="flex items-center justify-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: "backOut" }}
+            >
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-pink-400 via-purple-400 to-cyan-400 rounded-3xl flex items-center justify-center shadow-xl shadow-pink-200/50"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                whileHover={{ scale: 1.1 }}
+              >
+                <Sparkles className="h-8 w-8 text-white" />
+              </motion.div>
+              <motion.h1 
+                className="text-5xl font-black bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent"
+                animate={{ 
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                Peplike
+              </motion.h1>
+            </motion.div>
             <motion.div 
               className="mb-16"
               initial={{ opacity: 0, y: 30 }}
