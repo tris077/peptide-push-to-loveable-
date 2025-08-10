@@ -153,7 +153,7 @@ const ChatUI = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-yellow-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Header */}
         {messages.length === 0 && (
@@ -191,14 +191,14 @@ const ChatUI = () => {
             </motion.div>
             
             <motion.h1 
-              className="text-3xl font-bold text-gray-900 mb-2 drop-shadow-sm"
+              className="text-4xl font-bold text-white mb-4 drop-shadow-lg"
               animate={{ 
                 scale: [1, 1.02, 1]
               }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.span
-                className="bg-gradient-to-r from-gray-800 via-purple-700 to-pink-700 bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-white via-yellow-200 to-white bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
                 }}
@@ -224,7 +224,7 @@ const ChatUI = () => {
             </motion.h1>
             
             <motion.p 
-              className="text-gray-800 font-semibold text-base drop-shadow-sm"
+              className="text-white/90 font-medium text-lg drop-shadow-md"
               animate={{ 
                 opacity: [0.8, 1, 0.8]
               }}
@@ -321,7 +321,7 @@ const ChatUI = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about compounds, peptides, or research..."
-              className="resize-none bg-white/70 backdrop-blur-sm border-2 border-pink-200/50 rounded-3xl text-sm focus:ring-2 focus:ring-pink-400 focus:border-pink-400 shadow-lg shadow-pink-100/50 transition-all duration-300 placeholder:text-gray-500"
+              className="resize-none bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-3xl text-white text-sm focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 shadow-lg shadow-black/20 transition-all duration-300 placeholder:text-white/70"
               rows={1}
               style={{ minHeight: "52px", maxHeight: "120px" }}
               onKeyDown={(e) => {
@@ -334,7 +334,7 @@ const ChatUI = () => {
             <Button
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="h-[52px] w-[52px] p-0 bg-gradient-to-r from-pink-500 via-yellow-500 to-orange-500 hover:from-pink-600 hover:via-yellow-600 hover:to-orange-600 text-white rounded-3xl shadow-lg shadow-pink-300/40 hover:shadow-xl hover:shadow-pink-400/50 transition-all duration-300 hover:scale-105"
+              className="h-[52px] w-[52px] p-0 bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 hover:from-purple-700 hover:via-pink-600 hover:to-yellow-500 text-white rounded-3xl shadow-lg shadow-black/30 hover:shadow-xl hover:shadow-black/40 transition-all duration-300 hover:scale-105"
             >
               <Send className="h-5 w-5" />
             </Button>
