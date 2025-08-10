@@ -31,6 +31,7 @@ const App: React.FC = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/directory" element={<HomePage />} />
