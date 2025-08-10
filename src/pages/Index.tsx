@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, Plus, Mic, User, BookOpen, MessageSquare, Users, Sparkles } from "lucide-react";
+import { Search, Plus, Mic, User, BookOpen, Menu } from "lucide-react";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,23 +46,23 @@ const Index = () => {
       title: "Comprehensive Library",
       description: "Browse our extensive database of research compounds, peptides, and nootropics with detailed information.",
       action: () => navigate("/directory")
-    },
-    {
-      icon: MessageSquare,
-      title: "AI Stack Creator",
-      description: "Get personalized compound recommendations based on your research goals and requirements.",
-      action: () => navigate("/stack-creator")
-    },
-    {
-      icon: Users,
-      title: "Research Community",
-      description: "Connect with researchers and access verified data from our growing community.",
-      action: () => navigate("/about")
     }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-100 via-purple-50 to-cyan-100 flex flex-col items-center justify-center px-6">
+      {/* Hamburger Menu */}
+      <div className="absolute top-6 left-6">
+        <Button 
+          variant="ghost" 
+          size="sm"
+          className="p-2 text-gray-600 hover:text-gray-800 hover:bg-white/50"
+          onClick={() => navigate("/directory")}
+        >
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
+      
       {/* Main Content */}
       <div className="w-full max-w-3xl mx-auto text-center space-y-8">
         
@@ -145,14 +145,6 @@ const Index = () => {
           >
             <BookOpen className="h-4 w-4" />
             Browse Library
-          </Button>
-          <Button 
-            variant="outline"
-            className="flex items-center gap-2 bg-white/80 hover:bg-white border-gray-200 text-gray-700 px-6 py-3 rounded-full"
-            onClick={() => navigate("/stack-creator")}
-          >
-            <MessageSquare className="h-4 w-4" />
-            Stack Creator
           </Button>
         </motion.div>
       </div>

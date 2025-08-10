@@ -53,13 +53,6 @@ export const Navigation = () => {
           >
             Library
           </Button>
-          <Button 
-            variant="ghost" 
-            className="text-white/80 hover:text-white hover:bg-white/10 font-medium"
-            onClick={() => navigate("/stack-creator")}
-          >
-            Stack Creator
-          </Button>
         </div>
 
         {/* Mobile Menu */}
@@ -92,25 +85,6 @@ export const Navigation = () => {
                   </div>
                   <p className="text-xs text-gray-400">
                     Browse all compounds and peptides
-                  </p>
-                </div>
-              </div>
-            </DropdownMenuItem>
-
-            <DropdownMenuItem 
-              onClick={() => navigate("/stack-creator")}
-              className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
-            >
-              <div className="flex items-center gap-3 w-full">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <Plus className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold">Stack Creator</span>
-                  </div>
-                  <p className="text-xs text-gray-400">
-                    AI-powered research assistance
                   </p>
                 </div>
               </div>

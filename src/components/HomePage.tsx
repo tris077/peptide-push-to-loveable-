@@ -57,14 +57,14 @@ export const HomePage = () => {
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-purple-50 to-cyan-100 relative overflow-hidden">
       <Navigation />
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(185_100%_65%_/_0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_75%_/_0.2),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(340_75%_90%_/_0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_90%_/_0.2),transparent_50%)]" />
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-200/10 to-transparent"
           animate={{ x: [-100, window.innerWidth + 100] }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         />
@@ -73,7 +73,7 @@ export const HomePage = () => {
 
       {/* Library Header Section */}
       <motion.div 
-        className="relative py-20 text-white"
+        className="relative py-20 text-gray-800"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -91,20 +91,20 @@ export const HomePage = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-2xl">
                   <Library className="h-8 w-8 text-white" />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl blur-xl opacity-50 animate-pulse" />
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl blur-xl opacity-50 animate-pulse" />
               </motion.div>
             
             <motion.h1 
-              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent mb-4"
+              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4"
             >
               Research Library
             </motion.h1>
               
               <motion.p 
-                className="text-xl text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed"
+                className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
@@ -149,15 +149,15 @@ export const HomePage = () => {
               transition={{ duration: 0.6 }}
             >
               <motion.div 
-                className="p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl shadow-2xl"
+                className="p-4 bg-gradient-to-r from-orange-400 to-pink-500 rounded-3xl shadow-2xl"
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 <TrendingUp className="h-8 w-8 text-white" />
               </motion.div>
               <div>
-                <h2 className="text-4xl font-black text-white mb-2">Trending Compounds</h2>
-                <p className="text-cyan-400 text-lg">Most explored this week</p>
+                <h2 className="text-4xl font-black text-gray-800 mb-2">Trending Compounds</h2>
+                <p className="text-purple-600 text-lg">Most explored this week</p>
               </div>
             </motion.div>
             
@@ -165,7 +165,7 @@ export const HomePage = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="flex items-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-glow transition-all duration-500">
+              <Button className="flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-glow transition-all duration-500">
                 View All
                 <ArrowRight className="h-5 w-5" />
               </Button>
@@ -200,14 +200,14 @@ export const HomePage = () => {
               transition={{ duration: 0.6 }}
             >
               <div>
-                <h2 className="text-4xl font-black text-white mb-3">
+                <h2 className="text-4xl font-black text-gray-800 mb-3">
                   Premium Library
                   {selectedCategory !== "All Categories" && (
-                    <span className="text-cyan-400"> · {selectedCategory}</span>
+                    <span className="text-purple-600"> · {selectedCategory}</span>
                   )}
                 </h2>
                 <motion.p 
-                  className="text-cyan-300 text-lg"
+                  className="text-purple-600 text-lg"
                   animate={{ opacity: [0.7, 1, 0.7] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -224,14 +224,14 @@ export const HomePage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <motion.div 
-                  className="w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-xl border border-white/10"
+                  className="w-32 h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-xl border border-gray-200"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 >
                   <span className="text-6xl">🔬</span>
                 </motion.div>
-                <h3 className="text-3xl font-bold text-white mb-4">No compounds found</h3>
-                <p className="text-white/60 mb-8 max-w-lg mx-auto text-lg">
+                <h3 className="text-3xl font-bold text-gray-800 mb-4">No compounds found</h3>
+                <p className="text-gray-600 mb-8 max-w-lg mx-auto text-lg">
                   Try adjusting your search terms or filter criteria to discover more premium compounds
                 </p>
                 <motion.div
@@ -239,7 +239,7 @@ export const HomePage = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button 
-                    className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white border-0 shadow-2xl hover:shadow-glow hover:scale-105 transition-all duration-500 px-8 py-4 rounded-full font-bold text-lg"
+                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-2xl hover:shadow-glow hover:scale-105 transition-all duration-500 px-8 py-4 rounded-full font-bold text-lg"
                     onClick={() => {
                       setSearchTerm("");
                       setSelectedCategory("All Categories");

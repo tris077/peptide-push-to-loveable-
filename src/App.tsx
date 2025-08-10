@@ -33,7 +33,6 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/stack-creator" element={<StackCreatorPage />} />
           <Route path="/directory" element={<HomePage />} />
           <Route path="/compound/:id" element={<CompoundPage />} />
           <Route path="/prerequisites" element={<PrerequisitesPage />} />
