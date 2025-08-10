@@ -71,7 +71,7 @@ export const HomePage = () => {
       </div>
 
 
-      {/* Library Header Section */}
+      {/* Search Section */}
       <motion.div 
         className="relative py-20 text-gray-800"
         initial={{ opacity: 0, y: 20 }}
@@ -79,40 +79,7 @@ export const HomePage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-8 relative z-20">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div 
-              className="flex items-center justify-center gap-6 mb-8"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <motion.div 
-                className="relative"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl flex items-center justify-center shadow-2xl">
-                  <Library className="h-8 w-8 text-white" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-600 rounded-2xl blur-xl opacity-50 animate-pulse" />
-              </motion.div>
-            
-            <motion.h1 
-              className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-800 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4"
-            >
-              Research Library
-            </motion.h1>
-              
-              <motion.p 
-                className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-              >
-                Comprehensive database of research compounds, peptides, and nootropics with detailed molecular data and verified sources.
-              </motion.p>
-            </motion.div>
-            
+          <div className="text-center max-w-4xl mx-auto">            
             <motion.div 
               className="mb-16"
               initial={{ opacity: 0, y: 30 }}

@@ -131,12 +131,44 @@ const Index = () => {
           </form>
         </motion.div>
 
+        {/* Example Prompts */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          {examplePrompts.map((prompt, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}
+            >
+              <Card 
+                className="bg-white/60 hover:bg-white/80 border-gray-200 cursor-pointer transition-all duration-300 hover:shadow-lg"
+                onClick={() => setSearchTerm(prompt.description)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    <span className="text-2xl">{prompt.icon}</span>
+                    <div>
+                      <h3 className="font-medium text-gray-800 mb-1">{prompt.title}</h3>
+                      <p className="text-sm text-gray-600">{prompt.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
         {/* Quick Access */}
         <motion.div
           className="flex items-center justify-center gap-4 mt-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
         >
           <Button 
             variant="outline"
