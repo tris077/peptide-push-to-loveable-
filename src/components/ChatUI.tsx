@@ -315,7 +315,7 @@ const ChatUI = () => {
         </div>
 
         {/* Input Area */}
-        <div className="sticky bottom-0 bg-gradient-to-t from-pink-100/90 via-yellow-50/80 to-transparent backdrop-blur-lg border-t border-pink-200/30 pb-6 pt-6">
+        <div className="sticky bottom-0 bg-white/95 backdrop-blur-xl border-t border-gray-200/40 pb-6 pt-6 shadow-lg shadow-gray-100/20">
           <div className="flex gap-3 items-end">
             <Textarea
               value={input}
