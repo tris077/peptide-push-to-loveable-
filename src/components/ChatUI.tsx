@@ -153,10 +153,37 @@ const ChatUI = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-purple-50 to-cyan-100 pt-20 pb-8">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <div className="min-h-screen bg-white">
+      <div className="container mx-auto px-4 max-w-3xl">
+        {/* Header */}
+        {messages.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center pt-24 pb-12"
+          >
+            <motion.div 
+              className="flex items-center justify-center gap-3 mb-4"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                <Bot className="h-6 w-6 text-white" />
+              </div>
+            </motion.div>
+            
+            <h1 className="text-3xl font-semibold text-gray-800 mb-2">
+              Peplike AI
+            </h1>
+            
+            <p className="text-gray-500 text-sm">
+              Research compounds, peptides, and optimization insights
+            </p>
+          </motion.div>
+        )}
+
         {/* Chat Messages */}
-        <div className="space-y-6 mb-8 min-h-[60vh]">
+        <div className="space-y-6 mb-8 min-h-[40vh] pt-6">
           <AnimatePresence>
             {messages.map((message, index) => (
               <motion.div
@@ -164,53 +191,51 @@ const ChatUI = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className={`flex gap-4 ${message.role === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
               >
-                <div className={`flex gap-3 max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
+                <div className={`flex gap-3 max-w-[85%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.role === "user" 
-                      ? "bg-gradient-to-r from-purple-500 to-pink-500" 
-                      : "bg-gradient-to-r from-cyan-500 to-blue-500"
+                      ? "bg-gray-100" 
+                      : "bg-gradient-to-br from-cyan-400 to-blue-600"
                   }`}>
                     {message.role === "user" ? 
-                      <User className="h-4 w-4 text-white" /> : 
+                      <User className="h-4 w-4 text-gray-600" /> : 
                       <Bot className="h-4 w-4 text-white" />
                     }
                   </div>
                   
-                  <Card className={`${
+                  <div className={`relative group ${
                     message.role === "user" 
-                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white" 
-                      : "bg-white/80 text-gray-800"
-                  } border-0 shadow-lg group`}>
-                    <CardContent className="p-4 relative">
-                      <p className="whitespace-pre-wrap">{message.content}</p>
+                      ? "bg-gray-50 text-gray-800 rounded-2xl rounded-br-md" 
+                      : "bg-white text-gray-800 rounded-2xl rounded-bl-md border border-gray-100"
+                  } px-4 py-3 shadow-sm`}>
+                    <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
+                    
+                    {/* Message Controls */}
+                    <div className={`absolute top-2 ${message.role === "user" ? "left-2" : "right-2"} opacity-0 group-hover:opacity-100 transition-opacity flex gap-1`}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-6 w-6 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50"
+                        onClick={() => handleDelete(message.id)}
+                      >
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
                       
-                      {/* Message Controls */}
-                      <div className={`absolute top-2 ${message.role === "user" ? "left-2" : "right-2"} opacity-0 group-hover:opacity-100 transition-opacity flex gap-1`}>
+                      {message.role === "assistant" && (
                         <Button
                           variant="ghost"
                           size="sm"
-                          className={`h-6 w-6 p-0 ${message.role === "user" ? "text-white/70 hover:text-white hover:bg-white/20" : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"}`}
-                          onClick={() => handleDelete(message.id)}
+                          className="h-6 w-6 p-0 text-gray-400 hover:text-blue-500 hover:bg-blue-50"
+                          onClick={() => handleRewrite(message.id)}
+                          disabled={isLoading}
                         >
-                          <Trash2 className="h-3 w-3" />
+                          <RotateCcw className="h-3 w-3" />
                         </Button>
-                        
-                        {message.role === "assistant" && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-6 w-6 p-0 text-gray-500 hover:text-gray-700 hover:bg-gray-100"
-                            onClick={() => handleRewrite(message.id)}
-                            disabled={isLoading}
-                          >
-                            <RotateCcw className="h-3 w-3" />
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -220,71 +245,70 @@ const ChatUI = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex gap-4 justify-start"
+              className="flex gap-3 justify-start"
             >
-              <div className="flex gap-3 max-w-[80%]">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
-                  <Bot className="h-4 w-4 text-white" />
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                <Bot className="h-4 w-4 text-white" />
+              </div>
+              <div className="bg-white rounded-2xl rounded-bl-md border border-gray-100 px-4 py-3 shadow-sm">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
-                <Card className="bg-white/80 border-0 shadow-lg">
-                  <CardContent className="p-4">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
             </motion.div>
           )}
         </div>
 
         {/* Input Area */}
-        <div className="space-y-4">
-          <div className="flex gap-2">
-            <Textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask anything..."
-              className="resize-none bg-white/80 border-gray-200 rounded-2xl text-base"
-              rows={3}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSend();
-                }
-              }}
-            />
-            <Button
-              onClick={handleSend}
-              disabled={!input.trim() || isLoading}
-              className="h-auto px-6 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 rounded-2xl"
-            >
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
+        <div className="sticky bottom-0 bg-white/80 backdrop-blur-sm pb-8 pt-4">
+          <div className="space-y-4">
+            <div className="flex gap-3 items-end">
+              <Textarea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about compounds, peptides, or research..."
+                className="resize-none bg-gray-50 border-0 rounded-2xl text-sm focus:ring-1 focus:ring-blue-200 shadow-sm"
+                rows={1}
+                style={{ minHeight: "44px", maxHeight: "120px" }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
+              />
+              <Button
+                onClick={handleSend}
+                disabled={!input.trim() || isLoading}
+                className="h-11 w-11 p-0 bg-gray-800 hover:bg-gray-700 text-white rounded-xl shadow-sm"
+              >
+                <Send className="h-4 w-4" />
+              </Button>
+            </div>
 
-          {/* Quick Action Pills */}
-          {messages.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-wrap gap-2 justify-center"
-            >
-              {quickActions.map((action, index) => (
-                <Button
-                  key={index}
-                  variant="outline"
-                  size="sm"
-                  className="bg-white/60 hover:bg-white/80 border-gray-200 text-gray-700 rounded-full px-4 py-2"
-                  onClick={() => setInput(action)}
-                >
-                  {action}
-                </Button>
-              ))}
-            </motion.div>
-          )}
+            {/* Quick Action Pills */}
+            {messages.length === 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex flex-wrap gap-2 justify-center"
+              >
+                {quickActions.map((action, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    className="bg-gray-50 hover:bg-gray-100 border-0 text-gray-600 text-xs rounded-full px-3 py-1.5 h-auto"
+                    onClick={() => setInput(action)}
+                  >
+                    {action}
+                  </Button>
+                ))}
+              </motion.div>
+            )}
+          </div>
         </div>
       </div>
     </div>
