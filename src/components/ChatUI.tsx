@@ -153,7 +153,7 @@ const ChatUI = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-yellow-50 to-orange-50">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Header */}
         {messages.length === 0 && (
