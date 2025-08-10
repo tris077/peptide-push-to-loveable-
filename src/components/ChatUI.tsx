@@ -165,18 +165,18 @@ const ChatUI = () => {
             <motion.div 
               className="flex items-center justify-center gap-3 mb-3"
               animate={{ rotate: 360 }}
-              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <Bot className="h-5 w-5 text-white" />
+              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 via-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center shadow-lg shadow-pink-200/50 animate-pulse">
+                <Bot className="h-6 w-6 text-white" />
               </div>
             </motion.div>
             
-            <h1 className="text-2xl font-semibold text-gray-800 mb-1">
-              Peplike AI
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
+              Peplike AI ✨
             </h1>
             
-            <p className="text-gray-500 text-sm">
+            <p className="text-pink-600/80 font-medium">
               Research compounds, peptides, and optimization insights
             </p>
           </motion.div>
