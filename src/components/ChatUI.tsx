@@ -315,15 +315,15 @@ const ChatUI = () => {
         </div>
 
         {/* Input Area */}
-        <div className="sticky bottom-0 bg-white/80 backdrop-blur-sm pb-6 pt-4">
+        <div className="sticky bottom-0 bg-gradient-to-t from-pink-100/90 via-yellow-50/80 to-transparent backdrop-blur-lg border-t border-pink-200/30 pb-6 pt-6">
           <div className="flex gap-3 items-end">
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about compounds, peptides, or research..."
-              className="resize-none bg-gray-50 border-0 rounded-2xl text-sm focus:ring-1 focus:ring-blue-200 shadow-sm"
+              className="resize-none bg-white/70 backdrop-blur-sm border-2 border-pink-200/50 rounded-3xl text-sm focus:ring-2 focus:ring-pink-400 focus:border-pink-400 shadow-lg shadow-pink-100/50 transition-all duration-300 placeholder:text-gray-500"
               rows={1}
-              style={{ minHeight: "44px", maxHeight: "120px" }}
+              style={{ minHeight: "52px", maxHeight: "120px" }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
@@ -334,9 +334,9 @@ const ChatUI = () => {
             <Button
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="h-11 w-11 p-0 bg-gray-800 hover:bg-gray-700 text-white rounded-xl shadow-sm"
+              className="h-[52px] w-[52px] p-0 bg-gradient-to-r from-pink-500 via-yellow-500 to-orange-500 hover:from-pink-600 hover:via-yellow-600 hover:to-orange-600 text-white rounded-3xl shadow-lg shadow-pink-300/40 hover:shadow-xl hover:shadow-pink-400/50 transition-all duration-300 hover:scale-105"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </Button>
           </div>
         </div>
