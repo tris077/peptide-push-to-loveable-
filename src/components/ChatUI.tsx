@@ -153,7 +153,7 @@ const ChatUI = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Header */}
         {messages.length === 0 && (
@@ -167,16 +167,16 @@ const ChatUI = () => {
               animate={{ rotate: 360 }}
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
             >
-              <div className="w-10 h-10 bg-gradient-accent rounded-2xl flex items-center justify-center shadow-glow animate-pulse-glow">
+              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
                 <Bot className="h-5 w-5 text-white" />
               </div>
             </motion.div>
             
-            <h1 className="text-2xl font-semibold text-foreground mb-1">
+            <h1 className="text-2xl font-semibold text-gray-800 mb-1">
               Peplike AI
             </h1>
             
-            <p className="text-muted-foreground text-sm">
+            <p className="text-gray-500 text-sm">
               Research compounds, peptides, and optimization insights
             </p>
           </motion.div>
@@ -196,28 +196,28 @@ const ChatUI = () => {
                 <div className={`flex gap-3 max-w-[85%] ${message.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                     message.role === "user" 
-                      ? "bg-primary text-primary-foreground" 
-                      : "bg-gradient-accent shadow-glow"
+                      ? "bg-gray-100" 
+                      : "bg-gradient-to-br from-cyan-400 to-blue-600"
                   }`}>
                     {message.role === "user" ? 
-                      <User className="h-4 w-4" /> : 
+                      <User className="h-4 w-4 text-gray-600" /> : 
                       <Bot className="h-4 w-4 text-white" />
                     }
                   </div>
                   
                   <div className={`relative group ${
                     message.role === "user" 
-                      ? "bg-primary text-primary-foreground rounded-2xl rounded-br-md shadow-premium" 
-                      : "bg-card text-card-foreground rounded-2xl rounded-bl-md border border-border shadow-glass"
-                  } px-4 py-3`}>
+                      ? "bg-gray-50 text-gray-800 rounded-2xl rounded-br-md" 
+                      : "bg-white text-gray-800 rounded-2xl rounded-bl-md border border-gray-100"
+                  } px-4 py-3 shadow-sm`}>
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
                     
                     {/* Message Controls */}
-                    <div className={`absolute top-2 ${message.role === "user" ? "left-2" : "right-2"} opacity-0 group-hover:opacity-100 transition-smooth flex gap-1`}>
+                    <div className={`absolute top-2 ${message.role === "user" ? "left-2" : "right-2"} opacity-0 group-hover:opacity-100 transition-opacity flex gap-1`}>
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="h-6 w-6 p-0 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                        className="h-6 w-6 p-0 text-gray-400 hover:text-red-500 hover:bg-red-50"
                         onClick={() => handleDelete(message.id)}
                       >
                         <Trash2 className="h-3 w-3" />
@@ -227,7 +227,7 @@ const ChatUI = () => {
                         <Button
                           variant="ghost"
                           size="sm"
-                          className="h-6 w-6 p-0 text-muted-foreground hover:text-accent hover:bg-accent/10"
+                          className="h-6 w-6 p-0 text-gray-400 hover:text-blue-500 hover:bg-blue-50"
                           onClick={() => handleRewrite(message.id)}
                           disabled={isLoading}
                         >
@@ -247,14 +247,14 @@ const ChatUI = () => {
               animate={{ opacity: 1, y: 0 }}
               className="flex gap-3 justify-start"
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-accent shadow-glow flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
                 <Bot className="h-4 w-4 text-white" />
               </div>
-              <div className="bg-card rounded-2xl rounded-bl-md border border-border px-4 py-3 shadow-glass">
+              <div className="bg-white rounded-2xl rounded-bl-md border border-gray-100 px-4 py-3 shadow-sm">
                 <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <div className="w-2 h-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
               </div>
             </motion.div>
@@ -262,13 +262,13 @@ const ChatUI = () => {
         </div>
 
         {/* Input Area */}
-        <div className="sticky bottom-0 bg-background/95 backdrop-blur-sm pb-6 pt-4">
+        <div className="sticky bottom-0 bg-white/80 backdrop-blur-sm pb-6 pt-4">
           <div className="flex gap-3 items-end">
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about compounds, peptides, or research..."
-              className="resize-none bg-card border border-border rounded-2xl text-sm focus:ring-2 focus:ring-accent shadow-glass transition-smooth"
+              className="resize-none bg-gray-50 border-0 rounded-2xl text-sm focus:ring-1 focus:ring-blue-200 shadow-sm"
               rows={1}
               style={{ minHeight: "44px", maxHeight: "120px" }}
               onKeyDown={(e) => {
@@ -281,7 +281,7 @@ const ChatUI = () => {
             <Button
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="h-11 w-11 p-0 bg-gradient-accent hover:shadow-glow text-white rounded-xl shadow-premium transition-smooth"
+              className="h-11 w-11 p-0 bg-gray-800 hover:bg-gray-700 text-white rounded-xl shadow-sm"
             >
               <Send className="h-4 w-4" />
             </Button>
