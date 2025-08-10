@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { Search, Sparkles, Atom, ArrowRight, BookOpen, MessageSquare, Users, Star } from "lucide-react";
+import { Search, Plus, Mic, User, BookOpen, MessageSquare, Users, Sparkles } from "lucide-react";
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,205 +62,100 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-900 flex flex-col">
-      {/* Header */}
-      <motion.header 
-        className="px-6 py-4 border-b border-white/10"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <motion.div 
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center">
-                <Atom className="h-6 w-6 text-white" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl blur-lg opacity-30" />
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-white to-cyan-300 bg-clip-text text-transparent">
-              Peplike
-            </span>
-          </motion.div>
-          
-          <nav className="flex items-center gap-4">
-            <Button 
-              variant="ghost" 
-              className="text-white/80 hover:text-white hover:bg-white/10"
-              onClick={() => navigate("/directory")}
-            >
-              Library
-            </Button>
-            <Button 
-              variant="ghost" 
-              className="text-white/80 hover:text-white hover:bg-white/10"
-              onClick={() => navigate("/stack-creator")}
-            >
-              Stack Creator
-            </Button>
-          </nav>
-        </div>
-      </motion.header>
-
+    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-purple-50 to-cyan-100 flex flex-col items-center justify-center px-6">
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 py-12">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
-          
-          {/* Hero Section */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+      <div className="w-full max-w-3xl mx-auto text-center space-y-8">
+        
+        {/* Hero Section */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-5xl font-semibold text-gray-800 mb-4"
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div 
-              className="flex items-center justify-center gap-4 mb-8"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <motion.div 
-                className="relative"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-2xl">
-                  <Sparkles className="h-8 w-8 text-white" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl blur-xl opacity-50 animate-pulse" />
-              </motion.div>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent mb-4">
-              Research made simple
-            </h1>
-            
-            <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Explore cutting-edge peptides, nootropics, and research compounds with AI-powered insights and comprehensive data.
-            </p>
-          </motion.div>
-
-          {/* Search Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            Introducing Peplike AI
+          </motion.h1>
+          
+          <motion.p 
+            className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <form onSubmit={handleSearch} className="relative max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-white/40" />
-                <Input
-                  type="text"
-                  placeholder="Search compounds, peptides, nootropics..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 text-lg bg-white/5 border-white/20 rounded-xl text-white placeholder-white/40 focus:bg-white/10 focus:border-cyan-400/50 transition-all duration-300"
-                />
+            Peplike now has our smartest, fastest, most useful model yet,<br />
+            with research built in — so you get the best answer, every time.
+          </motion.p>
+        </motion.div>
+
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="w-full max-w-2xl mx-auto"
+        >
+          <form onSubmit={handleSearch} className="relative">
+            <div className="relative bg-white rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Plus className="absolute left-5 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Ask anything"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-14 pr-20 py-4 text-lg bg-transparent border-0 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-0"
+              />
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  className="h-8 w-8 p-0 rounded-full hover:bg-gray-100"
+                >
+                  <Mic className="h-4 w-4 text-gray-400" />
+                </Button>
                 <Button
                   type="submit"
                   size="sm"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-0 rounded-lg px-4 py-2"
+                  className="h-8 w-8 p-0 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 border-0"
                 >
-                  <ArrowRight className="h-4 w-4" />
+                  <User className="h-4 w-4" />
                 </Button>
               </div>
-            </form>
-          </motion.div>
+            </div>
+          </form>
+        </motion.div>
 
-          {/* Example Prompts */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+        {/* Quick Access */}
+        <motion.div
+          className="flex items-center justify-center gap-4 mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Button 
+            variant="outline"
+            className="flex items-center gap-2 bg-white/80 hover:bg-white border-gray-200 text-gray-700 px-6 py-3 rounded-full"
+            onClick={() => navigate("/directory")}
           >
-            {examplePrompts.map((prompt, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Card 
-                  className="bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer group"
-                  onClick={() => {
-                    setSearchTerm(prompt.title);
-                    navigate(`/directory?search=${encodeURIComponent(prompt.title)}`);
-                  }}
-                >
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl">{prompt.icon}</span>
-                      <div className="text-left">
-                        <h3 className="font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors">
-                          {prompt.title}
-                        </h3>
-                        <p className="text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                          {prompt.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Features */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            <BookOpen className="h-4 w-4" />
+            Browse Library
+          </Button>
+          <Button 
+            variant="outline"
+            className="flex items-center gap-2 bg-white/80 hover:bg-white border-gray-200 text-gray-700 px-6 py-3 rounded-full"
+            onClick={() => navigate("/stack-creator")}
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center"
-              >
-                <Card className="bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer group h-full">
-                  <CardContent className="p-6" onClick={feature.action}>
-                    <motion.div
-                      className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
-                    >
-                      <feature.icon className="h-6 w-6 text-white" />
-                    </motion.div>
-                    <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors">
-                      {feature.title}
-                    </h3>
-                    <p className="text-white/60 group-hover:text-white/80 transition-colors">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <motion.footer 
-        className="px-6 py-4 border-t border-white/10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
-      >
-        <div className="max-w-4xl mx-auto flex items-center justify-between text-sm text-white/40">
-          <p>© 2024 Peplike. Research purposes only.</p>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="text-white/40 hover:text-white/60">
-              About
-            </Button>
-            <Button variant="ghost" size="sm" className="text-white/40 hover:text-white/60">
-              Contact
-            </Button>
-          </div>
-        </div>
-      </motion.footer>
+            <MessageSquare className="h-4 w-4" />
+            Stack Creator
+          </Button>
+        </motion.div>
+      </div>
     </div>
   );
 };
