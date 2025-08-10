@@ -44,16 +44,7 @@ export const Navigation = () => {
           </span>
         </motion.div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-6">
-          <Button 
-            variant="ghost" 
-            className="text-white/80 hover:text-white hover:bg-white/10 font-medium"
-            onClick={() => navigate("/directory")}
-          >
-            Library
-          </Button>
-        </div>
+        {/* Desktop Navigation - Library button removed */}
 
         {/* Mobile Menu */}
         <DropdownMenu>
