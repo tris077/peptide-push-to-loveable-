@@ -81,6 +81,26 @@ export const Navigation = () => {
               </div>
             </DropdownMenuItem>
 
+            <DropdownMenuItem 
+              onClick={() => navigate("/")}
+              className="cursor-pointer p-4 hover:bg-white/10 focus:bg-white/10"
+            >
+              <div className="flex items-center gap-3 w-full">
+                <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg flex items-center justify-center">
+                  <Sparkles className="h-5 w-5 text-white" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold">AI Assistant</span>
+                    <Badge className="bg-pink-500/20 text-pink-200 border-pink-400/20 text-xs">New</Badge>
+                  </div>
+                  <p className="text-xs text-gray-400">
+                    Chat with Peplike AI for research
+                  </p>
+                </div>
+              </div>
+            </DropdownMenuItem>
+
             <DropdownMenuSeparator className="bg-white/10" />
 
             <DropdownMenuItem 
