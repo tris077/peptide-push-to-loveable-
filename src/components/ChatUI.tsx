@@ -163,22 +163,75 @@ const ChatUI = () => {
             className="text-center pt-20 pb-8"
           >
             <motion.div 
-              className="flex items-center justify-center gap-3 mb-3"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="flex items-center justify-center gap-3 mb-4"
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-pink-400 via-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center shadow-lg shadow-pink-200/50 animate-pulse">
-                <Bot className="h-6 w-6 text-white" />
-              </div>
+              <motion.div 
+                className="w-12 h-12 bg-gradient-to-br from-pink-400 via-yellow-400 to-orange-400 rounded-3xl flex items-center justify-center shadow-xl shadow-pink-300/60"
+                animate={{ 
+                  boxShadow: [
+                    "0 25px 50px -12px rgba(236, 72, 153, 0.4)",
+                    "0 25px 50px -12px rgba(251, 191, 36, 0.6)",
+                    "0 25px 50px -12px rgba(249, 115, 22, 0.4)",
+                    "0 25px 50px -12px rgba(236, 72, 153, 0.4)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.2, rotate: 15 }}
+              >
+                <Bot className="h-6 w-6 text-white drop-shadow-lg" />
+              </motion.div>
             </motion.div>
             
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
-              Peplike AI ✨
-            </h1>
+            <motion.h1 
+              className="text-3xl font-bold text-gray-900 mb-2 drop-shadow-sm"
+              animate={{ 
+                scale: [1, 1.02, 1]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.span
+                className="bg-gradient-to-r from-gray-800 via-purple-700 to-pink-700 bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                style={{ backgroundSize: "200% 200%" }}
+              >
+                Peplike AI
+              </motion.span>
+              <motion.span
+                className="inline-block ml-2"
+                animate={{ 
+                  rotate: [0, 15, -15, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity,
+                  repeatDelay: 2
+                }}
+              >
+                ✨
+              </motion.span>
+            </motion.h1>
             
-            <p className="text-pink-600/80 font-medium">
+            <motion.p 
+              className="text-gray-800 font-semibold text-base drop-shadow-sm"
+              animate={{ 
+                opacity: [0.8, 1, 0.8]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
               Research compounds, peptides, and optimization insights
-            </p>
+            </motion.p>
           </motion.div>
         )}
 
