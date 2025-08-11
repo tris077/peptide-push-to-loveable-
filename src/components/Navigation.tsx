@@ -24,7 +24,7 @@ export const Navigation = () => {
   const navigate = useNavigate();
   
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/30 backdrop-blur-xl border-b border-gray-200/30">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <motion.div 
@@ -39,7 +39,7 @@ export const Navigation = () => {
           >
             <Sparkles className="h-5 w-5 text-white" />
           </motion.div>
-          <span className="text-2xl font-black bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent">
+          <span className="text-2xl font-black bg-gradient-to-r from-gray-800 via-blue-700 to-purple-700 bg-clip-text text-transparent">
             Peplike
           </span>
         </motion.div>
@@ -52,7 +52,7 @@ export const Navigation = () => {
             <Button 
               variant="ghost" 
               size="sm"
-              className="relative text-white hover:bg-white/10 rounded-full p-3"
+              className="relative text-gray-700 hover:bg-gray-100/50 rounded-full p-3"
             >
               <Menu className="h-5 w-5" />
             </Button>
