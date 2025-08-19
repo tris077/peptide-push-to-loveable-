@@ -1185,8 +1185,12 @@ export const peptidesData: Peptide[] = [
 
 export const categories = [
   "All Categories",
-  "Fat Loss & Recomposition",
+  "Skin Regeneration & Anti-Aging",
+  "Wound Healing & Recovery", 
   "Muscle Growth & Definition",
+  "Fat Loss & Recomposition",
+  "Tanning / Skin Pigmentation",
+  "Libido & Sexual Function",
   "Mood & Cognition Enhancement",
   "Anti-Aging & Longevity",
   "Performance Enhancement"

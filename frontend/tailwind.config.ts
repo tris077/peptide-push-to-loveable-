@@ -135,13 +135,15 @@ export default {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-accent': 'var(--gradient-accent)',
 				'gradient-subtle': 'var(--gradient-subtle)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-mint': 'var(--gradient-mint)',
 			},
 			boxShadow: {
 				'glass': 'var(--shadow-glass)',
 				'elevated': 'var(--shadow-elevated)',
 				'glow': 'var(--shadow-glow)',
-				'premium': 'var(--shadow-premium)'
+				'premium': 'var(--shadow-premium)',
+				'biotech': 'var(--shadow-biotech)',
 			},
 			backdropBlur: {
 				'xs': '2px',
