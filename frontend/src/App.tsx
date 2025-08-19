@@ -29,6 +29,7 @@ const queryClient = new QueryClient({
 });
 
 const App: React.FC = () => {
+  console.log('App component rendering...');
 
   return (
     <QueryClientProvider client={queryClient}>
