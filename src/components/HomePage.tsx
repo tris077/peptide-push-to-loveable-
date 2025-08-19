@@ -1,138 +1,243 @@
-import { useState, useMemo, useEffect } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { Navigation } from "./Navigation";
-import { SearchBar } from "./SearchBar";
-import { EnhancedFilterSidebar } from "./EnhancedFilterSidebar";
-import { InteractiveCard } from "./InteractiveCard";
-import { TrendingCarousel } from "./TrendingCarousel";
-import { peptidesData } from "@/data/peptides";
-import { Button } from "@/components/ui/button";
-import { TrendingUp, Zap, Shield, Activity, ArrowRight, Sparkles, Atom, Library } from "lucide-react";
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { SearchBar } from './SearchBar';
+import { TrendingCarousel } from './TrendingCarousel';
+import { InteractiveCard } from './InteractiveCard';
+import { EnhancedFilterSidebar } from './EnhancedFilterSidebar';
+import { peptidesData } from '../data/peptides';
+import { Button } from './ui/button';
+import { cn } from '@/lib/utils';
+import { Sparkles, Zap, Target, Beaker, TrendingUp, ArrowRight, Search } from 'lucide-react';
 
-export const HomePage = () => {
-  const [searchParams] = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+export const HomePage: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const heroRef = useRef(null);
+  const statsRef = useRef(null);
+  const { scrollY } = useScroll();
+  
+  // Parallax effects
+  const heroY = useTransform(scrollY, [0, 600], [0, -200]);
+  const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 400], [1, 0.8]);
+  
+  const isStatsInView = useInView(statsRef, { once: true });
 
-  // Handle search parameter from URL
+  // Filter peptides based on search and category
+  const filteredPeptides = useMemo(() => {
+    let filtered = peptidesData;
+
+    if (selectedCategory !== 'All Categories') {
+      filtered = filtered.filter(peptide => 
+        peptide.category?.includes(selectedCategory)
+      );
+    }
+
+    if (searchTerm) {
+      filtered = filtered.filter(peptide =>
+        peptide.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        peptide.shortDescription?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        peptide.fullDescription?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        peptide.category?.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+
+    return filtered;
+  }, [searchTerm, selectedCategory]);
+
   useEffect(() => {
-    const urlSearch = searchParams.get('search');
-    if (urlSearch) {
-      setSearchTerm(urlSearch);
+    const term = searchParams.get('search');
+    if (term) {
+      setSearchTerm(term);
     }
   }, [searchParams]);
 
-  const filteredPeptides = useMemo(() => {
-    return peptidesData.filter(peptide => {
-      const matchesSearch = peptide.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          peptide.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          peptide.fullDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          peptide.category.some(cat => cat.toLowerCase().includes(searchTerm.toLowerCase()));
-      
-      const matchesCategory = selectedCategory === "All Categories" || 
-                            peptide.category.includes(selectedCategory);
-      
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchTerm, selectedCategory]);
+  // Get trending peptides (those marked as trending)
+  const trendingPeptides = useMemo(() => {
+    return peptidesData.filter(peptide => peptide.trending);
+  }, []);
 
-  const trendingPeptides = peptidesData.filter(p => p.trending);
-
-  const handleSearch = () => {
-    if (searchTerm.trim() && filteredPeptides.length > 0) {
-      // Find the best match - prioritize exact name matches first
-      const exactNameMatch = filteredPeptides.find(peptide => 
-        peptide.name.toLowerCase() === searchTerm.toLowerCase()
-      );
-      
-      const bestMatch = exactNameMatch || filteredPeptides[0];
+  const handleSearch = (searchTermParam?: string) => {
+    const term = searchTermParam || searchTerm;
+    if (!term.trim()) return;
+    
+    const bestMatch = peptidesData.find(peptide =>
+      peptide.name.toLowerCase().includes(term.toLowerCase())
+    );
+    
+    if (bestMatch) {
       navigate(`/compound/${bestMatch.id}`);
     }
   };
 
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.8]);
+  const stats = [
+    { number: '200+', label: 'Research Compounds', icon: Beaker },
+    { number: '10K+', label: 'Research Papers', icon: Target },
+    { number: '50+', label: 'Categories', icon: Sparkles },
+    { number: '24/7', label: 'AI Support', icon: Zap },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-purple-50 to-cyan-100 relative overflow-hidden">
-      <Navigation />
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,hsl(340_75%_90%_/_0.3),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,hsl(260_60%_90%_/_0.2),transparent_50%)]" />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-200/10 to-transparent"
-          animate={{ x: [-100, window.innerWidth + 100] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
-
-
-      {/* Search Section */}
-      <motion.div 
-        className="relative py-20 text-gray-800"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+    <div className="min-h-screen bg-gradient-subtle">
+      {/* Hero Section */}
+      <motion.section
+        ref={heroRef}
+        className="relative overflow-hidden pt-32 pb-20"
+        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
       >
-        <div className="container mx-auto px-8 relative z-20">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Animated Peplike Logo */}
-            <motion.div 
-              className="flex items-center justify-center gap-4 mb-8"
+        <div className="absolute inset-0 bg-gradient-hero opacity-5" />
+        
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-32 h-32 bg-gradient-primary rounded-full opacity-10 blur-xl"
+            animate={{ 
+              y: [0, -20, 0], 
+              x: [0, 10, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-40 right-20 w-24 h-24 bg-gradient-accent rounded-full opacity-15 blur-lg"
+            animate={{ 
+              y: [0, 15, 0], 
+              x: [0, -15, 0],
+              scale: [1, 0.9, 1]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-1/3 w-40 h-40 bg-accent-purple/10 rounded-full blur-2xl"
+            animate={{ 
+              y: [0, -10, 0], 
+              scale: [1, 1.2, 1]
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-8"
+          >
+            <motion.div
+              className="inline-flex items-center gap-2 glass-card border border-accent/20 rounded-full px-4 py-2 mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Sparkles className="h-4 w-4 text-accent" />
+              <span className="text-sm font-medium text-accent">AI-Powered Research Platform</span>
+            </motion.div>
+            
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: "backOut" }}
             >
-              <motion.div 
-                className="w-16 h-16 bg-gradient-to-br from-pink-400 via-purple-400 to-cyan-400 rounded-3xl flex items-center justify-center shadow-xl shadow-pink-200/50"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <Sparkles className="h-8 w-8 text-white" />
-              </motion.div>
-              <motion.h1 
-                className="text-5xl font-black bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent"
-                animate={{ 
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                Peplike
-              </motion.h1>
-            </motion.div>
-            <motion.div 
-              className="mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              <span className="bg-gradient-primary bg-clip-text text-transparent">
+                Peplike AI
+              </span>
+            </motion.h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+              Discover, research, and optimize peptides with our comprehensive AI-powered platform. 
+              Your gateway to cutting-edge biohacking research.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="max-w-2xl mx-auto mb-12"
+          >
+            <SearchBar 
+              onSearch={handleSearch}
+              value={searchTerm}
+              onChange={setSearchTerm}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:shadow-glow-blue transition-all duration-300 px-8 py-4 rounded-xl font-semibold"
+              onClick={() => navigate('/directory')}
             >
-              <SearchBar
-                value={searchTerm}
-                onChange={setSearchTerm}
-                onSearch={handleSearch}
-                placeholder="Search compounds, peptides, nootropics..."
-              />
-            </motion.div>
+              <Beaker className="h-5 w-5 mr-2" />
+              Browse Directory
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 px-8 py-4 rounded-xl font-semibold"
+              onClick={() => navigate('/chat')}
+            >
+              <Sparkles className="h-5 w-5 mr-2" />
+              Ask AI Assistant
+            </Button>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Stats Section */}
+      <motion.section
+        ref={statsRef}
+        className="py-20 relative"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isStatsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <div className="w-16 h-16 bg-gradient-soft rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                  <stat.icon className="h-8 w-8 text-accent" />
+                </div>
+                <motion.div
+                  className="text-3xl font-bold text-foreground mb-1"
+                  initial={{ scale: 0 }}
+                  animate={isStatsInView ? { scale: 1 } : {}}
+                  transition={{ delay: index * 0.1 + 0.3, duration: 0.5, type: "spring" }}
+                >
+                  {stat.number}
+                </motion.div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </motion.div>
+      </motion.section>
 
-
-      {/* Main Content */}
-      <div className="container mx-auto px-8 py-20 relative z-10">
-        {/* Trending Section */}
-        <motion.div 
-          className="mb-24"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+      {/* Trending Section */}
+      <motion.section
+        className="py-20 relative"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <motion.div 
               className="flex items-center gap-6"
@@ -140,98 +245,91 @@ export const HomePage = () => {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <motion.div 
-                className="p-4 bg-gradient-to-r from-orange-400 to-pink-500 rounded-3xl shadow-2xl"
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
+              <div className="w-16 h-16 bg-gradient-hero rounded-2xl flex items-center justify-center shadow-hero">
                 <TrendingUp className="h-8 w-8 text-white" />
-              </motion.div>
+              </div>
               <div>
-                <h2 className="text-4xl font-black text-gray-800 mb-2">Trending Compounds</h2>
-                <p className="text-purple-600 text-lg">Most explored this week</p>
+                <h2 className="text-4xl font-bold text-foreground mb-2">Trending Compounds</h2>
+                <p className="text-muted-foreground text-lg">Most explored this week</p>
               </div>
             </motion.div>
             
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <Button
+              variant="outline"
+              className="hidden md:flex items-center gap-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+              onClick={() => navigate('/directory')}
             >
-              <Button className="flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-glow transition-all duration-500">
-                View All
-                <ArrowRight className="h-5 w-5" />
-              </Button>
-            </motion.div>
+              View All
+              <ArrowRight className="h-4 w-4" />
+            </Button>
           </div>
           
           <TrendingCarousel peptides={trendingPeptides} />
-        </motion.div>
+        </div>
+      </motion.section>
 
-        {/* Browse Section */}
-        <motion.div 
-          className="flex gap-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Enhanced Sidebar */}
-          <div className="hidden lg:block">
-            <EnhancedFilterSidebar
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-            />
-          </div>
-
-          {/* Results Grid */}
-          <div className="flex-1">
-            <motion.div 
-              className="flex items-center justify-between mb-12"
-              initial={{ y: 30, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div>
-                <h2 className="text-4xl font-black text-gray-800 mb-3">
-                  Premium Library
-                  {selectedCategory !== "All Categories" && (
-                    <span className="text-purple-600"> · {selectedCategory}</span>
-                  )}
-                </h2>
-                <motion.p 
-                  className="text-purple-600 text-lg"
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  {filteredPeptides.length} compounds available for research
-                </motion.p>
-              </div>
-            </motion.div>
-
-            {filteredPeptides.length === 0 ? (
-              <motion.div 
-                className="text-center py-24"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+      {/* Library Section */}
+      <motion.section
+        className="py-20 relative"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex gap-8">
+            {/* Enhanced Sidebar */}
+            <div className="hidden lg:block w-80">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
               >
+                <EnhancedFilterSidebar
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                />
+              </motion.div>
+            </div>
+
+            {/* Results Grid */}
+            <div className="flex-1">
+              <motion.div 
+                className="flex items-center justify-between mb-8"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div>
+                  <h2 className="text-4xl font-bold text-foreground mb-2">
+                    Research Library
+                    {selectedCategory !== "All Categories" && (
+                      <span className="text-accent"> · {selectedCategory}</span>
+                    )}
+                  </h2>
+                  <p className="text-muted-foreground text-lg">
+                    {filteredPeptides.length} compounds available for research
+                  </p>
+                </div>
+              </motion.div>
+
+              {filteredPeptides.length === 0 ? (
                 <motion.div 
-                  className="w-32 h-32 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-8 backdrop-blur-xl border border-gray-200"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="text-center py-20"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6 }}
                 >
-                  <span className="text-6xl">🔬</span>
-                </motion.div>
-                <h3 className="text-3xl font-bold text-gray-800 mb-4">No compounds found</h3>
-                <p className="text-gray-600 mb-8 max-w-lg mx-auto text-lg">
-                  Try adjusting your search terms or filter criteria to discover more premium compounds
-                </p>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                  <div className="w-24 h-24 bg-gradient-soft rounded-full flex items-center justify-center mx-auto mb-6 shadow-soft">
+                    <Search className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-4">No compounds found</h3>
+                  <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
+                    Try adjusting your search terms or filter criteria to discover more compounds
+                  </p>
                   <Button 
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-2xl hover:shadow-glow hover:scale-105 transition-all duration-500 px-8 py-4 rounded-full font-bold text-lg"
+                    variant="outline"
+                    className="border-accent text-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300"
                     onClick={() => {
                       setSearchTerm("");
                       setSelectedCategory("All Categories");
@@ -240,36 +338,36 @@ export const HomePage = () => {
                     Clear All Filters
                   </Button>
                 </motion.div>
-              </motion.div>
-            ) : (
-              <motion.div 
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, staggerChildren: 0.1 }}
-              >
-                <AnimatePresence>
-                  {filteredPeptides.map((peptide, index) => (
-                    <motion.div
-                      key={peptide.id}
-                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      layout
-                    >
-                      <InteractiveCard
-                        peptide={peptide}
-                        index={index}
-                      />
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-            )}
+              ) : (
+                <motion.div 
+                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, staggerChildren: 0.05 }}
+                >
+                  <AnimatePresence mode="popLayout">
+                    {filteredPeptides.map((peptide, index) => (
+                      <motion.div
+                        key={peptide.id}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                        transition={{ duration: 0.3, delay: index * 0.03 }}
+                        layout
+                      >
+                        <InteractiveCard
+                          peptide={peptide}
+                          index={index}
+                        />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              )}
+            </div>
           </div>
-        </motion.div>
-      </div>
+        </div>
+      </motion.section>
     </div>
   );
 };
