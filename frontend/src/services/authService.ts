@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   id: number;
   email: string;
   username: string;
@@ -10,6 +10,7 @@ interface User {
   total_cost_cents: number;
   monthly_tokens_used: number;
   monthly_cost_cents: number;
+  stripe_customer_id?: string;
   created_at: string;
   updated_at?: string;
 }
