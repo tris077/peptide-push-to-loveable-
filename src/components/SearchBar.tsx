@@ -100,7 +100,7 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyPress={handleKeyPress}
           onFocus={() => value.length > 0 && suggestions.length > 0 && setShowSuggestions(true)}
-          className="pl-20 pr-48 h-24 text-2xl text-foreground bg-white/95 backdrop-blur-md border-2 border-white/40 shadow-biotech focus:shadow-glow focus:bg-white focus:border-accent/60 transition-all duration-500 rounded-full placeholder:text-muted-foreground/70 font-medium"
+          className="pl-20 pr-48 h-24 text-2xl text-foreground bg-card backdrop-blur-md border-2 border-border shadow-card focus:shadow-glow-blue focus:bg-card focus:border-accent/60 transition-all duration-500 rounded-full placeholder:text-muted-foreground/70 font-medium"
         />
         <Search className="absolute left-8 h-8 w-8 text-accent group-focus-within:scale-125 group-focus-within:text-accent transition-all duration-500" />
         {value && (
@@ -116,7 +116,7 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
         <Button 
           onClick={onSearch}
           variant="hero"
-          className="absolute right-6 h-16 px-12 text-xl bg-gradient-accent text-white border-0 shadow-glow hover:shadow-elevated hover:scale-105 transition-all duration-500 rounded-full font-bold"
+          className="absolute right-6 h-16 px-12 text-xl shadow-glow-blue hover:shadow-floating hover:scale-105 transition-all duration-500 rounded-full font-bold"
         >
           Explore
         </Button>
@@ -126,13 +126,13 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
       {showSuggestions && (
         <div 
           ref={suggestionsRef}
-          className="absolute top-full left-0 right-0 mt-2 bg-white/98 backdrop-blur-md border border-gray-200 rounded-3xl shadow-glow max-h-60 overflow-y-auto z-50"
+          className="absolute top-full left-0 right-0 mt-2 glass-card border border-border rounded-3xl shadow-floating max-h-60 overflow-y-auto z-50"
         >
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="w-full px-8 py-4 text-left hover:bg-gray-100 first:rounded-t-3xl last:rounded-b-3xl transition-colors duration-200 text-lg font-medium capitalize text-gray-900"
+              className="w-full px-8 py-4 text-left hover:bg-secondary first:rounded-t-3xl last:rounded-b-3xl transition-colors duration-200 text-lg font-medium capitalize text-foreground"
             >
               <Search className="inline h-4 w-4 mr-3 text-accent" />
               {suggestion}
@@ -141,9 +141,9 @@ export const SearchBar = ({ value, onChange, onSearch, placeholder = "Search pep
         </div>
       )}
       
-      {/* Enhanced biotech glow effect */}
-      <div className="absolute inset-0 bg-gradient-accent opacity-0 group-focus-within:opacity-40 rounded-full blur-3xl transition-opacity duration-700 -z-10" />
-      <div className="absolute inset-0 bg-gradient-mint opacity-0 group-hover:opacity-20 rounded-full blur-2xl transition-opacity duration-500 -z-10" />
+      {/* Enhanced glow effect */}
+      <div className="absolute inset-0 bg-gradient-primary opacity-0 group-focus-within:opacity-20 rounded-full blur-3xl transition-opacity duration-700 -z-10" />
+      <div className="absolute inset-0 bg-gradient-soft opacity-0 group-hover:opacity-10 rounded-full blur-2xl transition-opacity duration-500 -z-10" />
     </div>
   );
 };

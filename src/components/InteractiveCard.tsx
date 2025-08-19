@@ -84,7 +84,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="relative cursor-pointer"
     >
-      <Card className="group relative overflow-hidden bg-white/95 backdrop-blur-xl border border-white/20 shadow-2xl hover:shadow-4xl transition-all duration-700 transform-gpu">
+      <Card className="group relative overflow-hidden glass-card border border-border shadow-card hover:shadow-floating transition-all duration-700 transform-gpu animate-card-3d">
         {/* Background Gradient Overlay */}
         <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryColor(index)} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
         
@@ -205,7 +205,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
                   transition={{ delay: catIndex * 0.1 }}
                 >
                   <Badge 
-                    className={`flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-500 hover:scale-110 bg-gradient-to-r ${getCategoryColor(catIndex)} text-white border-0 shadow-lg hover:shadow-glow`}
+                    className={`flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-full backdrop-blur-sm transition-all duration-500 hover:scale-110 bg-gradient-to-r ${getCategoryColor(catIndex)} text-white border-0 shadow-soft hover:shadow-glow-blue`}
                   >
                     <Icon className="h-4 w-4" />
                     {cat}
@@ -232,7 +232,7 @@ export const InteractiveCard = ({ peptide, index }: InteractiveCardProps) => {
             >
               <Button 
                 onClick={() => navigate(`/compound/${peptide.id}`)}
-                className={`flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-r ${getCategoryColor(index)} text-white border-0 px-8 py-3 rounded-full font-bold text-base group`}
+                className={`flex items-center gap-3 shadow-card hover:shadow-floating transition-all duration-500 bg-gradient-to-r ${getCategoryColor(index)} text-white border-0 px-8 py-3 rounded-full font-bold text-base group`}
               >
                 Explore Compound
                 <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />

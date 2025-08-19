@@ -51,8 +51,8 @@ export const TrendingCarousel = ({ peptides }: TrendingCarouselProps) => {
           ))}
         </CarouselContent>
         
-        <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-sm border border-white/20 text-white shadow-premium hover:bg-black hover:shadow-glow hover:scale-110 transition-all duration-300" />
-        <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-sm border border-white/20 text-white shadow-premium hover:bg-black hover:shadow-glow hover:scale-110 transition-all duration-300" />
+        <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 glass-card border border-border text-foreground shadow-card hover:bg-secondary hover:shadow-floating hover:scale-110 transition-all duration-300" />
+        <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 glass-card border border-border text-foreground shadow-card hover:bg-secondary hover:shadow-floating hover:scale-110 transition-all duration-300" />
       </Carousel>
     </div>
   );
