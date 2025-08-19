@@ -13,6 +13,7 @@ import PrerequisitesPage from "./pages/PrerequisitesPage";
 import FundamentalsPage from "./pages/FundamentalsPage";
 import AboutPage from "./pages/AboutPage";
 import NotFound from "./pages/NotFound";
+import ContactPage from "./pages/ContactPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import FavoritesPage from "./pages/FavoritesPage";
@@ -46,6 +47,7 @@ const App: React.FC = () => {
             <Route path="/stack" element={<Navigate to="/prerequisites" replace />} />
             <Route path="/fundamentals" element={<FundamentalsPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/settings" element={<SettingsPage />} />
