@@ -1,13 +1,5 @@
 import { Badge } from "@/components/ui/badge";
 import { Syringe, Pill, Zap, Brain, Dumbbell, Heart } from "lucide-react";
-import bpc157 from "@/assets/bpc-157.jpg";
-import tb500 from "@/assets/tb-500.jpg";
-import ipamorelin from "@/assets/ipamorelin.jpg";
-import melanotanii from "@/assets/melanotan-ii.jpg";
-import noopept from "@/assets/noopept.jpg";
-import epitalon from "@/assets/epitalon.jpg";
-import pt141 from "@/assets/pt-141.jpg";
-import hexarelin from "@/assets/hexarelin.jpg";
 
 interface PeptideCardProps {
   name: string;
@@ -52,44 +44,50 @@ const PeptideCard = ({
   };
 
   const getImage = (imageName?: string) => {
-    const imageMap: Record<string, string> = {
-      "bpc-157": bpc157,
-      "tb-500": tb500,
-      "ipamorelin": ipamorelin,
-      "melanotan-ii": melanotanii,
-      "noopept": noopept,
-      "epitalon": epitalon,
-      "pt-141": pt141,
-      "hexarelin": hexarelin
-    };
-    return imageName ? imageMap[imageName] : undefined;
+    // For now, return undefined to avoid broken image imports
+    // In the future, you can add actual peptide images to the public folder
+    return undefined;
   };
 
   return (
     <div className={`group relative bg-background/80 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 hover:scale-105 hover:border-primary/30 ${className}`} style={style}>
-      {/* Image Header */}
-      {image && getImage(image) && (
-        <div className="relative h-40 overflow-hidden">
-          <img 
-            src={getImage(image)} 
-            alt={`${name} molecular structure`}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-          <div className="absolute bottom-3 left-3 right-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                {getCategoryIcon(category)}
-                <h3 className="font-bold text-lg text-white drop-shadow-lg">{name}</h3>
+      {/* Image Header or Placeholder */}
+      <div className="relative h-40 overflow-hidden">
+        {image && getImage(image) ? (
+          <>
+            <img 
+              src={getImage(image)} 
+              alt={`${name} molecular structure`}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          </>
+        ) : (
+          // Placeholder with gradient background and peptide initials
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <span className="text-white font-bold text-xl">{name.substring(0, 2)}</span>
               </div>
-              <div className="flex items-center space-x-1 text-white/80">
-                {getRouteIcon(route)}
-                <span className="text-xs">{route}</span>
-              </div>
+              <p className="text-primary font-semibold text-sm">{name}</p>
+            </div>
+          </div>
+        )}
+        
+        {/* Header overlay with peptide info */}
+        <div className="absolute bottom-3 left-3 right-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              {getCategoryIcon(category)}
+              <h3 className="font-bold text-lg text-white drop-shadow-lg">{name}</h3>
+            </div>
+            <div className="flex items-center space-x-1 text-white/80">
+              {getRouteIcon(route)}
+              <span className="text-xs">{route}</span>
             </div>
           </div>
         </div>
-      )}
+      </div>
       
       {/* Card Content */}
       <div className="p-4">

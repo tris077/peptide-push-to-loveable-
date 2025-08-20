@@ -1,10 +1,10 @@
 import { removeBackground, loadImageFromUrl } from './backgroundRemoval';
-import bpc157BottleUrl from '@/assets/bpc157-bottle.png';
+// Image import removed - using lovable-uploads path instead
 
 export const processBottleImage = async (): Promise<string> => {
   try {
     console.log('Loading BPC-157 bottle image...');
-    const image = await loadImageFromUrl(bpc157BottleUrl);
+    const image = await loadImageFromUrl('/lovable-uploads/bpc157-bottle.png');
     
     console.log('Removing background...');
     const processedBlob = await removeBackground(image);
@@ -19,6 +19,6 @@ export const processBottleImage = async (): Promise<string> => {
   } catch (error) {
     console.error('Failed to process bottle image:', error);
     // Fallback to original image
-    return bpc157BottleUrl;
+    return '/lovable-uploads/bpc157-bottle.png';
   }
 };

@@ -4,10 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, TrendingUp } from "lucide-react";
 import { Peptide } from "@/data/peptides";
 import { useNavigate } from "react-router-dom";
-import semaglutideBottle from "@/assets/semaglutide-bottle.png";
-import semaxBottle from "@/assets/semax-bottle.png";
-import bpc157BottleReal from "@/assets/bpc157-bottle-real.png";
-import bpc157Bottle from "@/assets/bpc157-bottle.png";
+// Image imports removed - using lovable-uploads paths instead
 
 interface CompoundCardProps {
   peptide: Peptide;
@@ -33,7 +30,7 @@ export const CompoundCard = ({ peptide }: CompoundCardProps) => {
         <div className="relative w-full h-40 rounded-t-lg overflow-hidden">
           {peptide.id === 'semaglutide' ? (
             <img 
-              src={semaglutideBottle} 
+              src="/lovable-uploads/semaglutide-bottle.png" 
               alt={`${peptide.name} bottle`}
               className="w-full h-full object-contain bg-gray-50"
             />

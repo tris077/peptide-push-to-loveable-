@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { processBottleImage } from '@/utils/processBottleImage';
-import bpc157BottleUrl from '@/assets/bpc157-bottle.png';
+// Image import removed - using lovable-uploads path instead
 
 interface ProcessedBottleImageProps {
   peptideName: string;
@@ -9,7 +9,7 @@ interface ProcessedBottleImageProps {
 }
 
 export const ProcessedBottleImage = ({ peptideName, className, alt }: ProcessedBottleImageProps) => {
-  const [processedImageUrl, setProcessedImageUrl] = useState<string>(bpc157BottleUrl);
+  const [processedImageUrl, setProcessedImageUrl] = useState<string>('/lovable-uploads/bpc157-bottle.png');
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
