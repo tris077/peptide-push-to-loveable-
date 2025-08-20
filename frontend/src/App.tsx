@@ -2,15 +2,16 @@
 import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navigation from "@/components/Navigation";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-import Index from "./pages/Index";
-import FundamentalsPage from "./pages/FundamentalsPage";
-import AboutPage from "./pages/AboutPage";
+import Landing from "./pages/Landing";
+import Chatbot from "./pages/Chatbot";
+import Library from "./pages/Library";
+import Fundamentals from "./pages/Fundamentals";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import HomePage from "@/components/HomePage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,19 +26,20 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/chat" element={<Index />} />
-            <Route path="/directory" element={<HomePage />} />
-            <Route path="/fundamentals" element={<FundamentalsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/chatbot" element={<Chatbot />} />
+              <Route path="/library" element={<Library />} />
+              <Route path="/fundamentals" element={<Fundamentals />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

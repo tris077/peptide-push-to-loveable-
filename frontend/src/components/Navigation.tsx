@@ -1,70 +1,60 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { 
-  MessageCircle, 
-  Library, 
-  Layers, 
-  GraduationCap, 
-  User,
-  Menu,
-  X
-} from 'lucide-react';
+import { Link, useLocation } from "react-router-dom";
+import { MessageSquare, BookOpen, GraduationCap, Users, LogOut } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { Button } from "./ui/button";
 
-const Navigation: React.FC = () => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+const Navigation = () => {
   const location = useLocation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
-  const navigationItems = [
-    { name: 'Chatbot', path: '/chat', icon: MessageCircle },
-    { name: 'Library', path: '/', icon: Library },
-    { name: 'Stacks', path: '/stacks', icon: Layers },
-    { name: 'Fundamentals', path: '/fundamentals', icon: GraduationCap },
-    { name: 'About', path: '/about', icon: User },
+  const navItems = [
+    { path: "/", label: "Home", icon: null },
+    { path: "/chatbot", label: "Chatbot", icon: MessageSquare },
+    { path: "/library", label: "Library", icon: BookOpen },
+    { path: "/fundamentals", label: "Fundamentals", icon: GraduationCap },
+    { path: "/about", label: "About", icon: Users },
   ];
 
-  const isActive = (path: string) => {
-    if (path === '/' && location.pathname === '/') return true;
-    if (path !== '/' && location.pathname.startsWith(path)) return true;
-    return false;
-  };
-
-  const handleLogout = () => {
-    signOut();
-    navigate('/');
-  };
-
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo and Brand */}
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="relative">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">P</span>
-              </div>
-            </div>
-            <span className="text-xl font-bold text-gray-900">Peplike AI</span>
-          </div>
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/6ca13bba-366e-4ba7-9afd-19a7fae4bfc2.png" 
+              alt="Peplike AI"
+              className="h-8 w-auto"
+            />
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
-            {navigationItems.map((item) => {
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-6">
+            {navItems.slice(1).map((item, index) => {
               const Icon = item.icon;
+              const isActive = location.pathname === item.path;
+              
+              // Different gradient combinations for each nav item
+              const gradients = [
+                "hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white",
+                "hover:bg-gradient-to-r hover:from-purple-400 hover:to-pink-500 hover:text-white", 
+                "hover:bg-gradient-to-r hover:from-indigo-400 hover:to-purple-500 hover:text-white",
+                "hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-500 hover:text-white"
+              ];
+              
               return (
-                <button
-                  key={item.name}
-                  onClick={() => navigate(item.path)}
-                  className={`nav-item ${isActive(item.path) ? 'nav-item-active' : 'text-gray-700'}`}
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${gradients[index]} ${
+                    isActive 
+                      ? "bg-gradient-to-r from-[hsl(var(--peplike-blue))] via-[hsl(var(--peplike-purple))] to-[hsl(var(--peplike-pink))] text-white font-semibold shadow-lg" 
+                      : "text-gray-600 hover:shadow-[0_4px_20px_rgba(139,92,246,0.3)]"
+                  }`}
                 >
-                  <div className="flex items-center space-x-2">
-                    <Icon className="w-4 h-4" />
-                    <span>{item.name}</span>
-                  </div>
-                </button>
+                  {Icon && <Icon className="w-4 h-4" />}
+                  <span>{item.label}</span>
+                </Link>
               );
             })}
           </div>
@@ -76,62 +66,35 @@ const Navigation: React.FC = () => {
                 <span className="text-sm text-gray-700 hidden sm:block">
                   Welcome, {user.email}
                 </span>
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200"
+                <Button
+                  onClick={signOut}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center space-x-2"
                 >
-                  Sign Out
-                </button>
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden sm:inline">Sign Out</span>
+                </Button>
               </div>
             ) : (
-              <button
-                onClick={() => navigate('/chat')}
-                className="btn-primary"
-              >
-                Get Started
-              </button>
+              <Link to="/chatbot">
+                <Button className="bg-gradient-to-r from-[hsl(var(--peplike-blue))] to-[hsl(var(--peplike-purple))] text-white hover:from-[hsl(var(--peplike-purple))] hover:to-[hsl(var(--peplike-pink))]">
+                  Get Started
+                </Button>
+              </Link>
             )}
             
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-            >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
-          <div className="px-4 py-2 space-y-1">
-            {navigationItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.name}
-                  onClick={() => {
-                    navigate(item.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                    isActive(item.path)
-                      ? 'nav-item-active'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  <div className="flex items-center space-x-3">
-                    <Icon className="w-5 h-5" />
-                    <span>{item.name}</span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </nav>
   );
 };
