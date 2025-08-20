@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import { MessageSquare, BookOpen, Layers, Zap, GraduationCap, Search, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "../components/Navigation";
-import { useAuth } from "../contexts/AuthContext";
 
 const Landing = () => {
-  const { user, signOut } = useAuth();
-  
   const quickCards = [
     {
       title: "Chatbot Research Assistant",
@@ -79,25 +76,11 @@ const Landing = () => {
           </p>
 
           {/* CTA Button */}
-          <Link to={user ? "/chatbot" : "/chatbot"}>
+          <Link to="/chatbot">
             <Button className="gradient-button text-lg px-12 py-6 animate-slide-up">
-              {user ? "Continue Researching" : "Start Researching"}
+              Start Researching
             </Button>
           </Link>
-          
-          {/* User Status */}
-          {user && (
-            <div className="mt-6 text-center">
-              <p className="text-gray-600 mb-3">Welcome back, {user.email}</p>
-              <Button 
-                onClick={signOut}
-                variant="outline" 
-                className="text-sm px-6 py-2"
-              >
-                Sign Out
-              </Button>
-            </div>
-          )}
         </div>
 
         {/* Modern molecular background animation */}

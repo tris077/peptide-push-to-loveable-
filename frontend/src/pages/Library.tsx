@@ -4,21 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navigation from "../components/Navigation";
 import PeptideCard from "../components/PeptideCard";
-import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 const Library = () => {
-  const { user } = useAuth();
-  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [routeFilter, setRouteFilter] = useState("all");
-
-  // Check if user is authenticated
-  if (!user) {
-    navigate('/');
-    return null;
-  }
 
   const peptides = [
     {

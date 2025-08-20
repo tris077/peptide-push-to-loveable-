@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navigation from "../components/Navigation";
 import PeptideCard from "../components/PeptideCard";
-import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 interface Message {
   id: string;
@@ -15,8 +13,6 @@ interface Message {
 }
 
 const Chatbot = () => {
-  const { user } = useAuth();
-  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([{
     id: "1",
     type: "ai",
@@ -25,12 +21,6 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-
-  // Check if user is authenticated
-  if (!user) {
-    navigate('/');
-    return null;
-  }
 
   const goalChips = ["Muscle Growth", "Cognitive Enhancement", "Fat Loss", "Recovery", "Anti-Aging", "Performance"];
 
