@@ -1,165 +1,139 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
-import { AuthModal } from "./AuthModal";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import { 
-  Menu, 
-  X, 
-  User, 
-  Settings, 
-  LogOut, 
-  BookOpen,
-  Layers,
-  Info,
-  Home,
-  Sparkles
-} from "lucide-react";
+  MessageCircle, 
+  Library, 
+  Layers, 
+  GraduationCap, 
+  User,
+  Menu,
+  X
+} from 'lucide-react';
 
-export const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+const Navigation: React.FC = () => {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Research Library", href: "/", icon: Home },
-    { name: "AI Chat", href: "/chat", icon: BookOpen },
-    { name: "Fundamentals", href: "/fundamentals", icon: BookOpen },
-    { name: "About", href: "/about", icon: Info },
+    { name: 'Chatbot', path: '/chat', icon: MessageCircle },
+    { name: 'Library', path: '/', icon: Library },
+    { name: 'Stacks', path: '/stacks', icon: Layers },
+    { name: 'Fundamentals', path: '/fundamentals', icon: GraduationCap },
+    { name: 'About', path: '/about', icon: User },
   ];
 
-  const isActiveRoute = (href: string) => {
-    if (href === "/") {
-      return location.pathname === "/";
-    }
-    return location.pathname.startsWith(href);
+  const isActive = (path: string) => {
+    if (path === '/' && location.pathname === '/') return true;
+    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    return false;
   };
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      setIsMenuOpen(false);
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
+  const handleLogout = () => {
+    signOut();
+    navigate('/');
   };
 
   return (
-    <>
-      <nav className="bg-surface/95 border-b border-border/50 backdrop-blur-xl sticky top-0 z-50 shadow-lg">
-        <div className="absolute inset-0 bg-texture opacity-30"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo - Left */}
-            <div className="flex-shrink-0">
-              <a href="/" className="flex items-center space-x-3 group">
-                <div className="relative">
-                  {/* Use the exact logo image the user provided */}
-                  <img
-                    src="/logo.png?v=5"
-                    alt="Peplike AI Logo"
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 object-contain"
-                    style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
-                    onLoad={() => console.log('Logo loaded successfully!')}
-                    onError={(e) => {
-                      console.error('Logo failed to load:', e);
-                      const target = e.target as HTMLImageElement;
-                      target.style.border = '2px solid red';
-                      target.style.backgroundColor = '#f0f0f0';
-                      console.log('Current src:', target.src);
-                      console.log('Current pathname:', window.location.pathname);
-                    }}
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-bold text-gray-900">
-                    Peplike AI
-                  </span>
-                  <div className="flex items-center space-x-1 opacity-75">
-                    <Sparkles className="h-3 w-3 text-blue-500 animate-pulse" />
-                    <span className="text-xs text-gray-500">Research Platform</span>
-                  </div>
-                </div>
-              </a>
+    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="relative">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 flex items-center justify-center">
+                <span className="text-white font-bold text-lg">P</span>
+              </div>
             </div>
+            <span className="text-xl font-bold text-gray-900">Peplike AI</span>
+          </div>
 
-            {/* Primary Navigation - Center/Right */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navigationItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      isActiveRoute(item.href)
-                        ? "bg-blue-50 text-blue-600 border border-blue-200"
-                        : "text-text-secondary hover:text-text-primary hover:bg-surface-hover"
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    <span>{item.name}</span>
-                  </a>
-                );
-              })}
-            </div>
-
-            {/* CTA Button - Right */}
-            <div className="flex items-center space-x-4">
-              {user ? (
-                <div className="relative">
-                  <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-surface-hover transition-colors"
-                  >
-                    <User className="h-4 w-4" />
-                    <span>{user.username || user.email}</span>
-                  </button>
-
-                  {isMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-lg shadow-lg py-1 z-50">
-                      <a
-                        href="/profile"
-                        className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover"
-                      >
-                        Profile
-                      </a>
-                      <a
-                        href="/settings"
-                        className="block px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover"
-                      >
-                        Settings
-                      </a>
-                      <button
-                        onClick={handleSignOut}
-                        className="block w-full text-left px-4 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-surface-hover"
-                      >
-                        Sign Out
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Button
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700"
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-2">
+            {navigationItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => navigate(item.path)}
+                  className={`nav-item ${isActive(item.path) ? 'nav-item-active' : 'text-gray-700'}`}
                 >
-                  Sign In
-                </Button>
-              )}
-            </div>
+                  <div className="flex items-center space-x-2">
+                    <Icon className="w-4 h-4" />
+                    <span>{item.name}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* User Menu / Auth */}
+          <div className="flex items-center space-x-4">
+            {user ? (
+              <div className="flex items-center space-x-3">
+                <span className="text-sm text-gray-700 hidden sm:block">
+                  Welcome, {user.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={() => navigate('/chat')}
+                className="btn-primary"
+              >
+                Get Started
+              </button>
+            )}
+            
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
-    </>
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100">
+          <div className="px-4 py-2 space-y-1">
+            {navigationItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => {
+                    navigate(item.path);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'nav-item-active'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
+
+export default Navigation;
