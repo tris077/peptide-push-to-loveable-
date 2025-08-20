@@ -18,7 +18,6 @@ import {
   Droplets,
   AlertTriangle
 } from "lucide-react";
-import Navigation from "@/components/Navigation";
 
 export default function PrerequisitesPage() {
   const navigate = useNavigate();
@@ -31,7 +30,6 @@ export default function PrerequisitesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      <Navigation />
       
       {/* Enhanced Hero Header */}
       <motion.div 
