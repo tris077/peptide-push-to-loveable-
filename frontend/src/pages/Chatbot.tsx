@@ -82,7 +82,7 @@ const Chatbot = () => {
     <div className={`min-h-screen transition-all duration-700 ${
       isExpanded 
         ? 'bg-gradient-to-t from-[hsl(var(--peplike-blue))] via-[hsl(var(--peplike-purple))] to-[hsl(var(--peplike-pink))]' 
-        : 'bg-gradient-radial from-[hsl(var(--peplike-blue)/0.9)] via-[hsl(var(--peplike-purple)/0.95)] to-[hsl(var(--peplike-pink)/0.9)]'
+        : ''
     }`} 
     style={!isExpanded ? {
       background: `radial-gradient(ellipse 120% 60% at 50% 0%, 
