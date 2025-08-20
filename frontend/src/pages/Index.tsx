@@ -1,5 +1,5 @@
 import React from "react";
-import { ChatUI } from "@/components/ChatUI";
+import ChatUI from "@/components/ChatUI";
 
 const Index = () => {
   return <ChatUI />;
