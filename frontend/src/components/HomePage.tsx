@@ -87,7 +87,7 @@ const HomePage: React.FC = () => {
   const routes = ['All Routes', 'Injection', 'Oral'];
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
+    <div className="min-h-screen" style={{background: 'linear-gradient(180deg, rgb(147 51 234) 0%, rgb(236 72 153) 50%, rgb(59 130 246) 100%)'}}>
       {/* Hero Section */}
       <div className="text-center py-20 px-4">
         <div className="max-w-4xl mx-auto">
@@ -160,12 +160,8 @@ const HomePage: React.FC = () => {
               {/* Card Header */}
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden">
-                    <img 
-                      src={peptide.icon} 
-                      alt={peptide.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                    <span className="text-white font-bold text-xs">{peptide.name.substring(0, 3)}</span>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gradient-primary">
