@@ -1,129 +1,126 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
-import {
-  Menu,
-  Home,
-  BookOpen,
-  Calculator,
-  Info,
-  User,
-  Heart,
+import { 
+  Menu, 
+  X, 
+  Home, 
+  BookOpen, 
+  Layers, 
+  Info, 
+  MessageCircle,
   Settings,
-  Crown,
+  User,
   Sparkles
 } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
 
 export const GlobalMenu = () => {
-  const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const menuItems = [
-    { icon: Home, label: "Research Library", path: "/", description: "Browse all peptides" },
-    { icon: BookOpen, label: "AI Chat", path: "/chat", description: "AI-powered research assistant" },
-    { icon: Calculator, label: "Fundamentals", path: "/fundamentals", description: "Calculators & tools" },
-    { icon: Info, label: "About", path: "/about", description: "Learn about Peplike" },
-    { icon: Settings, label: "Settings", path: "/settings", description: "App preferences & subscription" },
+    { name: "Research Library", path: "/", icon: Home },
+    { name: "AI Chat", path: "/chat", icon: MessageCircle },
+    { name: "Fundamentals", path: "/fundamentals", icon: BookOpen },
+    { name: "About", path: "/about", icon: Info },
   ];
 
-  const userMenuItems = [
-    { icon: User, label: "Profile", path: "/profile", description: "Manage your account" },
-    { icon: Heart, label: "Favorites", path: "/favorites", description: "Your saved peptides" },
-  ];
+  const isActiveRoute = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/";
+    }
+    return location.pathname.startsWith(path);
+  };
 
   const handleNavigation = (path: string) => {
-    console.log('Navigating to:', path);
     navigate(path);
     setIsOpen(false);
   };
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="fixed top-4 left-2 z-[9999] bg-white/90 backdrop-blur-md border border-blue-200 hover:bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-200 rounded-full p-2.5 shadow-sm"
-          aria-label="Open navigation menu"
-          title="Navigation Menu"
-        >
-          <Menu className="h-5 w-5 text-blue-600" />
-        </Button>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent
-        align="start"
-        className="w-80 bg-white/95 backdrop-blur-xl border border-gray-200 text-gray-800 shadow-2xl"
-        sideOffset={8}
+    <>
+      {/* Menu Button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed top-4 left-4 z-50 p-2 bg-surface/80 backdrop-blur-sm border border-border/50 hover:bg-surface-hover"
       >
-        <div className="p-4 border-b border-gray-100">
-          <h3 className="font-semibold text-gray-900 text-lg">Navigation Menu</h3>
-          <p className="text-sm text-gray-600">Quick access to all pages</p>
-        </div>
+        {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+      </Button>
 
-        {/* Main Navigation */}
-        <div className="p-2">
-          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 py-2">
-            Main Pages
-          </div>
-          {menuItems.map((item) => (
-            <DropdownMenuItem
-              key={item.path}
-              onClick={() => handleNavigation(item.path)}
-              className="cursor-pointer p-3 hover:bg-gray-50 rounded-lg"
-            >
-              <div className="flex items-center gap-3 w-full">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <item.icon className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900">{item.label}</div>
-                  <div className="text-sm text-gray-600">{item.description}</div>
+      {/* Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Menu Panel */}
+      <div className={`fixed left-0 top-0 h-full w-80 bg-surface/95 backdrop-blur-xl border-r border-border/50 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      }`}>
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-texture opacity-20"></div>
+        
+        <div className="p-6 relative z-10">
+          {/* Enhanced Header */}
+          <div className="mb-8">
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="relative">
+                {/* Use the exact logo image the user provided */}
+                <img
+                  src="/logo.png?v=5"
+                  alt="Peplike AI Logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain"
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Peplike AI
+                </h2>
+                <div className="flex items-center space-x-1">
+                  <Sparkles className="h-3 w-3 text-blue-500 animate-pulse" />
+                  <p className="text-sm text-text-secondary">Research Platform</p>
                 </div>
               </div>
-            </DropdownMenuItem>
-          ))}
-        </div>
-
-        {/* User Menu (if authenticated) */}
-        {isAuthenticated && (
-          <>
-            <DropdownMenuSeparator />
-            <div className="p-2">
-              <div className="text-xs font-medium text-gray-500 uppercase tracking-wider px-3 py-2">
-                Your Account
-              </div>
-              {userMenuItems.map((item) => (
-                <DropdownMenuItem
-                  key={item.path}
-                  onClick={() => handleNavigation(item.path)}
-                  className="cursor-pointer p-3 hover:bg-gray-50 rounded-lg"
-                >
-                  <div className="flex items-center gap-3 w-full">
-                    <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
-                      <item.icon className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-medium text-gray-900">{item.label}</div>
-                      <div className="text-sm text-gray-600">{item.description}</div>
-                    </div>
-                  </div>
-                </DropdownMenuItem>
-              ))}
             </div>
-          </>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+          </div>
+
+          {/* Navigation Items */}
+          <nav className="space-y-2">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.path)}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                    isActiveRoute(item.path)
+                      ? "bg-blue-50 text-blue-600 border border-blue-200"
+                      : "text-text-secondary hover:text-text-primary hover:bg-surface-hover"
+                  }`}
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="font-medium">{item.name}</span>
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* Footer */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="text-center text-xs text-text-tertiary">
+              <p>Peplike AI Research Platform</p>
+              <p className="mt-1">Discover the future of peptides</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

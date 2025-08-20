@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Test - Peplike</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.3);
+        }
+        .success {
+            background: rgba(0, 255, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Peplike Authentication Test</h1>
+        <p>This page tests the authentication endpoints to ensure they're working properly.</p>
+        
+        <div class="test-section">
+            <h3>1. Test Backend Connection</h3>
+            <button onclick="testBackend()">Test Backend</button>
+            <div id="backend-result" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>2. Test Login</h3>
+            <input type="email" id="login-email" placeholder="Email" value="test@example.com">
+            <input type="password" id="login-password" placeholder="Password" value="testpass">
+            <button onclick="testLogin()">Test Login</button>
+            <div id="login-result" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>3. Test User Data</h3>
+            <button onclick="testUserData()">Test User Data</button>
+            <div id="user-result" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>4. Test Registration</h3>
+            <input type="email" id="reg-email" placeholder="Email" value="newuser@example.com">
+            <input type="text" id="reg-username" placeholder="Username" value="newuser">
+            <input type="password" id="reg-password" placeholder="Password" value="password123">
+            <input type="text" id="reg-fullname" placeholder="Full Name" value="New User">
+            <button onclick="testRegistration()">Test Registration</button>
+            <div id="reg-result" class="result"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>5. Test Frontend Connection</h3>
+            <button onclick="testFrontend()">Test Frontend</button>
+            <div id="frontend-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentToken = '';
+        
+        async function testBackend() {
+            const resultDiv = document.getElementById('backend-result');
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const data = await response.json();
+                resultDiv.textContent = `✅ Backend is running!\nResponse: ${JSON.stringify(data, null, 2)}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = `❌ Backend connection failed:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testLogin() {
+            const resultDiv = document.getElementById('login-result');
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const formData = new FormData();
+                formData.append('username', email);
+                formData.append('password', password);
+                
+                const response = await fetch('http://localhost:8000/api/v1/auth/login', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    currentToken = data.access_token;
+                    resultDiv.textContent = `✅ Login successful!\nToken: ${data.access_token.substring(0, 50)}...`;
+                    resultDiv.className = 'result success';
+                } else {
+                    const error = await response.text();
+                    resultDiv.textContent = `❌ Login failed:\nStatus: ${response.status}\nError: ${error}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ Login request failed:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testUserData() {
+            const resultDiv = document.getElementById('user-result');
+            
+            if (!currentToken) {
+                resultDiv.textContent = '❌ No token available. Please login first.';
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/auth/me', {
+                    headers: {
+                        'Authorization': `Bearer ${currentToken}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `✅ User data retrieved!\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    const error = await response.text();
+                    resultDiv.textContent = `❌ User data request failed:\nStatus: ${response.status}\nError: ${error}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ User data request failed:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testRegistration() {
+            const resultDiv = document.getElementById('reg-result');
+            const email = document.getElementById('reg-email').value;
+            const username = document.getElementById('reg-username').value;
+            const password = document.getElementById('reg-password').value;
+            const fullName = document.getElementById('reg-fullname').value;
+            
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email,
+                        username,
+                        password,
+                        full_name: fullName
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.textContent = `✅ Registration successful!\n${JSON.stringify(data, null, 2)}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    const error = await response.text();
+                    resultDiv.textContent = `❌ Registration failed:\nStatus: ${response.status}\nError: ${error}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ Registration request failed:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        async function testFrontend() {
+            const resultDiv = document.getElementById('frontend-result');
+            try {
+                const response = await fetch('http://localhost:8080/');
+                if (response.ok) {
+                    resultDiv.textContent = `✅ Frontend is running!\nStatus: ${response.status}`;
+                    resultDiv.className = 'result success';
+                } else {
+                    resultDiv.textContent = `❌ Frontend returned error:\nStatus: ${response.status}`;
+                    resultDiv.className = 'result error';
+                }
+            } catch (error) {
+                resultDiv.textContent = `❌ Frontend connection failed:\n${error.message}`;
+                resultDiv.className = 'result error';
+            }
+        }
+        
+        // Auto-run backend test on page load
+        window.onload = function() {
+            testBackend();
+        };
+    </script>
+</body>
+</html>
