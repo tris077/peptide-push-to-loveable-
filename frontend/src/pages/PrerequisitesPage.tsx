@@ -18,7 +18,7 @@ import {
   Droplets,
   AlertTriangle
 } from "lucide-react";
-import { Navigation } from "@/components/Navigation";
+import Navigation from "@/components/Navigation";
 
 export default function PrerequisitesPage() {
   const navigate = useNavigate();
